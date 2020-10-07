@@ -1,0 +1,10 @@
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\bin\Debug\KoenigseggHWTest.exe.config
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\bin\Debug\KoenigseggHWTest.exe
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\bin\Debug\KoenigseggHWTest.pdb
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\obj\Debug\KoenigseggHWTest.csprojAssemblyReference.cache
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\obj\Debug\KoenigseggHWTest.Properties.Resources.resources
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\obj\Debug\KoenigseggHWTest.csproj.GenerateResource.cache
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\obj\Debug\KoenigseggHWTest.csproj.CoreCompileInputs.cache
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\obj\Debug\KoenigseggHWTest.exe
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\obj\Debug\KoenigseggHWTest.pdb
+C:\Users\User\source\repos\KoenigseggHWTest\KoenigseggHWTest\obj\Debug\KoenigseggHWTest.KoenigseggHWTest.resources
