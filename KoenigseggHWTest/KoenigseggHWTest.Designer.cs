@@ -36,59 +36,59 @@
             this.framePeriodNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.frameIDLabel = new System.Windows.Forms.Label();
             this.frameDataGroupBox = new System.Windows.Forms.GroupBox();
+            this.pullSelectGroupBox = new System.Windows.Forms.GroupBox();
+            this.pullUpRadioButton = new System.Windows.Forms.RadioButton();
+            this.pulldownRadioButton = new System.Windows.Forms.RadioButton();
+            this.pullControlGroupBox = new System.Windows.Forms.GroupBox();
+            this.pullEnableRadioButton = new System.Windows.Forms.RadioButton();
+            this.pullDisableRadioButton = new System.Windows.Forms.RadioButton();
+            this.slewRateControlGroupBox = new System.Windows.Forms.GroupBox();
+            this.fullWoSlewCtrlRadioButton = new System.Windows.Forms.RadioButton();
+            this.halfWoSlewCtrlRadioButton = new System.Windows.Forms.RadioButton();
+            this.fullWSlewCtrlRadioButton = new System.Windows.Forms.RadioButton();
+            this.halfWSlewCtrlRadioButton = new System.Windows.Forms.RadioButton();
+            this.inputHysteresisGroupBox = new System.Windows.Forms.GroupBox();
+            this.inputHysteresisEnableRadioButton = new System.Windows.Forms.RadioButton();
+            this.inputHysteresisDisableRadioButton = new System.Windows.Forms.RadioButton();
+            this.openDrainGroupBox = new System.Windows.Forms.GroupBox();
+            this.openDrainEnableRadioButton = new System.Windows.Forms.RadioButton();
+            this.openDrainDisableRadioButton = new System.Windows.Forms.RadioButton();
+            this.driveStrGroupBox = new System.Windows.Forms.GroupBox();
+            this.maximumRadioButton = new System.Windows.Forms.RadioButton();
+            this.mediumHighRadioButton = new System.Windows.Forms.RadioButton();
+            this.mediumRadioButton = new System.Windows.Forms.RadioButton();
+            this.minimumRadioButton = new System.Windows.Forms.RadioButton();
+            this.inputGroupBox = new System.Windows.Forms.GroupBox();
+            this.inputEnableRadioButton = new System.Windows.Forms.RadioButton();
+            this.inputDisableRadioButton = new System.Windows.Forms.RadioButton();
+            this.outputGroupBox = new System.Windows.Forms.GroupBox();
+            this.outputEnableRadioButton = new System.Windows.Forms.RadioButton();
+            this.outputDisableRadioButton = new System.Windows.Forms.RadioButton();
+            this.functionGroupBox = new System.Windows.Forms.GroupBox();
+            this.alternate3RadioButton = new System.Windows.Forms.RadioButton();
+            this.alternate2RadioButton = new System.Windows.Forms.RadioButton();
+            this.alternate1RadioButton = new System.Windows.Forms.RadioButton();
+            this.primaryRadioButton = new System.Windows.Forms.RadioButton();
+            this.gpioRadioButton = new System.Windows.Forms.RadioButton();
+            this.udsRoutineLabel = new System.Windows.Forms.Label();
+            this.udsRoutineNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.pinNumberLabel = new System.Windows.Forms.Label();
             this.pinNumberComboBox = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.udsRoutineNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.udsRoutineLabel = new System.Windows.Forms.Label();
-            this.functionGroupBox = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
-            this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
-            this.radioButton11 = new System.Windows.Forms.RadioButton();
-            this.radioButton12 = new System.Windows.Forms.RadioButton();
-            this.radioButton13 = new System.Windows.Forms.RadioButton();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
-            this.radioButton14 = new System.Windows.Forms.RadioButton();
-            this.radioButton15 = new System.Windows.Forms.RadioButton();
-            this.groupBox6 = new System.Windows.Forms.GroupBox();
-            this.radioButton16 = new System.Windows.Forms.RadioButton();
-            this.radioButton17 = new System.Windows.Forms.RadioButton();
-            this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.radioButton18 = new System.Windows.Forms.RadioButton();
-            this.radioButton19 = new System.Windows.Forms.RadioButton();
-            this.radioButton20 = new System.Windows.Forms.RadioButton();
-            this.radioButton21 = new System.Windows.Forms.RadioButton();
-            this.groupBox8 = new System.Windows.Forms.GroupBox();
-            this.groupBox9 = new System.Windows.Forms.GroupBox();
-            this.radioButton22 = new System.Windows.Forms.RadioButton();
-            this.radioButton23 = new System.Windows.Forms.RadioButton();
-            this.radioButton24 = new System.Windows.Forms.RadioButton();
-            this.radioButton25 = new System.Windows.Forms.RadioButton();
+            this.transmissionControlGroupBox = new System.Windows.Forms.GroupBox();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameIDNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.framePeriodNumericUpDown)).BeginInit();
             this.frameDataGroupBox.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).BeginInit();
+            this.pullSelectGroupBox.SuspendLayout();
+            this.pullControlGroupBox.SuspendLayout();
+            this.slewRateControlGroupBox.SuspendLayout();
+            this.inputHysteresisGroupBox.SuspendLayout();
+            this.openDrainGroupBox.SuspendLayout();
+            this.driveStrGroupBox.SuspendLayout();
+            this.inputGroupBox.SuspendLayout();
+            this.outputGroupBox.SuspendLayout();
             this.functionGroupBox.SuspendLayout();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
-            this.groupBox6.SuspendLayout();
-            this.groupBox7.SuspendLayout();
-            this.groupBox8.SuspendLayout();
-            this.groupBox9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // framePropertiesGroupBox
@@ -99,9 +99,9 @@
             this.framePropertiesGroupBox.Controls.Add(this.framePeriodLabel);
             this.framePropertiesGroupBox.Controls.Add(this.framePeriodNumericUpDown);
             this.framePropertiesGroupBox.Controls.Add(this.frameIDLabel);
-            this.framePropertiesGroupBox.Location = new System.Drawing.Point(44, 34);
+            this.framePropertiesGroupBox.Location = new System.Drawing.Point(44, 536);
             this.framePropertiesGroupBox.Name = "framePropertiesGroupBox";
-            this.framePropertiesGroupBox.Size = new System.Drawing.Size(1529, 308);
+            this.framePropertiesGroupBox.Size = new System.Drawing.Size(522, 308);
             this.framePropertiesGroupBox.TabIndex = 0;
             this.framePropertiesGroupBox.TabStop = false;
             this.framePropertiesGroupBox.Text = "Frame Properties";
@@ -173,25 +173,448 @@
             // 
             // frameDataGroupBox
             // 
-            this.frameDataGroupBox.Controls.Add(this.groupBox9);
-            this.frameDataGroupBox.Controls.Add(this.groupBox8);
-            this.frameDataGroupBox.Controls.Add(this.groupBox7);
-            this.frameDataGroupBox.Controls.Add(this.groupBox6);
-            this.frameDataGroupBox.Controls.Add(this.groupBox5);
-            this.frameDataGroupBox.Controls.Add(this.groupBox4);
-            this.frameDataGroupBox.Controls.Add(this.groupBox2);
-            this.frameDataGroupBox.Controls.Add(this.groupBox1);
+            this.frameDataGroupBox.Controls.Add(this.pullSelectGroupBox);
+            this.frameDataGroupBox.Controls.Add(this.pullControlGroupBox);
+            this.frameDataGroupBox.Controls.Add(this.slewRateControlGroupBox);
+            this.frameDataGroupBox.Controls.Add(this.inputHysteresisGroupBox);
+            this.frameDataGroupBox.Controls.Add(this.openDrainGroupBox);
+            this.frameDataGroupBox.Controls.Add(this.driveStrGroupBox);
+            this.frameDataGroupBox.Controls.Add(this.inputGroupBox);
+            this.frameDataGroupBox.Controls.Add(this.outputGroupBox);
             this.frameDataGroupBox.Controls.Add(this.functionGroupBox);
             this.frameDataGroupBox.Controls.Add(this.udsRoutineLabel);
             this.frameDataGroupBox.Controls.Add(this.udsRoutineNumericUpDown);
             this.frameDataGroupBox.Controls.Add(this.pinNumberLabel);
             this.frameDataGroupBox.Controls.Add(this.pinNumberComboBox);
-            this.frameDataGroupBox.Location = new System.Drawing.Point(44, 373);
+            this.frameDataGroupBox.Location = new System.Drawing.Point(50, 51);
             this.frameDataGroupBox.Name = "frameDataGroupBox";
             this.frameDataGroupBox.Size = new System.Drawing.Size(2573, 454);
             this.frameDataGroupBox.TabIndex = 1;
             this.frameDataGroupBox.TabStop = false;
             this.frameDataGroupBox.Text = "Frame Data";
+            // 
+            // pullSelectGroupBox
+            // 
+            this.pullSelectGroupBox.Controls.Add(this.pullUpRadioButton);
+            this.pullSelectGroupBox.Controls.Add(this.pulldownRadioButton);
+            this.pullSelectGroupBox.Location = new System.Drawing.Point(2019, 237);
+            this.pullSelectGroupBox.Name = "pullSelectGroupBox";
+            this.pullSelectGroupBox.Size = new System.Drawing.Size(326, 180);
+            this.pullSelectGroupBox.TabIndex = 8;
+            this.pullSelectGroupBox.TabStop = false;
+            this.pullSelectGroupBox.Text = "Weak Pull-up/down Select";
+            // 
+            // pullUpRadioButton
+            // 
+            this.pullUpRadioButton.AutoSize = true;
+            this.pullUpRadioButton.Location = new System.Drawing.Point(7, 112);
+            this.pullUpRadioButton.Name = "pullUpRadioButton";
+            this.pullUpRadioButton.Size = new System.Drawing.Size(142, 36);
+            this.pullUpRadioButton.TabIndex = 1;
+            this.pullUpRadioButton.Text = "Pull-up";
+            this.pullUpRadioButton.UseVisualStyleBackColor = true;
+            this.pullUpRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // pulldownRadioButton
+            // 
+            this.pulldownRadioButton.AutoSize = true;
+            this.pulldownRadioButton.Checked = true;
+            this.pulldownRadioButton.Location = new System.Drawing.Point(7, 69);
+            this.pulldownRadioButton.Name = "pulldownRadioButton";
+            this.pulldownRadioButton.Size = new System.Drawing.Size(178, 36);
+            this.pulldownRadioButton.TabIndex = 0;
+            this.pulldownRadioButton.TabStop = true;
+            this.pulldownRadioButton.Text = "Pull-down";
+            this.pulldownRadioButton.UseVisualStyleBackColor = true;
+            this.pulldownRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // pullControlGroupBox
+            // 
+            this.pullControlGroupBox.Controls.Add(this.pullEnableRadioButton);
+            this.pullControlGroupBox.Controls.Add(this.pullDisableRadioButton);
+            this.pullControlGroupBox.Location = new System.Drawing.Point(2019, 48);
+            this.pullControlGroupBox.Name = "pullControlGroupBox";
+            this.pullControlGroupBox.Size = new System.Drawing.Size(326, 165);
+            this.pullControlGroupBox.TabIndex = 7;
+            this.pullControlGroupBox.TabStop = false;
+            this.pullControlGroupBox.Text = "Weak Pull-up/down Control";
+            // 
+            // pullEnableRadioButton
+            // 
+            this.pullEnableRadioButton.AutoSize = true;
+            this.pullEnableRadioButton.Location = new System.Drawing.Point(20, 116);
+            this.pullEnableRadioButton.Name = "pullEnableRadioButton";
+            this.pullEnableRadioButton.Size = new System.Drawing.Size(142, 36);
+            this.pullEnableRadioButton.TabIndex = 1;
+            this.pullEnableRadioButton.Text = "Enable";
+            this.pullEnableRadioButton.UseVisualStyleBackColor = true;
+            this.pullEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // pullDisableRadioButton
+            // 
+            this.pullDisableRadioButton.AutoSize = true;
+            this.pullDisableRadioButton.Checked = true;
+            this.pullDisableRadioButton.Location = new System.Drawing.Point(20, 64);
+            this.pullDisableRadioButton.Name = "pullDisableRadioButton";
+            this.pullDisableRadioButton.Size = new System.Drawing.Size(148, 36);
+            this.pullDisableRadioButton.TabIndex = 0;
+            this.pullDisableRadioButton.TabStop = true;
+            this.pullDisableRadioButton.Text = "Disable";
+            this.pullDisableRadioButton.UseVisualStyleBackColor = true;
+            this.pullDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // slewRateControlGroupBox
+            // 
+            this.slewRateControlGroupBox.Controls.Add(this.fullWoSlewCtrlRadioButton);
+            this.slewRateControlGroupBox.Controls.Add(this.halfWoSlewCtrlRadioButton);
+            this.slewRateControlGroupBox.Controls.Add(this.fullWSlewCtrlRadioButton);
+            this.slewRateControlGroupBox.Controls.Add(this.halfWSlewCtrlRadioButton);
+            this.slewRateControlGroupBox.Location = new System.Drawing.Point(1397, 38);
+            this.slewRateControlGroupBox.Name = "slewRateControlGroupBox";
+            this.slewRateControlGroupBox.Size = new System.Drawing.Size(567, 383);
+            this.slewRateControlGroupBox.TabIndex = 6;
+            this.slewRateControlGroupBox.TabStop = false;
+            this.slewRateControlGroupBox.Text = "Slew Rate Control";
+            // 
+            // fullWoSlewCtrlRadioButton
+            // 
+            this.fullWoSlewCtrlRadioButton.AutoSize = true;
+            this.fullWoSlewCtrlRadioButton.Location = new System.Drawing.Point(7, 268);
+            this.fullWoSlewCtrlRadioButton.Name = "fullWoSlewCtrlRadioButton";
+            this.fullWoSlewCtrlRadioButton.Size = new System.Drawing.Size(559, 36);
+            this.fullWoSlewCtrlRadioButton.TabIndex = 3;
+            this.fullWoSlewCtrlRadioButton.Text = "Full Drive Strength Without Slew Control";
+            this.fullWoSlewCtrlRadioButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.fullWoSlewCtrlRadioButton.UseVisualStyleBackColor = true;
+            this.fullWoSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // halfWoSlewCtrlRadioButton
+            // 
+            this.halfWoSlewCtrlRadioButton.AutoSize = true;
+            this.halfWoSlewCtrlRadioButton.Location = new System.Drawing.Point(7, 186);
+            this.halfWoSlewCtrlRadioButton.Name = "halfWoSlewCtrlRadioButton";
+            this.halfWoSlewCtrlRadioButton.Size = new System.Drawing.Size(563, 36);
+            this.halfWoSlewCtrlRadioButton.TabIndex = 2;
+            this.halfWoSlewCtrlRadioButton.Text = "Half Drive Strength Without Slew Control";
+            this.halfWoSlewCtrlRadioButton.UseVisualStyleBackColor = true;
+            this.halfWoSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // fullWSlewCtrlRadioButton
+            // 
+            this.fullWSlewCtrlRadioButton.AutoSize = true;
+            this.fullWSlewCtrlRadioButton.Location = new System.Drawing.Point(7, 114);
+            this.fullWSlewCtrlRadioButton.Name = "fullWSlewCtrlRadioButton";
+            this.fullWSlewCtrlRadioButton.Size = new System.Drawing.Size(519, 36);
+            this.fullWSlewCtrlRadioButton.TabIndex = 1;
+            this.fullWSlewCtrlRadioButton.Text = "Full Drive Strength With Slew Control";
+            this.fullWSlewCtrlRadioButton.UseVisualStyleBackColor = true;
+            this.fullWSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // halfWSlewCtrlRadioButton
+            // 
+            this.halfWSlewCtrlRadioButton.AutoSize = true;
+            this.halfWSlewCtrlRadioButton.Checked = true;
+            this.halfWSlewCtrlRadioButton.Location = new System.Drawing.Point(6, 62);
+            this.halfWSlewCtrlRadioButton.Name = "halfWSlewCtrlRadioButton";
+            this.halfWSlewCtrlRadioButton.Size = new System.Drawing.Size(530, 36);
+            this.halfWSlewCtrlRadioButton.TabIndex = 0;
+            this.halfWSlewCtrlRadioButton.TabStop = true;
+            this.halfWSlewCtrlRadioButton.Text = "Half Drive Strength With Slew Control ";
+            this.halfWSlewCtrlRadioButton.UseVisualStyleBackColor = true;
+            this.halfWSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // inputHysteresisGroupBox
+            // 
+            this.inputHysteresisGroupBox.Controls.Add(this.inputHysteresisEnableRadioButton);
+            this.inputHysteresisGroupBox.Controls.Add(this.inputHysteresisDisableRadioButton);
+            this.inputHysteresisGroupBox.Location = new System.Drawing.Point(1100, 237);
+            this.inputHysteresisGroupBox.Name = "inputHysteresisGroupBox";
+            this.inputHysteresisGroupBox.Size = new System.Drawing.Size(233, 180);
+            this.inputHysteresisGroupBox.TabIndex = 5;
+            this.inputHysteresisGroupBox.TabStop = false;
+            this.inputHysteresisGroupBox.Text = "Input Hysteresis";
+            // 
+            // inputHysteresisEnableRadioButton
+            // 
+            this.inputHysteresisEnableRadioButton.AutoSize = true;
+            this.inputHysteresisEnableRadioButton.Location = new System.Drawing.Point(17, 102);
+            this.inputHysteresisEnableRadioButton.Name = "inputHysteresisEnableRadioButton";
+            this.inputHysteresisEnableRadioButton.Size = new System.Drawing.Size(142, 36);
+            this.inputHysteresisEnableRadioButton.TabIndex = 1;
+            this.inputHysteresisEnableRadioButton.Text = "Enable";
+            this.inputHysteresisEnableRadioButton.UseVisualStyleBackColor = true;
+            this.inputHysteresisEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // inputHysteresisDisableRadioButton
+            // 
+            this.inputHysteresisDisableRadioButton.AutoSize = true;
+            this.inputHysteresisDisableRadioButton.Checked = true;
+            this.inputHysteresisDisableRadioButton.Location = new System.Drawing.Point(17, 50);
+            this.inputHysteresisDisableRadioButton.Name = "inputHysteresisDisableRadioButton";
+            this.inputHysteresisDisableRadioButton.Size = new System.Drawing.Size(148, 36);
+            this.inputHysteresisDisableRadioButton.TabIndex = 0;
+            this.inputHysteresisDisableRadioButton.TabStop = true;
+            this.inputHysteresisDisableRadioButton.Text = "Disable";
+            this.inputHysteresisDisableRadioButton.UseVisualStyleBackColor = true;
+            this.inputHysteresisDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // openDrainGroupBox
+            // 
+            this.openDrainGroupBox.Controls.Add(this.openDrainEnableRadioButton);
+            this.openDrainGroupBox.Controls.Add(this.openDrainDisableRadioButton);
+            this.openDrainGroupBox.Location = new System.Drawing.Point(1093, 62);
+            this.openDrainGroupBox.Name = "openDrainGroupBox";
+            this.openDrainGroupBox.Size = new System.Drawing.Size(270, 151);
+            this.openDrainGroupBox.TabIndex = 4;
+            this.openDrainGroupBox.TabStop = false;
+            this.openDrainGroupBox.Text = "Open Drain Output";
+            // 
+            // openDrainEnableRadioButton
+            // 
+            this.openDrainEnableRadioButton.AutoSize = true;
+            this.openDrainEnableRadioButton.Location = new System.Drawing.Point(7, 103);
+            this.openDrainEnableRadioButton.Name = "openDrainEnableRadioButton";
+            this.openDrainEnableRadioButton.Size = new System.Drawing.Size(142, 36);
+            this.openDrainEnableRadioButton.TabIndex = 1;
+            this.openDrainEnableRadioButton.Text = "Enable";
+            this.openDrainEnableRadioButton.UseVisualStyleBackColor = true;
+            this.openDrainEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // openDrainDisableRadioButton
+            // 
+            this.openDrainDisableRadioButton.AutoSize = true;
+            this.openDrainDisableRadioButton.Checked = true;
+            this.openDrainDisableRadioButton.Location = new System.Drawing.Point(7, 50);
+            this.openDrainDisableRadioButton.Name = "openDrainDisableRadioButton";
+            this.openDrainDisableRadioButton.Size = new System.Drawing.Size(148, 36);
+            this.openDrainDisableRadioButton.TabIndex = 0;
+            this.openDrainDisableRadioButton.TabStop = true;
+            this.openDrainDisableRadioButton.Text = "Disable";
+            this.openDrainDisableRadioButton.UseVisualStyleBackColor = true;
+            this.openDrainDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // driveStrGroupBox
+            // 
+            this.driveStrGroupBox.Controls.Add(this.maximumRadioButton);
+            this.driveStrGroupBox.Controls.Add(this.mediumHighRadioButton);
+            this.driveStrGroupBox.Controls.Add(this.mediumRadioButton);
+            this.driveStrGroupBox.Controls.Add(this.minimumRadioButton);
+            this.driveStrGroupBox.Location = new System.Drawing.Point(823, 51);
+            this.driveStrGroupBox.Name = "driveStrGroupBox";
+            this.driveStrGroupBox.Size = new System.Drawing.Size(243, 370);
+            this.driveStrGroupBox.TabIndex = 3;
+            this.driveStrGroupBox.TabStop = false;
+            this.driveStrGroupBox.Text = "Drive Strength";
+            // 
+            // maximumRadioButton
+            // 
+            this.maximumRadioButton.AutoSize = true;
+            this.maximumRadioButton.Location = new System.Drawing.Point(7, 217);
+            this.maximumRadioButton.Name = "maximumRadioButton";
+            this.maximumRadioButton.Size = new System.Drawing.Size(174, 36);
+            this.maximumRadioButton.TabIndex = 3;
+            this.maximumRadioButton.Text = "Maximum";
+            this.maximumRadioButton.UseVisualStyleBackColor = true;
+            this.maximumRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // mediumHighRadioButton
+            // 
+            this.mediumHighRadioButton.AutoSize = true;
+            this.mediumHighRadioButton.Location = new System.Drawing.Point(7, 157);
+            this.mediumHighRadioButton.Name = "mediumHighRadioButton";
+            this.mediumHighRadioButton.Size = new System.Drawing.Size(217, 36);
+            this.mediumHighRadioButton.TabIndex = 2;
+            this.mediumHighRadioButton.Text = "Medium-high";
+            this.mediumHighRadioButton.UseVisualStyleBackColor = true;
+            this.mediumHighRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // mediumRadioButton
+            // 
+            this.mediumRadioButton.AutoSize = true;
+            this.mediumRadioButton.Location = new System.Drawing.Point(7, 104);
+            this.mediumRadioButton.Name = "mediumRadioButton";
+            this.mediumRadioButton.Size = new System.Drawing.Size(153, 36);
+            this.mediumRadioButton.TabIndex = 1;
+            this.mediumRadioButton.Text = "Medium";
+            this.mediumRadioButton.UseVisualStyleBackColor = true;
+            this.mediumRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // minimumRadioButton
+            // 
+            this.minimumRadioButton.AutoSize = true;
+            this.minimumRadioButton.Checked = true;
+            this.minimumRadioButton.Location = new System.Drawing.Point(7, 50);
+            this.minimumRadioButton.Name = "minimumRadioButton";
+            this.minimumRadioButton.Size = new System.Drawing.Size(167, 36);
+            this.minimumRadioButton.TabIndex = 0;
+            this.minimumRadioButton.TabStop = true;
+            this.minimumRadioButton.Text = "Minimum";
+            this.minimumRadioButton.UseVisualStyleBackColor = true;
+            this.minimumRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // inputGroupBox
+            // 
+            this.inputGroupBox.Controls.Add(this.inputEnableRadioButton);
+            this.inputGroupBox.Controls.Add(this.inputDisableRadioButton);
+            this.inputGroupBox.Location = new System.Drawing.Point(580, 237);
+            this.inputGroupBox.Name = "inputGroupBox";
+            this.inputGroupBox.Size = new System.Drawing.Size(216, 193);
+            this.inputGroupBox.TabIndex = 2;
+            this.inputGroupBox.TabStop = false;
+            this.inputGroupBox.Text = "Input Buffer";
+            // 
+            // inputEnableRadioButton
+            // 
+            this.inputEnableRadioButton.AutoSize = true;
+            this.inputEnableRadioButton.Location = new System.Drawing.Point(7, 126);
+            this.inputEnableRadioButton.Name = "inputEnableRadioButton";
+            this.inputEnableRadioButton.Size = new System.Drawing.Size(142, 36);
+            this.inputEnableRadioButton.TabIndex = 1;
+            this.inputEnableRadioButton.Text = "Enable";
+            this.inputEnableRadioButton.UseVisualStyleBackColor = true;
+            this.inputEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // inputDisableRadioButton
+            // 
+            this.inputDisableRadioButton.AutoSize = true;
+            this.inputDisableRadioButton.Checked = true;
+            this.inputDisableRadioButton.Location = new System.Drawing.Point(7, 50);
+            this.inputDisableRadioButton.Name = "inputDisableRadioButton";
+            this.inputDisableRadioButton.Size = new System.Drawing.Size(148, 36);
+            this.inputDisableRadioButton.TabIndex = 0;
+            this.inputDisableRadioButton.TabStop = true;
+            this.inputDisableRadioButton.Text = "Disable";
+            this.inputDisableRadioButton.UseVisualStyleBackColor = true;
+            this.inputDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // outputGroupBox
+            // 
+            this.outputGroupBox.Controls.Add(this.outputEnableRadioButton);
+            this.outputGroupBox.Controls.Add(this.outputDisableRadioButton);
+            this.outputGroupBox.Location = new System.Drawing.Point(573, 38);
+            this.outputGroupBox.Name = "outputGroupBox";
+            this.outputGroupBox.Size = new System.Drawing.Size(235, 193);
+            this.outputGroupBox.TabIndex = 1;
+            this.outputGroupBox.TabStop = false;
+            this.outputGroupBox.Text = "Output Buffer";
+            // 
+            // outputEnableRadioButton
+            // 
+            this.outputEnableRadioButton.AutoSize = true;
+            this.outputEnableRadioButton.Location = new System.Drawing.Point(7, 127);
+            this.outputEnableRadioButton.Name = "outputEnableRadioButton";
+            this.outputEnableRadioButton.Size = new System.Drawing.Size(142, 36);
+            this.outputEnableRadioButton.TabIndex = 1;
+            this.outputEnableRadioButton.Text = "Enable";
+            this.outputEnableRadioButton.UseVisualStyleBackColor = true;
+            this.outputEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // outputDisableRadioButton
+            // 
+            this.outputDisableRadioButton.AutoSize = true;
+            this.outputDisableRadioButton.Checked = true;
+            this.outputDisableRadioButton.Location = new System.Drawing.Point(7, 64);
+            this.outputDisableRadioButton.Name = "outputDisableRadioButton";
+            this.outputDisableRadioButton.Size = new System.Drawing.Size(148, 36);
+            this.outputDisableRadioButton.TabIndex = 0;
+            this.outputDisableRadioButton.TabStop = true;
+            this.outputDisableRadioButton.Text = "Disable";
+            this.outputDisableRadioButton.UseVisualStyleBackColor = true;
+            this.outputDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // functionGroupBox
+            // 
+            this.functionGroupBox.Controls.Add(this.alternate3RadioButton);
+            this.functionGroupBox.Controls.Add(this.alternate2RadioButton);
+            this.functionGroupBox.Controls.Add(this.alternate1RadioButton);
+            this.functionGroupBox.Controls.Add(this.primaryRadioButton);
+            this.functionGroupBox.Controls.Add(this.gpioRadioButton);
+            this.functionGroupBox.Location = new System.Drawing.Point(282, 38);
+            this.functionGroupBox.Name = "functionGroupBox";
+            this.functionGroupBox.Size = new System.Drawing.Size(264, 362);
+            this.functionGroupBox.TabIndex = 0;
+            this.functionGroupBox.TabStop = false;
+            this.functionGroupBox.Text = "Function";
+            // 
+            // alternate3RadioButton
+            // 
+            this.alternate3RadioButton.AutoSize = true;
+            this.alternate3RadioButton.Location = new System.Drawing.Point(21, 293);
+            this.alternate3RadioButton.Name = "alternate3RadioButton";
+            this.alternate3RadioButton.Size = new System.Drawing.Size(190, 36);
+            this.alternate3RadioButton.TabIndex = 4;
+            this.alternate3RadioButton.Text = "Alternate 3";
+            this.alternate3RadioButton.UseVisualStyleBackColor = true;
+            this.alternate3RadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // alternate2RadioButton
+            // 
+            this.alternate2RadioButton.AutoSize = true;
+            this.alternate2RadioButton.Location = new System.Drawing.Point(21, 241);
+            this.alternate2RadioButton.Name = "alternate2RadioButton";
+            this.alternate2RadioButton.Size = new System.Drawing.Size(190, 36);
+            this.alternate2RadioButton.TabIndex = 3;
+            this.alternate2RadioButton.Text = "Alternate 2";
+            this.alternate2RadioButton.UseVisualStyleBackColor = true;
+            this.alternate2RadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // alternate1RadioButton
+            // 
+            this.alternate1RadioButton.AutoSize = true;
+            this.alternate1RadioButton.Location = new System.Drawing.Point(21, 187);
+            this.alternate1RadioButton.Name = "alternate1RadioButton";
+            this.alternate1RadioButton.Size = new System.Drawing.Size(190, 36);
+            this.alternate1RadioButton.TabIndex = 2;
+            this.alternate1RadioButton.Text = "Alternate 1";
+            this.alternate1RadioButton.UseVisualStyleBackColor = true;
+            this.alternate1RadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // primaryRadioButton
+            // 
+            this.primaryRadioButton.AutoSize = true;
+            this.primaryRadioButton.Location = new System.Drawing.Point(21, 127);
+            this.primaryRadioButton.Name = "primaryRadioButton";
+            this.primaryRadioButton.Size = new System.Drawing.Size(149, 36);
+            this.primaryRadioButton.TabIndex = 1;
+            this.primaryRadioButton.Text = "Primary";
+            this.primaryRadioButton.UseVisualStyleBackColor = true;
+            this.primaryRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // gpioRadioButton
+            // 
+            this.gpioRadioButton.AutoSize = true;
+            this.gpioRadioButton.Checked = true;
+            this.gpioRadioButton.Location = new System.Drawing.Point(21, 64);
+            this.gpioRadioButton.Name = "gpioRadioButton";
+            this.gpioRadioButton.Size = new System.Drawing.Size(122, 36);
+            this.gpioRadioButton.TabIndex = 0;
+            this.gpioRadioButton.TabStop = true;
+            this.gpioRadioButton.Text = "GPIO";
+            this.gpioRadioButton.UseVisualStyleBackColor = true;
+            this.gpioRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            // 
+            // udsRoutineLabel
+            // 
+            this.udsRoutineLabel.AutoSize = true;
+            this.udsRoutineLabel.Location = new System.Drawing.Point(42, 170);
+            this.udsRoutineLabel.Name = "udsRoutineLabel";
+            this.udsRoutineLabel.Size = new System.Drawing.Size(180, 32);
+            this.udsRoutineLabel.TabIndex = 11;
+            this.udsRoutineLabel.Text = "UDS Routine";
+            // 
+            // udsRoutineNumericUpDown
+            // 
+            this.udsRoutineNumericUpDown.Hexadecimal = true;
+            this.udsRoutineNumericUpDown.Location = new System.Drawing.Point(42, 208);
+            this.udsRoutineNumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.udsRoutineNumericUpDown.Name = "udsRoutineNumericUpDown";
+            this.udsRoutineNumericUpDown.Size = new System.Drawing.Size(120, 38);
+            this.udsRoutineNumericUpDown.TabIndex = 12;
+            this.udsRoutineNumericUpDown.ValueChanged += new System.EventHandler(this.udsRoutineNumericUpDown_ValueChanged);
             // 
             // pinNumberLabel
             // 
@@ -199,7 +622,7 @@
             this.pinNumberLabel.Location = new System.Drawing.Point(36, 62);
             this.pinNumberLabel.Name = "pinNumberLabel";
             this.pinNumberLabel.Size = new System.Drawing.Size(160, 32);
-            this.pinNumberLabel.TabIndex = 1;
+            this.pinNumberLabel.TabIndex = 9;
             this.pinNumberLabel.Text = "Pin number";
             // 
             // pinNumberComboBox
@@ -721,420 +1144,18 @@
             this.pinNumberComboBox.Location = new System.Drawing.Point(36, 100);
             this.pinNumberComboBox.Name = "pinNumberComboBox";
             this.pinNumberComboBox.Size = new System.Drawing.Size(121, 39);
-            this.pinNumberComboBox.TabIndex = 0;
+            this.pinNumberComboBox.TabIndex = 10;
             this.pinNumberComboBox.Text = "0";
             this.pinNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.pinNumberComboBox_SelectedIndexChanged);
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Location = new System.Drawing.Point(44, 850);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(1529, 145);
-            this.groupBox3.TabIndex = 2;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Transmission Control";
-            // 
-            // udsRoutineNumericUpDown
-            // 
-            this.udsRoutineNumericUpDown.Hexadecimal = true;
-            this.udsRoutineNumericUpDown.Location = new System.Drawing.Point(42, 208);
-            this.udsRoutineNumericUpDown.Maximum = new decimal(new int[] {
-            255,
-            0,
-            0,
-            0});
-            this.udsRoutineNumericUpDown.Name = "udsRoutineNumericUpDown";
-            this.udsRoutineNumericUpDown.Size = new System.Drawing.Size(120, 38);
-            this.udsRoutineNumericUpDown.TabIndex = 2;
-            this.udsRoutineNumericUpDown.ValueChanged += new System.EventHandler(this.udsRoutineNumericUpDown_ValueChanged);
-            // 
-            // udsRoutineLabel
-            // 
-            this.udsRoutineLabel.AutoSize = true;
-            this.udsRoutineLabel.Location = new System.Drawing.Point(42, 170);
-            this.udsRoutineLabel.Name = "udsRoutineLabel";
-            this.udsRoutineLabel.Size = new System.Drawing.Size(180, 32);
-            this.udsRoutineLabel.TabIndex = 3;
-            this.udsRoutineLabel.Text = "UDS Routine";
-            // 
-            // functionGroupBox
-            // 
-            this.functionGroupBox.Controls.Add(this.radioButton5);
-            this.functionGroupBox.Controls.Add(this.radioButton4);
-            this.functionGroupBox.Controls.Add(this.radioButton3);
-            this.functionGroupBox.Controls.Add(this.radioButton2);
-            this.functionGroupBox.Controls.Add(this.radioButton1);
-            this.functionGroupBox.Location = new System.Drawing.Point(282, 38);
-            this.functionGroupBox.Name = "functionGroupBox";
-            this.functionGroupBox.Size = new System.Drawing.Size(264, 362);
-            this.functionGroupBox.TabIndex = 4;
-            this.functionGroupBox.TabStop = false;
-            this.functionGroupBox.Text = "Function";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Checked = true;
-            this.radioButton1.Location = new System.Drawing.Point(21, 64);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(122, 36);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "GPIO";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(21, 127);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(149, 36);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.Text = "Primary";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(21, 187);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(190, 36);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.Text = "Alternate 1";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(21, 241);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(190, 36);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.Text = "Alternate 2";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(21, 293);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(190, 36);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.Text = "Alternate 3";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radioButton7);
-            this.groupBox1.Controls.Add(this.radioButton6);
-            this.groupBox1.Location = new System.Drawing.Point(573, 38);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(235, 193);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Output Buffer";
-            // 
-            // radioButton6
-            // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Checked = true;
-            this.radioButton6.Location = new System.Drawing.Point(7, 64);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(148, 36);
-            this.radioButton6.TabIndex = 0;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.Text = "Disable";
-            this.radioButton6.UseVisualStyleBackColor = true;
-            // 
-            // radioButton7
-            // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(7, 127);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(142, 36);
-            this.radioButton7.TabIndex = 1;
-            this.radioButton7.Text = "Enable";
-            this.radioButton7.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.radioButton9);
-            this.groupBox2.Controls.Add(this.radioButton8);
-            this.groupBox2.Location = new System.Drawing.Point(580, 237);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(216, 193);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Input Buffer";
-            // 
-            // radioButton8
-            // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Checked = true;
-            this.radioButton8.Location = new System.Drawing.Point(7, 50);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(148, 36);
-            this.radioButton8.TabIndex = 0;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.Text = "Disable";
-            this.radioButton8.UseVisualStyleBackColor = true;
-            // 
-            // radioButton9
-            // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(7, 126);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(142, 36);
-            this.radioButton9.TabIndex = 1;
-            this.radioButton9.Text = "Enable";
-            this.radioButton9.UseVisualStyleBackColor = true;
-            // 
-            // groupBox4
-            // 
-            this.groupBox4.Controls.Add(this.radioButton13);
-            this.groupBox4.Controls.Add(this.radioButton12);
-            this.groupBox4.Controls.Add(this.radioButton11);
-            this.groupBox4.Controls.Add(this.radioButton10);
-            this.groupBox4.Location = new System.Drawing.Point(823, 51);
-            this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(243, 370);
-            this.groupBox4.TabIndex = 7;
-            this.groupBox4.TabStop = false;
-            this.groupBox4.Text = "Drive Strength";
-            // 
-            // radioButton10
-            // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Checked = true;
-            this.radioButton10.Location = new System.Drawing.Point(7, 50);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(167, 36);
-            this.radioButton10.TabIndex = 0;
-            this.radioButton10.TabStop = true;
-            this.radioButton10.Text = "Minimum";
-            this.radioButton10.UseVisualStyleBackColor = true;
-            this.radioButton10.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
-            // 
-            // radioButton11
-            // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(7, 104);
-            this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(153, 36);
-            this.radioButton11.TabIndex = 1;
-            this.radioButton11.Text = "Medium";
-            this.radioButton11.UseVisualStyleBackColor = true;
-            // 
-            // radioButton12
-            // 
-            this.radioButton12.AutoSize = true;
-            this.radioButton12.Location = new System.Drawing.Point(7, 157);
-            this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(217, 36);
-            this.radioButton12.TabIndex = 2;
-            this.radioButton12.Text = "Medium-high";
-            this.radioButton12.UseVisualStyleBackColor = true;
-            // 
-            // radioButton13
-            // 
-            this.radioButton13.AutoSize = true;
-            this.radioButton13.Location = new System.Drawing.Point(7, 217);
-            this.radioButton13.Name = "radioButton13";
-            this.radioButton13.Size = new System.Drawing.Size(174, 36);
-            this.radioButton13.TabIndex = 3;
-            this.radioButton13.Text = "Maximum";
-            this.radioButton13.UseVisualStyleBackColor = true;
-            // 
-            // groupBox5
-            // 
-            this.groupBox5.Controls.Add(this.radioButton15);
-            this.groupBox5.Controls.Add(this.radioButton14);
-            this.groupBox5.Location = new System.Drawing.Point(1093, 62);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(270, 151);
-            this.groupBox5.TabIndex = 8;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Open Drain Output";
-            // 
-            // radioButton14
-            // 
-            this.radioButton14.AutoSize = true;
-            this.radioButton14.Checked = true;
-            this.radioButton14.Location = new System.Drawing.Point(7, 50);
-            this.radioButton14.Name = "radioButton14";
-            this.radioButton14.Size = new System.Drawing.Size(148, 36);
-            this.radioButton14.TabIndex = 0;
-            this.radioButton14.TabStop = true;
-            this.radioButton14.Text = "Disable";
-            this.radioButton14.UseVisualStyleBackColor = true;
-            // 
-            // radioButton15
-            // 
-            this.radioButton15.AutoSize = true;
-            this.radioButton15.Location = new System.Drawing.Point(7, 103);
-            this.radioButton15.Name = "radioButton15";
-            this.radioButton15.Size = new System.Drawing.Size(142, 36);
-            this.radioButton15.TabIndex = 1;
-            this.radioButton15.Text = "Enable";
-            this.radioButton15.UseVisualStyleBackColor = true;
-            // 
-            // groupBox6
-            // 
-            this.groupBox6.Controls.Add(this.radioButton17);
-            this.groupBox6.Controls.Add(this.radioButton16);
-            this.groupBox6.Location = new System.Drawing.Point(1100, 237);
-            this.groupBox6.Name = "groupBox6";
-            this.groupBox6.Size = new System.Drawing.Size(233, 180);
-            this.groupBox6.TabIndex = 9;
-            this.groupBox6.TabStop = false;
-            this.groupBox6.Text = "Input Hysteresis";
-            // 
-            // radioButton16
-            // 
-            this.radioButton16.AutoSize = true;
-            this.radioButton16.Checked = true;
-            this.radioButton16.Location = new System.Drawing.Point(17, 50);
-            this.radioButton16.Name = "radioButton16";
-            this.radioButton16.Size = new System.Drawing.Size(148, 36);
-            this.radioButton16.TabIndex = 0;
-            this.radioButton16.TabStop = true;
-            this.radioButton16.Text = "Disable";
-            this.radioButton16.UseVisualStyleBackColor = true;
-            // 
-            // radioButton17
-            // 
-            this.radioButton17.AutoSize = true;
-            this.radioButton17.Location = new System.Drawing.Point(17, 102);
-            this.radioButton17.Name = "radioButton17";
-            this.radioButton17.Size = new System.Drawing.Size(142, 36);
-            this.radioButton17.TabIndex = 1;
-            this.radioButton17.Text = "Enable";
-            this.radioButton17.UseVisualStyleBackColor = true;
-            // 
-            // groupBox7
-            // 
-            this.groupBox7.Controls.Add(this.radioButton21);
-            this.groupBox7.Controls.Add(this.radioButton20);
-            this.groupBox7.Controls.Add(this.radioButton19);
-            this.groupBox7.Controls.Add(this.radioButton18);
-            this.groupBox7.Location = new System.Drawing.Point(1397, 38);
-            this.groupBox7.Name = "groupBox7";
-            this.groupBox7.Size = new System.Drawing.Size(567, 383);
-            this.groupBox7.TabIndex = 10;
-            this.groupBox7.TabStop = false;
-            this.groupBox7.Text = "Slew Rate Control";
-            // 
-            // radioButton18
-            // 
-            this.radioButton18.AutoSize = true;
-            this.radioButton18.Checked = true;
-            this.radioButton18.Location = new System.Drawing.Point(6, 62);
-            this.radioButton18.Name = "radioButton18";
-            this.radioButton18.Size = new System.Drawing.Size(530, 36);
-            this.radioButton18.TabIndex = 0;
-            this.radioButton18.TabStop = true;
-            this.radioButton18.Text = "Half Drive Strength With Slew Control ";
-            this.radioButton18.UseVisualStyleBackColor = true;
-            this.radioButton18.CheckedChanged += new System.EventHandler(this.radioButton18_CheckedChanged);
-            // 
-            // radioButton19
-            // 
-            this.radioButton19.AutoSize = true;
-            this.radioButton19.Location = new System.Drawing.Point(7, 114);
-            this.radioButton19.Name = "radioButton19";
-            this.radioButton19.Size = new System.Drawing.Size(519, 36);
-            this.radioButton19.TabIndex = 1;
-            this.radioButton19.Text = "Full Drive Strength With Slew Control";
-            this.radioButton19.UseVisualStyleBackColor = true;
-            // 
-            // radioButton20
-            // 
-            this.radioButton20.AutoSize = true;
-            this.radioButton20.Location = new System.Drawing.Point(7, 186);
-            this.radioButton20.Name = "radioButton20";
-            this.radioButton20.Size = new System.Drawing.Size(563, 36);
-            this.radioButton20.TabIndex = 2;
-            this.radioButton20.Text = "Half Drive Strength Without Slew Control";
-            this.radioButton20.UseVisualStyleBackColor = true;
-            // 
-            // radioButton21
-            // 
-            this.radioButton21.AutoSize = true;
-            this.radioButton21.Location = new System.Drawing.Point(7, 268);
-            this.radioButton21.Name = "radioButton21";
-            this.radioButton21.Size = new System.Drawing.Size(559, 36);
-            this.radioButton21.TabIndex = 3;
-            this.radioButton21.Text = "Full Drive Strength Without Slew Control";
-            this.radioButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.radioButton21.UseVisualStyleBackColor = true;
-            // 
-            // groupBox8
-            // 
-            this.groupBox8.Controls.Add(this.radioButton23);
-            this.groupBox8.Controls.Add(this.radioButton22);
-            this.groupBox8.Location = new System.Drawing.Point(2019, 48);
-            this.groupBox8.Name = "groupBox8";
-            this.groupBox8.Size = new System.Drawing.Size(326, 165);
-            this.groupBox8.TabIndex = 11;
-            this.groupBox8.TabStop = false;
-            this.groupBox8.Text = "Weak Pull-up/down Control";
-            // 
-            // groupBox9
-            // 
-            this.groupBox9.Controls.Add(this.radioButton25);
-            this.groupBox9.Controls.Add(this.radioButton24);
-            this.groupBox9.Location = new System.Drawing.Point(2019, 237);
-            this.groupBox9.Name = "groupBox9";
-            this.groupBox9.Size = new System.Drawing.Size(326, 180);
-            this.groupBox9.TabIndex = 12;
-            this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Weak Pull-up/down Select";
-            // 
-            // radioButton22
-            // 
-            this.radioButton22.AutoSize = true;
-            this.radioButton22.Checked = true;
-            this.radioButton22.Location = new System.Drawing.Point(20, 64);
-            this.radioButton22.Name = "radioButton22";
-            this.radioButton22.Size = new System.Drawing.Size(148, 36);
-            this.radioButton22.TabIndex = 0;
-            this.radioButton22.TabStop = true;
-            this.radioButton22.Text = "Disable";
-            this.radioButton22.UseVisualStyleBackColor = true;
-            this.radioButton22.CheckedChanged += new System.EventHandler(this.radioButton22_CheckedChanged);
-            // 
-            // radioButton23
-            // 
-            this.radioButton23.AutoSize = true;
-            this.radioButton23.Location = new System.Drawing.Point(20, 116);
-            this.radioButton23.Name = "radioButton23";
-            this.radioButton23.Size = new System.Drawing.Size(142, 36);
-            this.radioButton23.TabIndex = 1;
-            this.radioButton23.Text = "Enable";
-            this.radioButton23.UseVisualStyleBackColor = true;
-            // 
-            // radioButton24
-            // 
-            this.radioButton24.AutoSize = true;
-            this.radioButton24.Checked = true;
-            this.radioButton24.Location = new System.Drawing.Point(7, 69);
-            this.radioButton24.Name = "radioButton24";
-            this.radioButton24.Size = new System.Drawing.Size(178, 36);
-            this.radioButton24.TabIndex = 0;
-            this.radioButton24.TabStop = true;
-            this.radioButton24.Text = "Pull-down";
-            this.radioButton24.UseVisualStyleBackColor = true;
-            this.radioButton24.CheckedChanged += new System.EventHandler(this.radioButton24_CheckedChanged);
-            // 
-            // radioButton25
-            // 
-            this.radioButton25.AutoSize = true;
-            this.radioButton25.Location = new System.Drawing.Point(7, 112);
-            this.radioButton25.Name = "radioButton25";
-            this.radioButton25.Size = new System.Drawing.Size(142, 36);
-            this.radioButton25.TabIndex = 1;
-            this.radioButton25.Text = "Pull-up";
-            this.radioButton25.UseVisualStyleBackColor = true;
+            // transmissionControlGroupBox
+            // 
+            this.transmissionControlGroupBox.Location = new System.Drawing.Point(630, 559);
+            this.transmissionControlGroupBox.Name = "transmissionControlGroupBox";
+            this.transmissionControlGroupBox.Size = new System.Drawing.Size(1165, 285);
+            this.transmissionControlGroupBox.TabIndex = 2;
+            this.transmissionControlGroupBox.TabStop = false;
+            this.transmissionControlGroupBox.Text = "Transmission Control";
             // 
             // KoenigseggHWTest
             // 
@@ -1142,7 +1163,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2687, 1091);
-            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.transmissionControlGroupBox);
             this.Controls.Add(this.frameDataGroupBox);
             this.Controls.Add(this.framePropertiesGroupBox);
             this.Name = "KoenigseggHWTest";
@@ -1153,25 +1174,25 @@
             ((System.ComponentModel.ISupportInitialize)(this.framePeriodNumericUpDown)).EndInit();
             this.frameDataGroupBox.ResumeLayout(false);
             this.frameDataGroupBox.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).EndInit();
+            this.pullSelectGroupBox.ResumeLayout(false);
+            this.pullSelectGroupBox.PerformLayout();
+            this.pullControlGroupBox.ResumeLayout(false);
+            this.pullControlGroupBox.PerformLayout();
+            this.slewRateControlGroupBox.ResumeLayout(false);
+            this.slewRateControlGroupBox.PerformLayout();
+            this.inputHysteresisGroupBox.ResumeLayout(false);
+            this.inputHysteresisGroupBox.PerformLayout();
+            this.openDrainGroupBox.ResumeLayout(false);
+            this.openDrainGroupBox.PerformLayout();
+            this.driveStrGroupBox.ResumeLayout(false);
+            this.driveStrGroupBox.PerformLayout();
+            this.inputGroupBox.ResumeLayout(false);
+            this.inputGroupBox.PerformLayout();
+            this.outputGroupBox.ResumeLayout(false);
+            this.outputGroupBox.PerformLayout();
             this.functionGroupBox.ResumeLayout(false);
             this.functionGroupBox.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox4.ResumeLayout(false);
-            this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
-            this.groupBox6.ResumeLayout(false);
-            this.groupBox6.PerformLayout();
-            this.groupBox7.ResumeLayout(false);
-            this.groupBox7.PerformLayout();
-            this.groupBox8.ResumeLayout(false);
-            this.groupBox8.PerformLayout();
-            this.groupBox9.ResumeLayout(false);
-            this.groupBox9.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1180,7 +1201,7 @@
 
         private System.Windows.Forms.GroupBox framePropertiesGroupBox;
         private System.Windows.Forms.GroupBox frameDataGroupBox;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox transmissionControlGroupBox;
         private System.Windows.Forms.Label frameIDLabel;
         private System.Windows.Forms.NumericUpDown framePeriodNumericUpDown;
         private System.Windows.Forms.Label framePeriodLabel;
@@ -1192,39 +1213,39 @@
         private System.Windows.Forms.Label udsRoutineLabel;
         private System.Windows.Forms.NumericUpDown udsRoutineNumericUpDown;
         private System.Windows.Forms.GroupBox functionGroupBox;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
-        private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.RadioButton radioButton13;
-        private System.Windows.Forms.RadioButton radioButton12;
-        private System.Windows.Forms.RadioButton radioButton11;
-        private System.Windows.Forms.RadioButton radioButton10;
-        private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.RadioButton radioButton9;
-        private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.GroupBox groupBox7;
-        private System.Windows.Forms.RadioButton radioButton21;
-        private System.Windows.Forms.RadioButton radioButton20;
-        private System.Windows.Forms.RadioButton radioButton19;
-        private System.Windows.Forms.RadioButton radioButton18;
-        private System.Windows.Forms.GroupBox groupBox6;
-        private System.Windows.Forms.RadioButton radioButton17;
-        private System.Windows.Forms.RadioButton radioButton16;
-        private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.RadioButton radioButton15;
-        private System.Windows.Forms.RadioButton radioButton14;
-        private System.Windows.Forms.GroupBox groupBox9;
-        private System.Windows.Forms.RadioButton radioButton25;
-        private System.Windows.Forms.RadioButton radioButton24;
-        private System.Windows.Forms.GroupBox groupBox8;
-        private System.Windows.Forms.RadioButton radioButton23;
-        private System.Windows.Forms.RadioButton radioButton22;
+        private System.Windows.Forms.RadioButton alternate3RadioButton;
+        private System.Windows.Forms.RadioButton alternate2RadioButton;
+        private System.Windows.Forms.RadioButton alternate1RadioButton;
+        private System.Windows.Forms.RadioButton primaryRadioButton;
+        private System.Windows.Forms.RadioButton gpioRadioButton;
+        private System.Windows.Forms.GroupBox driveStrGroupBox;
+        private System.Windows.Forms.RadioButton maximumRadioButton;
+        private System.Windows.Forms.RadioButton mediumHighRadioButton;
+        private System.Windows.Forms.RadioButton mediumRadioButton;
+        private System.Windows.Forms.RadioButton minimumRadioButton;
+        private System.Windows.Forms.GroupBox inputGroupBox;
+        private System.Windows.Forms.RadioButton inputEnableRadioButton;
+        private System.Windows.Forms.RadioButton inputDisableRadioButton;
+        private System.Windows.Forms.GroupBox outputGroupBox;
+        private System.Windows.Forms.RadioButton outputEnableRadioButton;
+        private System.Windows.Forms.RadioButton outputDisableRadioButton;
+        private System.Windows.Forms.GroupBox slewRateControlGroupBox;
+        private System.Windows.Forms.RadioButton fullWoSlewCtrlRadioButton;
+        private System.Windows.Forms.RadioButton halfWoSlewCtrlRadioButton;
+        private System.Windows.Forms.RadioButton fullWSlewCtrlRadioButton;
+        private System.Windows.Forms.RadioButton halfWSlewCtrlRadioButton;
+        private System.Windows.Forms.GroupBox inputHysteresisGroupBox;
+        private System.Windows.Forms.RadioButton inputHysteresisEnableRadioButton;
+        private System.Windows.Forms.RadioButton inputHysteresisDisableRadioButton;
+        private System.Windows.Forms.GroupBox openDrainGroupBox;
+        private System.Windows.Forms.RadioButton openDrainEnableRadioButton;
+        private System.Windows.Forms.RadioButton openDrainDisableRadioButton;
+        private System.Windows.Forms.GroupBox pullSelectGroupBox;
+        private System.Windows.Forms.RadioButton pullUpRadioButton;
+        private System.Windows.Forms.RadioButton pulldownRadioButton;
+        private System.Windows.Forms.GroupBox pullControlGroupBox;
+        private System.Windows.Forms.RadioButton pullEnableRadioButton;
+        private System.Windows.Forms.RadioButton pullDisableRadioButton;
     }
 }
 
