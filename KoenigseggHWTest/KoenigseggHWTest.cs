@@ -8,14 +8,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using canlibCLSNET;
+using Kvaser.Kvadblib;
 
 namespace KoenigseggHWTest
 {
     public partial class KoenigseggHWTest : Form
     {
         private const UInt16 DEFAULT_FRAME_ID = 2016;
-        private Frame CANFrame = new Frame(aFrameID: DEFAULT_FRAME_ID);
-
+        private TestFrame CANFrame = new TestFrame(aFrameID: DEFAULT_FRAME_ID);
+        private List<Node> nodes = new List<Node>();
+        
         private enum PinCfgFunction
         {
             PIN_CFG_FUNCTION,
@@ -147,6 +150,127 @@ namespace KoenigseggHWTest
                 RadioButton radioButton = (RadioButton)sender;
                 setPinCfgBits((UInt16)radioButton.TabIndex, (PinCfgFunction)radioButton.Parent.TabIndex);
                 Debug.Print(CANFrame.ToString());
+            }
+        }
+
+        private void startTransmisionButton_Click(object sender, EventArgs e)
+        {
+            Canlib.canStatus status;
+            int channel = 0;
+            int chanhandle;
+            byte[] data = new byte[8];
+            int msgId = 200;
+            int msgFlags = 0;
+
+            //Initialize, open channel and go on bus
+            Canlib.canInitializeLibrary();
+
+            chanhandle = Canlib.canOpenChannel(channel, Canlib.canOPEN_ACCEPT_VIRTUAL);
+            DisplayError((Canlib.canStatus)chanhandle, "canSetBusParams");
+
+            status = Canlib.canSetBusParams(chanhandle, Canlib.canBITRATE_250K, 0, 0, 0, 0, 0);
+            DisplayError(status, "canSetBusParams");
+
+            status = Canlib.canBusOn(chanhandle);
+            DisplayError(status, "canBusOn");
+
+            Canlib.canWriteWait(chanhandle, msgId, data, 8, msgFlags, 50);
+
+            //Load database
+            Kvadblib.Hnd dbhandle;
+            Kvadblib.Status dbstatus;
+            Kvadblib.MessageHnd mh = new Kvadblib.MessageHnd();
+            Kvadblib.SignalHnd sh = new Kvadblib.SignalHnd();
+            Kvadblib.NodeHnd nh = new Kvadblib.NodeHnd();
+            string name = "";
+            string senderNode = "";
+            int frameID = 0;
+            Kvadblib.MESSAGE frameFlags;
+            string filename = "C:\\Repos\\KoenigseggHWTest\\Regera_HSCAN1.dbc";
+            dbhandle = new Kvadblib.Hnd();
+            dbstatus = Kvadblib.Open(out dbhandle);
+            DisplayDBError(dbstatus, "Opening database handle ");
+            dbstatus = Kvadblib.ReadFile(dbhandle, filename);
+            DisplayDBError(dbstatus, "Reading database from file ");
+
+            Debug.Print("Nodes: \n");
+            if (Kvadblib.Status.OK == Kvadblib.GetFirstNode(dbhandle, out nh))
+            {
+                Kvadblib.GetNodeName(nh, out name);
+                nodes.Add(new Node(name));
+                Debug.Print(name);
+            }
+
+            while (Kvadblib.Status.OK == Kvadblib.GetNextNode(dbhandle, out nh))
+            {
+                Kvadblib.GetNodeName(nh, out name);
+                nodes.Add(new Node(name));
+                Debug.Print(name);
+            }
+
+            Debug.Print("\nMessages: \n");
+            if (Kvadblib.Status.OK == Kvadblib.GetFirstMsg(dbhandle, out mh))
+            {
+                Kvadblib.GetMsgName(mh, out name);
+                Kvadblib.GetMsgId(mh, out frameID, out frameFlags);
+                Kvadblib.GetMsgSendNode(mh, out nh);
+                Kvadblib.GetNodeName(nh, out senderNode);
+                Debug.Print(name);
+                foreach (Node node in nodes)
+                {
+                    if(node.GetNodeName() == senderNode)
+                    {
+                        node.AddFrame(new Frame((UInt16)frameID, name));
+                    }
+                }
+            }
+
+            while (Kvadblib.Status.OK == Kvadblib.GetNextMsg(dbhandle, out mh))
+            {
+                Kvadblib.GetMsgName(mh, out name);
+                Kvadblib.GetMsgId(mh, out frameID, out frameFlags);
+                Kvadblib.GetMsgSendNode(mh, out nh);
+                Kvadblib.GetNodeName(nh, out senderNode);
+                Debug.Print(name);
+                foreach (Node node in nodes)
+                {
+                    if (node.GetNodeName() == senderNode)
+                    {
+                        node.AddFrame(new Frame((UInt16)frameID, name));
+                    }
+                }
+            }
+
+            Debug.Print("\n========================\n");
+            foreach (Node node in nodes)
+            {
+                Debug.Print(node.ToString());
+            }
+            Debug.Print("\n========================\n");
+
+            //Go off bus and close channel
+            status = Canlib.canBusOff(chanhandle);
+            DisplayError(status, "canBusOff");
+
+            status = Canlib.canClose(chanhandle);
+            DisplayError(status, "canClose");
+        }
+
+        //Displays error messages when a call to Canlib fails
+        private static void DisplayError(Canlib.canStatus status, string method)
+        {
+            if (status < 0)
+            {
+                Console.WriteLine(method + " failed: " + status.ToString());
+            }
+        }
+
+        //Displays messages for Kvadblib calls
+        private static void DisplayDBError(Kvadblib.Status status, string method)
+        {
+            if (status < 0)
+            {
+                Console.WriteLine(method + " failed: " + status.ToString());
             }
         }
     }

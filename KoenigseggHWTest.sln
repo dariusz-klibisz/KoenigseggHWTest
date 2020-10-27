@@ -5,16 +5,33 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KoenigseggHWTest", "KoenigseggHWTest\KoenigseggHWTest.csproj", "{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{9EF850BA-C6A3-4BDB-B4B3-0F6DAE76F42A}"
+	ProjectSection(SolutionItems) = preProject
+		Regera_HSCAN1.dbc = Regera_HSCAN1.dbc
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Debug|x64.ActiveCfg = Debug|x86
+		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Debug|x64.Build.0 = Debug|x86
+		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Debug|x86.ActiveCfg = Debug|x86
+		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Debug|x86.Build.0 = Debug|x86
 		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Release|x64.ActiveCfg = Release|x64
+		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Release|x64.Build.0 = Release|x64
+		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Release|x86.ActiveCfg = Release|x86
+		{0F3C0910-7EB7-4FBF-961E-EEE19696B8F0}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

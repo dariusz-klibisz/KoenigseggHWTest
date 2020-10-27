@@ -75,6 +75,7 @@
             this.pinNumberLabel = new System.Windows.Forms.Label();
             this.pinNumberComboBox = new System.Windows.Forms.ComboBox();
             this.transmissionControlGroupBox = new System.Windows.Forms.GroupBox();
+            this.startTransmisionButton = new System.Windows.Forms.Button();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameIDNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.framePeriodNumericUpDown)).BeginInit();
@@ -89,6 +90,7 @@
             this.outputGroupBox.SuspendLayout();
             this.functionGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).BeginInit();
+            this.transmissionControlGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // framePropertiesGroupBox
@@ -1150,12 +1152,23 @@
             // 
             // transmissionControlGroupBox
             // 
+            this.transmissionControlGroupBox.Controls.Add(this.startTransmisionButton);
             this.transmissionControlGroupBox.Location = new System.Drawing.Point(630, 559);
             this.transmissionControlGroupBox.Name = "transmissionControlGroupBox";
             this.transmissionControlGroupBox.Size = new System.Drawing.Size(1165, 285);
             this.transmissionControlGroupBox.TabIndex = 2;
             this.transmissionControlGroupBox.TabStop = false;
             this.transmissionControlGroupBox.Text = "Transmission Control";
+            // 
+            // startTransmisionButton
+            // 
+            this.startTransmisionButton.Location = new System.Drawing.Point(48, 95);
+            this.startTransmisionButton.Name = "startTransmisionButton";
+            this.startTransmisionButton.Size = new System.Drawing.Size(201, 45);
+            this.startTransmisionButton.TabIndex = 0;
+            this.startTransmisionButton.Text = "Start";
+            this.startTransmisionButton.UseVisualStyleBackColor = true;
+            this.startTransmisionButton.Click += new System.EventHandler(this.startTransmisionButton_Click);
             // 
             // KoenigseggHWTest
             // 
@@ -1193,6 +1206,7 @@
             this.functionGroupBox.ResumeLayout(false);
             this.functionGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).EndInit();
+            this.transmissionControlGroupBox.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1246,6 +1260,7 @@
         private System.Windows.Forms.GroupBox pullControlGroupBox;
         private System.Windows.Forms.RadioButton pullEnableRadioButton;
         private System.Windows.Forms.RadioButton pullDisableRadioButton;
+        private System.Windows.Forms.Button startTransmisionButton;
     }
 }
 

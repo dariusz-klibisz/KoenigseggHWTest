@@ -6,48 +6,33 @@ using System.Threading.Tasks;
 
 namespace KoenigseggHWTest
 {
-    class Frame
+    class Frame : IEquatable<Frame>
     {
-        private const UInt16 FRAME_ID_MAX = 2047;
-        private const Byte FRAME_PAYLOAD = 6;
-        private const Byte FRAME_PADDING = 0xAA;
-        private const Byte BYTE_MASK = 0xFF;
-        private const Byte BYTE_SHIFT = 8;
-        private enum FrameStructure
-        {
-            FRAME_PAYLOAD_BYTE,           /* 0 */
-            FRAME_ROUTINE_BYTE,           /* 1 */
-            FRAME_PIN_NR_BYTE_HIGH,       /* 2 */
-            FRAME_PIN_NR_BYTE_LOW,        /* 3 */
-            FRAME_PIN_CFG_BYTE_HIGH,      /* 4 */
-            FRAME_PIN_CFG_BYTE_LOW,       /* 5 */
-            FRAME_PIN_LVL_BYTE,           /* 6 */
-            FRAME_PADDING_BYTE,           /* 7 */
-            FRAME_LENGTH                  /* 8 */
-        }
-        public enum PinLevel
-        {
-            FRAME_PIN_LVL_LOW,      /* 0 */
-            FRAME_PIN_LVL_HIGH,     /* 1 */
-            FRAME_PIN_LVL_TOGGLE,   /* 2 */
-            FRAME_PIN_LVL_MAX       /* 3 */
-        }
+        protected const UInt16 FRAME_ID_MAX = 2047;
+        protected const Byte FRAME_LENGTH_MAX = 8;
+        protected const Byte BYTE_MASK = 0xFF;
+        protected const Byte BYTE_SHIFT = 8;
+        
         private UInt16 frameID = 0;
+        private String frameName = "";
         private UInt16 framePeriod = 0;
-        private Byte[] frameData = new Byte[(Byte)FrameStructure.FRAME_LENGTH]; /*{ 0x06, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xAA }; */
+        private Byte framePadding = 0x00;
+        private Byte[] frameData;
+        private List<Signal> frameSignals;
 
-        public Frame(UInt16 aFrameID = 0, UInt16 aFramePeriod = 0)
+        public Frame(UInt16 aFrameID = 0, string aName = "", UInt16 aFramePeriod = 0)
         {
             SetFrameID(aFrameID);
             SetFramePeriod(aFramePeriod);
-            /* Set data that wont change. */
-            SetFramePayload(FRAME_PAYLOAD);
-            SetFramePadding(FRAME_PADDING);
+            SetFrameName(aName);
+            frameData = new Byte[FRAME_LENGTH_MAX];
+            frameSignals = new List<Signal>();
         }
 
         public override string ToString()
         {
             return $"Frame ID: {frameID}(0x{frameID:X})\n" +
+                $"Frame name: {frameName}\n" +
                 $"Frame period: {framePeriod}\n" +
                 $"Data: {frameData[0]:X} " +
                 $"{frameData[1]:X} " +
@@ -57,6 +42,54 @@ namespace KoenigseggHWTest
                 $"{frameData[5]:X} " +
                 $"{frameData[6]:X} " +
                 $"{frameData[7]:X}\n" ;
+        }
+
+        public static bool operator ==(Frame obj1, Frame obj2)
+        {
+            if (ReferenceEquals(obj1, obj2))
+            {
+                return true;
+            }
+            if (ReferenceEquals(obj1, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(obj2, null))
+            {
+                return false;
+            }
+
+            return obj1.Equals(obj2);
+        }
+
+        public static bool operator !=(Frame obj1, Frame obj2)
+        {
+            return !(obj1 == obj2);
+        }
+
+        public bool Equals(Frame other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            return GetFrameID().Equals(other.GetFrameID()) &&
+                   GetFrameName().Equals(other.GetFrameName());
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Frame);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         public UInt16 GetFrameID()
@@ -82,9 +115,9 @@ namespace KoenigseggHWTest
             framePeriod = aFramePeriod;
         }
 
-        private Byte GetFrameData(Byte aByteNr)
+        protected Byte GetFrameData(Byte aByteNr)
         {
-            if(aByteNr < (Byte)FrameStructure.FRAME_LENGTH)
+            if(aByteNr < FRAME_LENGTH_MAX)
             {
                 return frameData[aByteNr];
             }
@@ -94,64 +127,32 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void SetFrameData(FrameStructure aByteNr, Byte aData)
+        protected void SetFrameData(Byte aByteNr, Byte aData)
         {
-            if(aByteNr < FrameStructure.FRAME_LENGTH)
+            if(aByteNr < FRAME_LENGTH_MAX)
             {
                 frameData[(Byte)aByteNr] = aData;
             }
         }
 
-        public void SetFramePayload(Byte aPayload)
+        public Byte GetFramePaddingValue()
         {
-            if(aPayload < (Byte)FrameStructure.FRAME_LENGTH)
-            {
-                SetFrameData(FrameStructure.FRAME_PAYLOAD_BYTE, aPayload);
-            }
+            return framePadding;
         }
 
-        public void SetUDSRoutine(Byte aRoutine)
+        public void SetFramePaddingValue(Byte aPad)
         {
-            SetFrameData(FrameStructure.FRAME_ROUTINE_BYTE, aRoutine);
+            framePadding =  aPad;
         }
 
-        public void SetPinNumber(UInt16 aPinNr)
+        public String GetFrameName()
         {
-            if(aPinNr <= FRAME_ID_MAX)
-            {
-                Byte pinNrHigh = (Byte)((aPinNr >> BYTE_SHIFT) & BYTE_MASK);
-                Byte pinNrLow = (Byte)(aPinNr & BYTE_MASK);
-                SetFrameData(FrameStructure.FRAME_PIN_NR_BYTE_HIGH, pinNrHigh);
-                SetFrameData(FrameStructure.FRAME_PIN_NR_BYTE_LOW, pinNrLow);
-            }
+            return frameName;
         }
 
-        public void SetPinConfig(UInt16 aPinCfg)
+        public void SetFrameName(String aName)
         {
-            Byte pinCfgHigh = (Byte)((aPinCfg >> BYTE_SHIFT) & BYTE_MASK);
-            Byte pinCfgLow = (Byte)(aPinCfg & BYTE_MASK);
-            SetFrameData(FrameStructure.FRAME_PIN_CFG_BYTE_HIGH, pinCfgHigh);
-            SetFrameData(FrameStructure.FRAME_PIN_CFG_BYTE_LOW, pinCfgLow);
-        }
-
-        public UInt16 GetPinConfig()
-        {
-            Byte byteHigh = GetFrameData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_HIGH);
-            Byte byteLow = GetFrameData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_LOW);
-            return (UInt16)((UInt16)byteHigh << BYTE_SHIFT | byteLow);
-        }
-
-        public void SetPinLevel(PinLevel aPinLvl)
-        {
-            if(aPinLvl < PinLevel.FRAME_PIN_LVL_MAX)
-            {
-                SetFrameData(FrameStructure.FRAME_PIN_LVL_BYTE, (Byte)aPinLvl);
-            }
-        }
-
-        public void SetFramePadding(Byte aPad)
-        {
-            SetFrameData(FrameStructure.FRAME_PADDING_BYTE, aPad);
+            frameName = aName;
         }
     }
 }
