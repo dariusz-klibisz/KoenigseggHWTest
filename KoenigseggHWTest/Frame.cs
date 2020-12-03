@@ -1,4 +1,5 @@
 ﻿using System;
+using Kvaser.Kvadblib;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace KoenigseggHWTest
     class Frame : IEquatable<Frame>
     {
         protected const UInt16 FRAME_ID_MAX = 2047;
-        protected const Byte FRAME_LENGTH_MAX = 8;
+        public const Byte FRAME_LENGTH_MAX = 8;
         protected const Byte BYTE_MASK = 0xFF;
         protected const Byte BYTE_SHIFT = 8;
         
@@ -17,16 +18,16 @@ namespace KoenigseggHWTest
         private String frameName = "";
         private UInt16 framePeriod = 0;
         private Byte framePadding = 0x00;
-        private Byte[] frameData;
-        private List<Signal> frameSignals;
+        private Byte[] frameData = new Byte[FRAME_LENGTH_MAX];
+        private Kvadblib.MessageHnd frameHandle;
+        private List<Signal> frameSignals = new List<Signal>();
 
-        public Frame(UInt16 aFrameID = 0, string aName = "", UInt16 aFramePeriod = 0)
+        public Frame(UInt16 aFrameID = 0, string aName = "", UInt16 aFramePeriod = 0, Kvadblib.MessageHnd aFrameHandle = null)
         {
             SetFrameID(aFrameID);
             SetFramePeriod(aFramePeriod);
             SetFrameName(aName);
-            frameData = new Byte[FRAME_LENGTH_MAX];
-            frameSignals = new List<Signal>();
+            SetFrameHandle(aFrameHandle);
         }
 
         public override string ToString()
@@ -153,6 +154,32 @@ namespace KoenigseggHWTest
         public void SetFrameName(String aName)
         {
             frameName = aName;
+        }
+
+        public void AddSignal(Signal aSignal)
+        {
+            frameSignals.Add(aSignal);
+        }
+
+        public void RemoveSignal(Signal aSignal)
+        {
+            if(frameSignals.Contains(aSignal))
+            {
+                frameSignals.Remove(aSignal);
+            }
+        }
+
+        public void SetFrameHandle(Kvadblib.MessageHnd aFrameHandle)
+        {
+            if (null != aFrameHandle)
+            {
+                frameHandle = aFrameHandle;
+            }
+        }
+
+        public Kvadblib.MessageHnd GetFrameHandle()
+        {
+            return frameHandle;
         }
     }
 }

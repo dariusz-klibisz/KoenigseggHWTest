@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kvaser.Kvadblib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,12 @@ namespace KoenigseggHWTest
     {
         private string nodeName { get; set; } = "";
         private List<Frame> nodeFrames;
+        Kvadblib.NodeHnd nodeHandle;
 
-        public Node(String aName = "")
+        public Node(String aName = "", Kvadblib.NodeHnd aNodeHandle = null)
         {
             SetNodeName(aName);
+            SetNodeHandle(aNodeHandle);
             nodeFrames = new List<Frame>();
         }
 
@@ -70,6 +73,19 @@ namespace KoenigseggHWTest
             }
 
             return ret;
+        }
+
+        public void SetNodeHandle(Kvadblib.NodeHnd aNodeHandle)
+        {
+            if(null != aNodeHandle)
+            {
+                nodeHandle = aNodeHandle;
+            }
+        }
+
+        public Kvadblib.NodeHnd GetNodeHandle()
+        {
+            return nodeHandle;
         }
     }
 }

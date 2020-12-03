@@ -17,8 +17,8 @@ namespace KoenigseggHWTest
     {
         private const UInt16 DEFAULT_FRAME_ID = 2016;
         private TestFrame CANFrame = new TestFrame(aFrameID: DEFAULT_FRAME_ID);
-        private List<Node> nodes = new List<Node>();
-        
+        private static List<Node> nodes = new List<Node>();
+
         private enum PinCfgFunction
         {
             PIN_CFG_FUNCTION,
@@ -179,13 +179,7 @@ namespace KoenigseggHWTest
             //Load database
             Kvadblib.Hnd dbhandle;
             Kvadblib.Status dbstatus;
-            Kvadblib.MessageHnd mh = new Kvadblib.MessageHnd();
-            Kvadblib.SignalHnd sh = new Kvadblib.SignalHnd();
-            Kvadblib.NodeHnd nh = new Kvadblib.NodeHnd();
-            string name = "";
-            string senderNode = "";
-            int frameID = 0;
-            Kvadblib.MESSAGE frameFlags;
+
             string filename = "C:\\Repos\\KoenigseggHWTest\\Regera_HSCAN1.dbc";
             dbhandle = new Kvadblib.Hnd();
             dbstatus = Kvadblib.Open(out dbhandle);
@@ -193,53 +187,11 @@ namespace KoenigseggHWTest
             dbstatus = Kvadblib.ReadFile(dbhandle, filename);
             DisplayDBError(dbstatus, "Reading database from file ");
 
-            Debug.Print("Nodes: \n");
-            if (Kvadblib.Status.OK == Kvadblib.GetFirstNode(dbhandle, out nh))
-            {
-                Kvadblib.GetNodeName(nh, out name);
-                nodes.Add(new Node(name));
-                Debug.Print(name);
-            }
+            ReadDbNodes(dbhandle);
 
-            while (Kvadblib.Status.OK == Kvadblib.GetNextNode(dbhandle, out nh))
-            {
-                Kvadblib.GetNodeName(nh, out name);
-                nodes.Add(new Node(name));
-                Debug.Print(name);
-            }
+            ReadDbFrames(dbhandle);
 
-            Debug.Print("\nMessages: \n");
-            if (Kvadblib.Status.OK == Kvadblib.GetFirstMsg(dbhandle, out mh))
-            {
-                Kvadblib.GetMsgName(mh, out name);
-                Kvadblib.GetMsgId(mh, out frameID, out frameFlags);
-                Kvadblib.GetMsgSendNode(mh, out nh);
-                Kvadblib.GetNodeName(nh, out senderNode);
-                Debug.Print(name);
-                foreach (Node node in nodes)
-                {
-                    if(node.GetNodeName() == senderNode)
-                    {
-                        node.AddFrame(new Frame((UInt16)frameID, name));
-                    }
-                }
-            }
-
-            while (Kvadblib.Status.OK == Kvadblib.GetNextMsg(dbhandle, out mh))
-            {
-                Kvadblib.GetMsgName(mh, out name);
-                Kvadblib.GetMsgId(mh, out frameID, out frameFlags);
-                Kvadblib.GetMsgSendNode(mh, out nh);
-                Kvadblib.GetNodeName(nh, out senderNode);
-                Debug.Print(name);
-                foreach (Node node in nodes)
-                {
-                    if (node.GetNodeName() == senderNode)
-                    {
-                        node.AddFrame(new Frame((UInt16)frameID, name));
-                    }
-                }
-            }
+            
 
             Debug.Print("\n========================\n");
             foreach (Node node in nodes)
@@ -272,6 +224,118 @@ namespace KoenigseggHWTest
             {
                 Console.WriteLine(method + " failed: " + status.ToString());
             }
+        }
+
+        private static void ReadDbNodes(Kvadblib.Hnd aDbHnd)
+        {
+            Kvadblib.NodeHnd nh = new Kvadblib.NodeHnd();
+            string name = "";
+
+            Debug.Print("Nodes: \n");
+            if (Kvadblib.Status.OK == Kvadblib.GetFirstNode(aDbHnd, out nh))
+            {
+                ReadNode(nh);
+            }
+
+            while (Kvadblib.Status.OK == Kvadblib.GetNextNode(aDbHnd, out nh))
+            {
+                ReadNode(nh);
+            }
+        }
+
+        private static void ReadNode(Kvadblib.NodeHnd aNodeHnd)
+        {
+            string name = "";
+
+            Kvadblib.GetNodeName(aNodeHnd, out name);
+            nodes.Add(new Node(name));
+            Debug.Print(name);
+        }
+
+        private static void ReadDbFrames(Kvadblib.Hnd aDbHnd)
+        {
+            Kvadblib.MessageHnd mh = new Kvadblib.MessageHnd();
+
+            Debug.Print("\nMessages: \n");
+            if (Kvadblib.Status.OK == Kvadblib.GetFirstMsg(aDbHnd, out mh))
+            {
+                ReadFrame(mh);
+            }
+
+            while (Kvadblib.Status.OK == Kvadblib.GetNextMsg(aDbHnd, out mh))
+            {
+                ReadFrame(mh);
+            }
+        }
+
+        private static void ReadFrame(Kvadblib.MessageHnd aMsgHnd)
+        {
+            Kvadblib.NodeHnd nh = new Kvadblib.NodeHnd();
+            string name = "";
+            string senderNode = "";
+            int frameID = 0;
+            Kvadblib.MESSAGE frameFlags;
+
+            Kvadblib.GetMsgName(aMsgHnd, out name);
+            Kvadblib.GetMsgId(aMsgHnd, out frameID, out frameFlags);
+            Kvadblib.GetMsgSendNode(aMsgHnd, out nh);
+            Kvadblib.GetNodeName(nh, out senderNode);
+            Debug.Print(name);
+            foreach (Node node in nodes)
+            {
+                if (node.GetNodeName() == senderNode)
+                {
+                    node.AddFrame(new Frame((UInt16)frameID, name));
+                }
+            }
+            ReadDbSignals(aMsgHnd);
+        }
+
+        private static void ReadDbSignals(Kvadblib.MessageHnd aMsgHnd)
+        {
+            Kvadblib.SignalHnd sh = new Kvadblib.SignalHnd();
+
+            if (Kvadblib.Status.OK == Kvadblib.GetFirstSignal(aMsgHnd, out sh))
+            {
+                ReadSignal(sh);
+            }
+
+            while (Kvadblib.Status.OK == Kvadblib.GetNextSignal(aMsgHnd, out sh))
+            {
+                ReadSignal(sh);
+            }            
+        }
+
+        private static void ReadSignal(Kvadblib.SignalHnd aSgnHnd)
+        {
+            string name = "";
+            string receiverNode = "";
+            int size = 0;
+            int startBit = 0;
+            double factor = 0.0;
+            double offset = 0.0;
+            double min = 0.0;
+            double max = 0.0;
+            string unit = "";
+            Kvadblib.AttributeHnd ah = new Kvadblib.AttributeHnd();
+            Kvaser.Kvadblib.Kvadblib.NodeHnd nh;
+            Kvadblib.SignalType pt;
+            Kvadblib.SignalType rt;
+
+            Kvadblib.GetSignalName(aSgnHnd, out name);
+            Kvadblib.GetSignalValueSize(aSgnHnd, out startBit, out size);
+            Kvadblib.GetSignalValueScaling(aSgnHnd, out factor, out offset);
+            Kvadblib.GetSignalValueLimits(aSgnHnd, out min, out max);
+            Kvadblib.GetSignalUnit(aSgnHnd, out unit);
+            Kvadblib.GetSignalPresentationType(aSgnHnd, out pt);
+            Kvadblib.GetSignalRepresentationType(aSgnHnd, out rt);
+            //TODO: Fix this receiverNode
+            //Kvadblib.SignalContainsReceiveNode(aSgnHnd, out nh);
+
+
+            //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
+            //Kvadblib.GetAttributeName(ah, out name);
+            Debug.Print(name);
         }
     }
 }
