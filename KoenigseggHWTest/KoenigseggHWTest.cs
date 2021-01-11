@@ -181,7 +181,6 @@ namespace KoenigseggHWTest
             Kvadblib.Status dbstatus;
 
             string filename = "C:\\Repos\\KoenigseggHWTest\\Regera_HSCAN1.dbc";
-            dbhandle = new Kvadblib.Hnd();
             dbstatus = Kvadblib.Open(out dbhandle);
             DisplayDBError(dbstatus, "Opening database handle ");
             dbstatus = Kvadblib.ReadFile(dbhandle, filename);
@@ -229,7 +228,6 @@ namespace KoenigseggHWTest
         private static void ReadDbNodes(Kvadblib.Hnd aDbHnd)
         {
             Kvadblib.NodeHnd nh = new Kvadblib.NodeHnd();
-            string name = "";
 
             Debug.Print("Nodes: \n");
             if (Kvadblib.Status.OK == Kvadblib.GetFirstNode(aDbHnd, out nh))
@@ -248,7 +246,7 @@ namespace KoenigseggHWTest
             string name = "";
 
             Kvadblib.GetNodeName(aNodeHnd, out name);
-            nodes.Add(new Node(name));
+            nodes.Add(new Node(name, aNodeHnd));
             Debug.Print(name);
         }
 
@@ -285,7 +283,7 @@ namespace KoenigseggHWTest
             {
                 if (node.GetNodeName() == senderNode)
                 {
-                    node.AddFrame(new Frame((UInt16)frameID, name));
+                    node.AddFrame(new Frame((UInt16)frameID, name, aFrameHandle: aMsgHnd));
                 }
             }
             ReadDbSignals(aMsgHnd);
@@ -309,7 +307,7 @@ namespace KoenigseggHWTest
         private static void ReadSignal(Kvadblib.SignalHnd aSgnHnd)
         {
             string name = "";
-            string receiverNode = "";
+            List<string> receiverNode = new List<string>();
             int size = 0;
             int startBit = 0;
             double factor = 0.0;
@@ -318,7 +316,7 @@ namespace KoenigseggHWTest
             double max = 0.0;
             string unit = "";
             Kvadblib.AttributeHnd ah = new Kvadblib.AttributeHnd();
-            Kvaser.Kvadblib.Kvadblib.NodeHnd nh;
+            Kvadblib.NodeHnd nh;
             Kvadblib.SignalType pt;
             Kvadblib.SignalType rt;
 
@@ -329,9 +327,22 @@ namespace KoenigseggHWTest
             Kvadblib.GetSignalUnit(aSgnHnd, out unit);
             Kvadblib.GetSignalPresentationType(aSgnHnd, out pt);
             Kvadblib.GetSignalRepresentationType(aSgnHnd, out rt);
-            //TODO: Fix this receiverNode
-            //Kvadblib.SignalContainsReceiveNode(aSgnHnd, out nh);
 
+            foreach (Node node in nodes)
+            {
+                nh = node.GetNodeHandle();
+                Kvadblib.Status status = Kvadblib.SignalContainsReceiveNode(aSgnHnd, nh);
+                if (Kvadblib.Status.OK == status)
+                {
+                    string nodeName = node.GetNodeName();
+                    if (!receiverNode.Contains(nodeName))
+                    {
+                        receiverNode.Add(nodeName);
+                    }
+                }
+            }
+
+            //TODO: Add message handler as function param, add signal to list of frame signals
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);
