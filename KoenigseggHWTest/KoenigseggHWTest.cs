@@ -75,7 +75,7 @@ namespace KoenigseggHWTest
 
         private void frameIdCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if(true == frameIdCheckBox.Checked)
+            if (true == frameIdCheckBox.Checked)
             {
                 frameIDNumericUpDown.Hexadecimal = true;
                 frameIdTextBox.Visible = true;
@@ -177,8 +177,8 @@ namespace KoenigseggHWTest
             Canlib.canWriteWait(chanhandle, msgId, data, 8, msgFlags, 50);
 
             //Load database
-            Kvadblib.Hnd dbhandle;
             Kvadblib.Status dbstatus;
+            Kvadblib.Hnd dbhandle = new Kvadblib.Hnd();
 
             string filename = "C:\\Repos\\KoenigseggHWTest\\Regera_HSCAN1.dbc";
             dbstatus = Kvadblib.Open(out dbhandle);
@@ -190,7 +190,7 @@ namespace KoenigseggHWTest
 
             ReadDbFrames(dbhandle);
 
-            
+
 
             Debug.Print("\n========================\n");
             foreach (Node node in nodes)
@@ -284,27 +284,27 @@ namespace KoenigseggHWTest
                 if (node.GetNodeName() == senderNode)
                 {
                     node.AddFrame(new Frame((UInt16)frameID, name, aFrameHandle: aMsgHnd));
+                    ReadDbSignals(aMsgHnd, node);
                 }
             }
-            ReadDbSignals(aMsgHnd);
         }
 
-        private static void ReadDbSignals(Kvadblib.MessageHnd aMsgHnd)
+        private static void ReadDbSignals(Kvadblib.MessageHnd aMsgHnd, Node aNode)
         {
             Kvadblib.SignalHnd sh = new Kvadblib.SignalHnd();
 
             if (Kvadblib.Status.OK == Kvadblib.GetFirstSignal(aMsgHnd, out sh))
             {
-                ReadSignal(sh);
+                ReadSignal(sh, aMsgHnd, aNode);
             }
 
             while (Kvadblib.Status.OK == Kvadblib.GetNextSignal(aMsgHnd, out sh))
             {
-                ReadSignal(sh);
-            }            
+                ReadSignal(sh, aMsgHnd, aNode);
+            }
         }
 
-        private static void ReadSignal(Kvadblib.SignalHnd aSgnHnd)
+        private static void ReadSignal(Kvadblib.SignalHnd aSgnHnd, Kvadblib.MessageHnd aMsgHnd, Node aNode)
         {
             string name = "";
             List<string> receiverNode = new List<string>();
@@ -328,6 +328,7 @@ namespace KoenigseggHWTest
             Kvadblib.GetSignalPresentationType(aSgnHnd, out pt);
             Kvadblib.GetSignalRepresentationType(aSgnHnd, out rt);
 
+            /* Fill receiverNode list. Each signal can have multiple receive nodes. */
             foreach (Node node in nodes)
             {
                 nh = node.GetNodeHandle();
@@ -342,7 +343,21 @@ namespace KoenigseggHWTest
                 }
             }
 
+            /* Add signal to correct frame in node. */
+            /* Get Frame name from handle. */
+            Kvadblib.GetMsgName(aMsgHnd, out string frameName);
+            /* Get frame hanle from node based on frame name. */
+            aNode.GetFrame(frameName, out Frame fh);
+            /* Add signal to frame. */
+            fh.AddSignal(new Signal(name, (UInt16)startBit, (UInt16)size, factor, offset, min, max, unit, aSgnHnd));
+
+
+
             //TODO: Add message handler as function param, add signal to list of frame signals
+            //TODO: Add functions to Node class to return Frame
+            //TODO: Add functions to Frame to count nr of signals and return Signal
+            //TODO: Update functions with Status
+            //TODO: Add ToString function for Signal
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);

@@ -46,12 +46,12 @@ namespace KoenigseggHWTest
         {
             Boolean ret = false;
 
-            if((0 != nodeFrames.Count) &&
+            if ((0 != nodeFrames.Count) &&
                (null != aFrame))
             {
-                if(nodeFrames.Contains(aFrame))
+                if (nodeFrames.Contains(aFrame))
                 {
-                    if(nodeFrames.Remove(aFrame))
+                    if (nodeFrames.Remove(aFrame))
                     {
                         ret = true;
                     }
@@ -65,7 +65,7 @@ namespace KoenigseggHWTest
         {
             Boolean ret = false;
 
-            if((null != aFrame) &&
+            if ((null != aFrame) &&
                (!nodeFrames.Contains(aFrame)))
             {
                 nodeFrames.Add(aFrame);
@@ -77,7 +77,7 @@ namespace KoenigseggHWTest
 
         public void SetNodeHandle(Kvadblib.NodeHnd aNodeHandle)
         {
-            if(null != aNodeHandle)
+            if (null != aNodeHandle)
             {
                 nodeHandle = aNodeHandle;
             }
@@ -86,6 +86,39 @@ namespace KoenigseggHWTest
         public Kvadblib.NodeHnd GetNodeHandle()
         {
             return nodeHandle;
+        }
+
+        public UInt32 GetNrOfFrames()
+        {
+            return (UInt32)nodeFrames.Count;
+        }
+
+        public Status.ErrorCode GetFrame(string aName, out Frame aFrame)
+        {
+            foreach (Frame frame in nodeFrames)
+            {
+                if (frame.GetFrameName() == aName)
+                {
+                    aFrame = frame;
+                    return Status.ErrorCode.STATUS_OK;
+                }
+            }
+            aFrame = null;
+            return Status.ErrorCode.STATUS_OBJ_NOT_FOUND;
+        }
+
+        public Status.ErrorCode GetFrame(UInt32 aIdx, out Frame aFrame)
+        {
+            if (aIdx >= GetNrOfFrames())
+            {
+                aFrame = null;
+                return Status.ErrorCode.STATUS_OBJ_NOT_FOUND;
+            }
+            else
+            {
+                aFrame = nodeFrames.ElementAt((int)aIdx);
+                return Status.ErrorCode.STATUS_OK;
+            }
         }
     }
 }
