@@ -181,5 +181,38 @@ namespace KoenigseggHWTest
         {
             return frameHandle;
         }
+
+        public UInt32 GetNrOfSignals()
+        {
+            return (UInt32)frameSignals.Count;
+        }
+
+        public Status.ErrorCode GetSignal(string aName, out Signal aSignal)
+        {
+            foreach (Signal signal in frameSignals)
+            {
+                if (signal.GetName() == aName)
+                {
+                    aSignal = signal;
+                    return Status.ErrorCode.STATUS_OK;
+                }
+            }
+            aSignal = null;
+            return Status.ErrorCode.STATUS_OBJ_NOT_FOUND;
+        }
+
+        public Status.ErrorCode GetSignal(UInt32 aIdx, out Signal aSignal)
+        {
+            if (aIdx >= GetNrOfSignals())
+            {
+                aSignal = null;
+                return Status.ErrorCode.STATUS_OBJ_NOT_FOUND;
+            }
+            else
+            {
+                aSignal = frameSignals.ElementAt((int)aIdx);
+                return Status.ErrorCode.STATUS_OK;
+            }
+        }
     }
 }

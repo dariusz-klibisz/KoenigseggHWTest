@@ -45,6 +45,21 @@ namespace KoenigseggHWTest
             SetSignalHandle(aSignalHandle);
         }
 
+        public override string ToString()
+        {
+            return $"Signal name: {name}\n" +
+                $"Signal startBit: {startBit}\n" +
+                $"Signal bitLength: {bitLength}\n" +
+                $"Signal scale: {scale}\n" +
+                $"Signal offset:{offset}\n" +
+                $"Signal min:{min}\n" +
+                $"Signal max:{max}\n" +
+                $"Signal unit:{unit}\n" +
+                $"Signal value:{value}\n" +
+                $"Signal rawValue:{rawValue}\n" +
+                $"Signal signalHandle:{signalHandle}\n";
+        }
+
         public void SetName(string aName)
         {
             name = aName;
