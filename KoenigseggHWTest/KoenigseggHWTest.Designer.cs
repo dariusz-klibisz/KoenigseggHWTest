@@ -76,6 +76,10 @@
             this.pinNumberComboBox = new System.Windows.Forms.ComboBox();
             this.transmissionControlGroupBox = new System.Windows.Forms.GroupBox();
             this.startTransmisionButton = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.RestbusSignalsListBox = new System.Windows.Forms.ListBox();
+            this.RestbusNodesListBox = new System.Windows.Forms.ListBox();
+            this.RestbusFramesListBox = new System.Windows.Forms.ListBox();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameIDNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.framePeriodNumericUpDown)).BeginInit();
@@ -91,6 +95,7 @@
             this.functionGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).BeginInit();
             this.transmissionControlGroupBox.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // framePropertiesGroupBox
@@ -1170,12 +1175,55 @@
             this.startTransmisionButton.UseVisualStyleBackColor = true;
             this.startTransmisionButton.Click += new System.EventHandler(this.startTransmisionButton_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.RestbusSignalsListBox);
+            this.groupBox1.Controls.Add(this.RestbusNodesListBox);
+            this.groupBox1.Controls.Add(this.RestbusFramesListBox);
+            this.groupBox1.Location = new System.Drawing.Point(50, 874);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(2573, 256);
+            this.groupBox1.TabIndex = 3;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Restbus Simulation";
+            // 
+            // RestbusSignalsListBox
+            // 
+            this.RestbusSignalsListBox.FormattingEnabled = true;
+            this.RestbusSignalsListBox.ItemHeight = 31;
+            this.RestbusSignalsListBox.Location = new System.Drawing.Point(1078, 38);
+            this.RestbusSignalsListBox.Name = "RestbusSignalsListBox";
+            this.RestbusSignalsListBox.Size = new System.Drawing.Size(480, 190);
+            this.RestbusSignalsListBox.TabIndex = 2;
+            this.RestbusSignalsListBox.SelectedIndexChanged += new System.EventHandler(this.RestbusSignalsListBox_SelectedIndexChanged);
+            // 
+            // RestbusNodesListBox
+            // 
+            this.RestbusNodesListBox.FormattingEnabled = true;
+            this.RestbusNodesListBox.ItemHeight = 31;
+            this.RestbusNodesListBox.Location = new System.Drawing.Point(36, 38);
+            this.RestbusNodesListBox.Name = "RestbusNodesListBox";
+            this.RestbusNodesListBox.Size = new System.Drawing.Size(480, 190);
+            this.RestbusNodesListBox.TabIndex = 1;
+            this.RestbusNodesListBox.SelectedIndexChanged += new System.EventHandler(this.RestbusNodesListBox_SelectedIndexChanged);
+            // 
+            // RestbusFramesListBox
+            // 
+            this.RestbusFramesListBox.FormattingEnabled = true;
+            this.RestbusFramesListBox.ItemHeight = 31;
+            this.RestbusFramesListBox.Location = new System.Drawing.Point(554, 38);
+            this.RestbusFramesListBox.Name = "RestbusFramesListBox";
+            this.RestbusFramesListBox.Size = new System.Drawing.Size(480, 190);
+            this.RestbusFramesListBox.TabIndex = 0;
+            this.RestbusFramesListBox.SelectedIndexChanged += new System.EventHandler(this.RestbusFramesListBox_SelectedIndexChanged);
+            // 
             // KoenigseggHWTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2687, 1091);
+            this.ClientSize = new System.Drawing.Size(2687, 1261);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.transmissionControlGroupBox);
             this.Controls.Add(this.frameDataGroupBox);
             this.Controls.Add(this.framePropertiesGroupBox);
@@ -1207,6 +1255,7 @@
             this.functionGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).EndInit();
             this.transmissionControlGroupBox.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1261,6 +1310,10 @@
         private System.Windows.Forms.RadioButton pullEnableRadioButton;
         private System.Windows.Forms.RadioButton pullDisableRadioButton;
         private System.Windows.Forms.Button startTransmisionButton;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListBox RestbusFramesListBox;
+        private System.Windows.Forms.ListBox RestbusNodesListBox;
+        private System.Windows.Forms.ListBox RestbusSignalsListBox;
     }
 }
 

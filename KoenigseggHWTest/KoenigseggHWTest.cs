@@ -62,6 +62,57 @@ namespace KoenigseggHWTest
         public KoenigseggHWTest()
         {
             InitializeComponent();
+
+            Canlib.canStatus status;
+            int channel = 0;
+            int chanhandle;
+            byte[] data = new byte[8];
+            int msgId = 200;
+            int msgFlags = 0;
+
+            //Initialize, open channel and go on bus
+            Canlib.canInitializeLibrary();
+
+            chanhandle = Canlib.canOpenChannel(channel, Canlib.canOPEN_ACCEPT_VIRTUAL);
+            DisplayError((Canlib.canStatus)chanhandle, "canSetBusParams");
+
+            status = Canlib.canSetBusParams(chanhandle, Canlib.canBITRATE_250K, 0, 0, 0, 0, 0);
+            DisplayError(status, "canSetBusParams");
+
+            status = Canlib.canBusOn(chanhandle);
+            DisplayError(status, "canBusOn");
+
+            Canlib.canWriteWait(chanhandle, msgId, data, 8, msgFlags, 50);
+
+            //Load database
+            Kvadblib.Status dbstatus;
+            Kvadblib.Hnd dbhandle = new Kvadblib.Hnd();
+
+            string filename = "C:\\Repos\\KoenigseggHWTest\\Regera_HSCAN1.dbc";
+            dbstatus = Kvadblib.Open(out dbhandle);
+            DisplayDBError(dbstatus, "Opening database handle ");
+            dbstatus = Kvadblib.ReadFile(dbhandle, filename);
+            DisplayDBError(dbstatus, "Reading database from file ");
+
+            ReadDbNodes(dbhandle);
+
+            ReadDbFrames(dbhandle);
+
+            UpdateRestbusNodesListBox();
+
+            Debug.Print("\n========================\n");
+            foreach (Node node in nodes)
+            {
+                Debug.Print(node.ToString());
+            }
+            Debug.Print("\n========================\n");
+
+            //Go off bus and close channel
+            status = Canlib.canBusOff(chanhandle);
+            DisplayError(status, "canBusOff");
+
+            status = Canlib.canClose(chanhandle);
+            DisplayError(status, "canClose");
         }
 
         private void setPinCfgBits(UInt16 value, PinCfgFunction function)
@@ -155,56 +206,7 @@ namespace KoenigseggHWTest
 
         private void startTransmisionButton_Click(object sender, EventArgs e)
         {
-            Canlib.canStatus status;
-            int channel = 0;
-            int chanhandle;
-            byte[] data = new byte[8];
-            int msgId = 200;
-            int msgFlags = 0;
-
-            //Initialize, open channel and go on bus
-            Canlib.canInitializeLibrary();
-
-            chanhandle = Canlib.canOpenChannel(channel, Canlib.canOPEN_ACCEPT_VIRTUAL);
-            DisplayError((Canlib.canStatus)chanhandle, "canSetBusParams");
-
-            status = Canlib.canSetBusParams(chanhandle, Canlib.canBITRATE_250K, 0, 0, 0, 0, 0);
-            DisplayError(status, "canSetBusParams");
-
-            status = Canlib.canBusOn(chanhandle);
-            DisplayError(status, "canBusOn");
-
-            Canlib.canWriteWait(chanhandle, msgId, data, 8, msgFlags, 50);
-
-            //Load database
-            Kvadblib.Status dbstatus;
-            Kvadblib.Hnd dbhandle = new Kvadblib.Hnd();
-
-            string filename = "C:\\Repos\\KoenigseggHWTest\\Regera_HSCAN1.dbc";
-            dbstatus = Kvadblib.Open(out dbhandle);
-            DisplayDBError(dbstatus, "Opening database handle ");
-            dbstatus = Kvadblib.ReadFile(dbhandle, filename);
-            DisplayDBError(dbstatus, "Reading database from file ");
-
-            ReadDbNodes(dbhandle);
-
-            ReadDbFrames(dbhandle);
-
-
-
-            Debug.Print("\n========================\n");
-            foreach (Node node in nodes)
-            {
-                Debug.Print(node.ToString());
-            }
-            Debug.Print("\n========================\n");
-
-            //Go off bus and close channel
-            status = Canlib.canBusOff(chanhandle);
-            DisplayError(status, "canBusOff");
-
-            status = Canlib.canClose(chanhandle);
-            DisplayError(status, "canClose");
+            
         }
 
         //Displays error messages when a call to Canlib fails
@@ -225,7 +227,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private static void ReadDbNodes(Kvadblib.Hnd aDbHnd)
+        private void ReadDbNodes(Kvadblib.Hnd aDbHnd)
         {
             Kvadblib.NodeHnd nh = new Kvadblib.NodeHnd();
 
@@ -362,6 +364,98 @@ namespace KoenigseggHWTest
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);
             Debug.Print(name);
+        }
+
+        private void RestbusNodesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateRestbusFramesListBox(sender, e);
+        }
+
+        private void UpdateRestbusNodesListBox()
+        {
+            //Update Nodes names in list
+            RestbusNodesListBox.BeginUpdate();
+            RestbusNodesListBox.Items.Clear();
+            foreach (Node node in nodes)
+            {
+                RestbusNodesListBox.Items.Add(node);
+            }
+            RestbusNodesListBox.EndUpdate();
+            //Select 1st element in Nodes list
+            RestbusNodesListBox.SelectedIndex = 0;
+            if (nodes.Count > 0)
+            {
+                RestbusFramesListBox.SelectedIndex = 0;
+            }
+            else
+            {
+                RestbusFramesListBox.Items.Clear();
+                RestbusSignalsListBox.Items.Clear();
+            }
+        }
+
+        private void RestbusFramesListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateRestbusSignalsListBox(sender, e);
+        }
+
+        private void UpdateRestbusFramesListBox(object sender, EventArgs e)
+        {
+            //Get selected Node
+            Node selectedNode = (Node)RestbusNodesListBox.SelectedItem;
+            UInt32 nrOfFrames = selectedNode.GetNrOfFrames();
+            //Update Frames names in list
+            RestbusFramesListBox.BeginUpdate();
+            RestbusFramesListBox.Items.Clear();
+            for(UInt32 idx = 0; idx < nrOfFrames; idx++)
+            {
+                Frame frame = new Frame();
+                Status.ErrorCode status = selectedNode.GetFrame(idx, out frame);
+                if((Status.ErrorCode.STATUS_OK == status) && (null != frame))
+                {
+                    RestbusFramesListBox.Items.Add(frame);
+                }
+            }
+            RestbusFramesListBox.EndUpdate();
+            //Select 1st element in Frames list
+            if(nrOfFrames > 0)
+            {
+                RestbusFramesListBox.SelectedIndex = 0;
+            }
+            else
+            {
+                RestbusSignalsListBox.Items.Clear();
+            }
+        }
+
+        private void RestbusSignalsListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Update signal properties displayed
+        }
+
+        private void UpdateRestbusSignalsListBox(object sender, EventArgs e)
+        {
+            //Get selected Frame
+            Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
+            UInt32 nrOfSignals = selectedFrame.GetNrOfSignals();
+            //Update Signals names in list
+            RestbusSignalsListBox.BeginUpdate();
+            RestbusSignalsListBox.Items.Clear();
+            for (UInt32 idx = 0; idx < nrOfSignals; idx++)
+            {
+                Signal signal = new Signal();
+                Status.ErrorCode status = selectedFrame.GetSignal(idx, out signal);
+                if ((Status.ErrorCode.STATUS_OK == status) && (null != signal))
+                {
+                    RestbusSignalsListBox.Items.Add(signal);
+                }
+            }
+            RestbusSignalsListBox.EndUpdate();
+            //Select 1st element in Signals list
+            if (nrOfSignals > 0)
+            {
+                RestbusSignalsListBox.SelectedIndex = 0;
+            }
         }
     }
 }
