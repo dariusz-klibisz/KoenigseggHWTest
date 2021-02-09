@@ -274,18 +274,20 @@ namespace KoenigseggHWTest
             string name = "";
             string senderNode = "";
             int frameID = 0;
+            int frameByteLength = 0;
             Kvadblib.MESSAGE frameFlags;
 
             Kvadblib.GetMsgName(aMsgHnd, out name);
             Kvadblib.GetMsgId(aMsgHnd, out frameID, out frameFlags);
             Kvadblib.GetMsgSendNode(aMsgHnd, out nh);
             Kvadblib.GetNodeName(nh, out senderNode);
+            Kvadblib.GetMsgDlc(aMsgHnd, out frameByteLength);
             Debug.Print(name);
             foreach (Node node in nodes)
             {
                 if (node.GetNodeName() == senderNode)
                 {
-                    node.AddFrame(new Frame((UInt16)frameID, name, aFrameHandle: aMsgHnd));
+                    node.AddFrame(new Frame((UInt16)frameID, name, aFrameByteLength: (Byte)frameByteLength, aFrameHandle: aMsgHnd));
                     ReadDbSignals(aMsgHnd, node);
                 }
             }
@@ -360,6 +362,13 @@ namespace KoenigseggHWTest
             //TODO: Add functions to Frame to count nr of signals and return Signal
             //TODO: Update functions with Status
             //TODO: Add ToString function for Signal
+            //TODO: Add Signal byte order
+            //TODO: Add handling setting Signal values
+            //TODO: Add setting Frame data when signal value is set (call Frame function from Signal?)
+            //TODO: Add processing txt file as input to automated sending of frames
+            //TODO: Add displaying log file with sent frames and time
+            //TODO: Remove redundant "Frame" in frame functions
+            //TODO: Add IEquatable to Node class
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);

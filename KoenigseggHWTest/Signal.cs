@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KoenigseggHWTest
 {
-    class Signal
+    class Signal : IEquatable<Signal>
     {
         protected const Byte BITS_IN_BYTE = 8;
         protected const Byte BIT_LENGTH_MAX = 64;
@@ -58,6 +58,54 @@ namespace KoenigseggHWTest
                 $"Signal value:{value}\n" +
                 $"Signal rawValue:{rawValue}\n" +
                 $"Signal signalHandle:{signalHandle}\n";
+        }
+
+        public static bool operator ==(Signal obj1, Signal obj2)
+        {
+            if (ReferenceEquals(obj1, obj2))
+            {
+                return true;
+            }
+            if (ReferenceEquals(obj1, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(obj2, null))
+            {
+                return false;
+            }
+
+            return obj1.Equals(obj2);
+        }
+
+        public static bool operator !=(Signal obj1, Signal obj2)
+        {
+            return !(obj1 == obj2);
+        }
+
+        public bool Equals(Signal other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            // Name must be unique so it is enough to only compare it
+            return GetName().Equals(other.GetName());
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Signal);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         public void SetName(string aName)

@@ -80,6 +80,7 @@
             this.RestbusSignalsListBox = new System.Windows.Forms.ListBox();
             this.RestbusNodesListBox = new System.Windows.Forms.ListBox();
             this.RestbusFramesListBox = new System.Windows.Forms.ListBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.frameIDNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.framePeriodNumericUpDown)).BeginInit();
@@ -1158,9 +1159,9 @@
             // transmissionControlGroupBox
             // 
             this.transmissionControlGroupBox.Controls.Add(this.startTransmisionButton);
-            this.transmissionControlGroupBox.Location = new System.Drawing.Point(630, 559);
+            this.transmissionControlGroupBox.Location = new System.Drawing.Point(2208, 536);
             this.transmissionControlGroupBox.Name = "transmissionControlGroupBox";
-            this.transmissionControlGroupBox.Size = new System.Drawing.Size(1165, 285);
+            this.transmissionControlGroupBox.Size = new System.Drawing.Size(415, 285);
             this.transmissionControlGroupBox.TabIndex = 2;
             this.transmissionControlGroupBox.TabStop = false;
             this.transmissionControlGroupBox.Text = "Transmission Control";
@@ -1217,12 +1218,22 @@
             this.RestbusFramesListBox.TabIndex = 0;
             this.RestbusFramesListBox.SelectedIndexChanged += new System.EventHandler(this.RestbusFramesListBox_SelectedIndexChanged);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Location = new System.Drawing.Point(637, 536);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(1219, 308);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Signal Properties";
+            // 
             // KoenigseggHWTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 31F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2687, 1261);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.transmissionControlGroupBox);
             this.Controls.Add(this.frameDataGroupBox);
@@ -1314,6 +1325,7 @@
         private System.Windows.Forms.ListBox RestbusFramesListBox;
         private System.Windows.Forms.ListBox RestbusNodesListBox;
         private System.Windows.Forms.ListBox RestbusSignalsListBox;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

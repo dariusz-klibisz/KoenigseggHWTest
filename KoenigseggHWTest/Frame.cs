@@ -18,15 +18,17 @@ namespace KoenigseggHWTest
         private String frameName = "";
         private UInt16 framePeriod = 0;
         private Byte framePadding = 0x00;
+        private Byte frameByteLength = 0;
         private Byte[] frameData = new Byte[FRAME_LENGTH_MAX];
         private Kvadblib.MessageHnd frameHandle;
         private List<Signal> frameSignals = new List<Signal>();
 
-        public Frame(UInt16 aFrameID = 0, string aName = "", UInt16 aFramePeriod = 0, Kvadblib.MessageHnd aFrameHandle = null)
+        public Frame(UInt16 aFrameID = 0, string aName = "", UInt16 aFramePeriod = 0, Byte aFrameByteLength = FRAME_LENGTH_MAX, Kvadblib.MessageHnd aFrameHandle = null)
         {
             SetFrameID(aFrameID);
             SetFramePeriod(aFramePeriod);
             SetFrameName(aName);
+            SetFrameByteLength(aFrameByteLength);
             SetFrameHandle(aFrameHandle);
         }
 
@@ -144,6 +146,19 @@ namespace KoenigseggHWTest
         public void SetFramePaddingValue(Byte aPad)
         {
             framePadding =  aPad;
+        }
+
+        public Byte GetFrameByteLength()
+        {
+            return frameByteLength;
+        }
+
+        public void SetFrameByteLength(Byte aLength)
+        {
+            if((aLength <= FRAME_LENGTH_MAX) && (aLength != 0))
+            {
+                frameByteLength = aLength;
+            }
         }
 
         public String GetFrameName()
