@@ -357,18 +357,13 @@ namespace KoenigseggHWTest
 
 
 
-            //TODO: Add message handler as function param, add signal to list of frame signals
-            //TODO: Add functions to Node class to return Frame
-            //TODO: Add functions to Frame to count nr of signals and return Signal
             //TODO: Update functions with Status
-            //TODO: Add ToString function for Signal
             //TODO: Add Signal byte order
             //TODO: Add handling setting Signal values
             //TODO: Add setting Frame data when signal value is set (call Frame function from Signal?)
             //TODO: Add processing txt file as input to automated sending of frames
             //TODO: Add displaying log file with sent frames and time
             //TODO: Remove redundant "Frame" in frame functions
-            //TODO: Add IEquatable to Node class
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);

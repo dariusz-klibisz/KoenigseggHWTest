@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace KoenigseggHWTest
 {
-    class Node
+    class Node : IEquatable<Node>
     {
         private string nodeName { get; set; } = "";
         private List<Frame> nodeFrames;
@@ -30,6 +30,54 @@ namespace KoenigseggHWTest
             }
 
             return str;
+        }
+
+        public static bool operator ==(Node obj1, Node obj2)
+        {
+            if (ReferenceEquals(obj1, obj2))
+            {
+                return true;
+            }
+            if (ReferenceEquals(obj1, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(obj2, null))
+            {
+                return false;
+            }
+
+            return obj1.Equals(obj2);
+        }
+
+        public static bool operator !=(Node obj1, Node obj2)
+        {
+            return !(obj1 == obj2);
+        }
+
+        public bool Equals(Node other)
+        {
+            if (ReferenceEquals(other, null))
+            {
+                return false;
+            }
+            if (ReferenceEquals(this, other))
+            {
+                return true;
+            }
+
+            // Name must be unique so it is enough to only compare it
+            return GetNodeName().Equals(other.GetNodeName());
+        }
+
+        public override bool Equals(object obj)
+        {
+            return Equals(obj as Node);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
 
         public string GetNodeName()
