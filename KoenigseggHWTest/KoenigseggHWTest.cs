@@ -16,7 +16,7 @@ namespace KoenigseggHWTest
     public partial class KoenigseggHWTest : Form
     {
         private const UInt16 DEFAULT_FRAME_ID = 2016;
-        private TestFrame CANFrame = new TestFrame(aFrameID: DEFAULT_FRAME_ID);
+        private TestFrame CANFrame = new TestFrame(aID: DEFAULT_FRAME_ID);
         private static List<Node> nodes = new List<Node>();
 
         private enum PinCfgFunction
@@ -143,7 +143,7 @@ namespace KoenigseggHWTest
             try
             {
                 UInt16 idInt = (UInt16)frameIDNumericUpDown.Value;
-                CANFrame.SetFrameID(idInt);
+                CANFrame.SetID(idInt);
                 Debug.Print(CANFrame.ToString());
             }
             catch (FormatException)
@@ -171,7 +171,7 @@ namespace KoenigseggHWTest
             try
             {
                 UInt16 framePeriodInt = (UInt16)framePeriodNumericUpDown.Value;
-                CANFrame.SetFramePeriod(framePeriodInt);
+                CANFrame.SetPeriod(framePeriodInt);
                 Debug.Print(CANFrame.ToString());
             }
             catch (FormatException)
@@ -285,9 +285,9 @@ namespace KoenigseggHWTest
             Debug.Print(name);
             foreach (Node node in nodes)
             {
-                if (node.GetNodeName() == senderNode)
+                if (node.GetName() == senderNode)
                 {
-                    node.AddFrame(new Frame((UInt16)frameID, name, aFrameByteLength: (Byte)frameByteLength, aFrameHandle: aMsgHnd));
+                    node.AddFrame(new Frame((UInt16)frameID, name, aByteLength: (Byte)frameByteLength, aHandle: aMsgHnd));
                     ReadDbSignals(aMsgHnd, node);
                 }
             }
@@ -339,7 +339,7 @@ namespace KoenigseggHWTest
                 Kvadblib.Status status = Kvadblib.SignalContainsReceiveNode(aSgnHnd, nh);
                 if (Kvadblib.Status.OK == status)
                 {
-                    string nodeName = node.GetNodeName();
+                    string nodeName = node.GetName();
                     if (!receiverNode.Contains(nodeName))
                     {
                         receiverNode.Add(nodeName);
@@ -363,7 +363,7 @@ namespace KoenigseggHWTest
             //TODO: Add setting Frame data when signal value is set (call Frame function from Signal?)
             //TODO: Add processing txt file as input to automated sending of frames
             //TODO: Add displaying log file with sent frames and time
-            //TODO: Remove redundant "Frame" in frame functions
+            //TODO: Fix VS Messages
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);

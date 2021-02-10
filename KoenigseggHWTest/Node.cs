@@ -10,21 +10,22 @@ namespace KoenigseggHWTest
 {
     class Node : IEquatable<Node>
     {
-        private string nodeName { get; set; } = "";
-        private List<Frame> nodeFrames;
-        Kvadblib.NodeHnd nodeHandle;
+        private string name { get; set; } = "";
+        private List<Frame> frames;
+        Kvadblib.NodeHnd handle;
 
-        public Node(String aName = "", Kvadblib.NodeHnd aNodeHandle = null)
+        public Node(String aName = "",
+                    Kvadblib.NodeHnd aHandle = null)
         {
-            SetNodeName(aName);
-            SetNodeHandle(aNodeHandle);
-            nodeFrames = new List<Frame>();
+            SetName(aName);
+            SetHandle(aHandle);
+            frames = new List<Frame>();
         }
 
         public override string ToString()
         {
-            string str = $"Node name: {nodeName}\n";
-            foreach (Frame frame in nodeFrames)
+            string str = $"Node name: {name}\n";
+            foreach (Frame frame in frames)
             {
                 str += $"{frame}\n";
             }
@@ -67,7 +68,7 @@ namespace KoenigseggHWTest
             }
 
             // Name must be unique so it is enough to only compare it
-            return GetNodeName().Equals(other.GetNodeName());
+            return GetName().Equals(other.GetName());
         }
 
         public override bool Equals(object obj)
@@ -80,26 +81,26 @@ namespace KoenigseggHWTest
             return base.GetHashCode();
         }
 
-        public string GetNodeName()
+        public string GetName()
         {
-            return nodeName;
+            return name;
         }
 
-        public void SetNodeName(string aName)
+        public void SetName(string aName)
         {
-            nodeName = aName;
+            name = aName;
         }
 
         public Boolean RemoveFrame(Frame aFrame)
         {
             Boolean ret = false;
 
-            if ((0 != nodeFrames.Count) &&
+            if ((0 != frames.Count) &&
                (null != aFrame))
             {
-                if (nodeFrames.Contains(aFrame))
+                if (frames.Contains(aFrame))
                 {
-                    if (nodeFrames.Remove(aFrame))
+                    if (frames.Remove(aFrame))
                     {
                         ret = true;
                     }
@@ -114,38 +115,38 @@ namespace KoenigseggHWTest
             Boolean ret = false;
 
             if ((null != aFrame) &&
-               (!nodeFrames.Contains(aFrame)))
+               (!frames.Contains(aFrame)))
             {
-                nodeFrames.Add(aFrame);
+                frames.Add(aFrame);
                 ret = true;
             }
 
             return ret;
         }
 
-        public void SetNodeHandle(Kvadblib.NodeHnd aNodeHandle)
+        public void SetHandle(Kvadblib.NodeHnd aHandle)
         {
-            if (null != aNodeHandle)
+            if (null != aHandle)
             {
-                nodeHandle = aNodeHandle;
+                handle = aHandle;
             }
         }
 
         public Kvadblib.NodeHnd GetNodeHandle()
         {
-            return nodeHandle;
+            return handle;
         }
 
         public UInt32 GetNrOfFrames()
         {
-            return (UInt32)nodeFrames.Count;
+            return (UInt32)frames.Count;
         }
 
         public Status.ErrorCode GetFrame(string aName, out Frame aFrame)
         {
-            foreach (Frame frame in nodeFrames)
+            foreach (Frame frame in frames)
             {
-                if (frame.GetFrameName() == aName)
+                if (frame.GetName() == aName)
                 {
                     aFrame = frame;
                     return Status.ErrorCode.STATUS_OK;
@@ -164,7 +165,7 @@ namespace KoenigseggHWTest
             }
             else
             {
-                aFrame = nodeFrames.ElementAt((int)aIdx);
+                aFrame = frames.ElementAt((int)aIdx);
                 return Status.ErrorCode.STATUS_OK;
             }
         }

@@ -14,37 +14,42 @@ namespace KoenigseggHWTest
         protected const Byte BYTE_MASK = 0xFF;
         protected const Byte BYTE_SHIFT = 8;
         
-        private UInt16 frameID = 0;
-        private String frameName = "";
-        private UInt16 framePeriod = 0;
-        private Byte framePadding = 0x00;
-        private Byte frameByteLength = 0;
-        private Byte[] frameData = new Byte[FRAME_LENGTH_MAX];
-        private Kvadblib.MessageHnd frameHandle;
-        private List<Signal> frameSignals = new List<Signal>();
+        private UInt16 id = 0;
+        private String name = "";
+        private UInt16 period = 0;
+        private Byte padding = 0x00;
+        private Byte byteLength = 0;
+        private Byte[] data = new Byte[FRAME_LENGTH_MAX];
+        private Kvadblib.MessageHnd handle;
+        private List<Signal> signals;
 
-        public Frame(UInt16 aFrameID = 0, string aName = "", UInt16 aFramePeriod = 0, Byte aFrameByteLength = FRAME_LENGTH_MAX, Kvadblib.MessageHnd aFrameHandle = null)
+        public Frame(UInt16 aID = 0,
+                     string aName = "",
+                     UInt16 aPeriod = 0,
+                     Byte aByteLength = FRAME_LENGTH_MAX,
+                     Kvadblib.MessageHnd aHandle = null)
         {
-            SetFrameID(aFrameID);
-            SetFramePeriod(aFramePeriod);
-            SetFrameName(aName);
-            SetFrameByteLength(aFrameByteLength);
-            SetFrameHandle(aFrameHandle);
+            SetID(aID);
+            SetPeriod(aPeriod);
+            SetName(aName);
+            SetByteLength(aByteLength);
+            SetHandle(aHandle);
+            signals = new List<Signal>();
         }
 
         public override string ToString()
         {
-            return $"Frame ID: {frameID}(0x{frameID:X})\n" +
-                $"Frame name: {frameName}\n" +
-                $"Frame period: {framePeriod}\n" +
-                $"Data: {frameData[0]:X} " +
-                $"{frameData[1]:X} " +
-                $"{frameData[2]:X} " +
-                $"{frameData[3]:X} " +
-                $"{frameData[4]:X} " +
-                $"{frameData[5]:X} " +
-                $"{frameData[6]:X} " +
-                $"{frameData[7]:X}\n" ;
+            return $"Frame ID: {id}(0x{id:X})\n" +
+                $"Frame name: {name}\n" +
+                $"Frame period: {period}\n" +
+                $"Data: {data[0]:X} " +
+                $"{data[1]:X} " +
+                $"{data[2]:X} " +
+                $"{data[3]:X} " +
+                $"{data[4]:X} " +
+                $"{data[5]:X} " +
+                $"{data[6]:X} " +
+                $"{data[7]:X}\n" ;
         }
 
         public static bool operator ==(Frame obj1, Frame obj2)
@@ -81,8 +86,8 @@ namespace KoenigseggHWTest
                 return true;
             }
 
-            return GetFrameID().Equals(other.GetFrameID()) &&
-                   GetFrameName().Equals(other.GetFrameName());
+            return GetID().Equals(other.GetID()) &&
+                   GetName().Equals(other.GetName());
         }
 
         public override bool Equals(object obj)
@@ -95,34 +100,34 @@ namespace KoenigseggHWTest
             return base.GetHashCode();
         }
 
-        public UInt16 GetFrameID()
+        public UInt16 GetID()
         {
-            return frameID;
+            return id;
         }
 
-        public void SetFrameID(UInt16 aFrameID)
+        public void SetID(UInt16 aID)
         {
-            if(aFrameID <= FRAME_ID_MAX)
+            if(aID <= FRAME_ID_MAX)
             {
-                frameID = aFrameID;
+                id = aID;
             }
         }
 
-        public UInt16 GetFramePeriod()
+        public UInt16 GetPeriod()
         {
-            return framePeriod;
+            return period;
         }
 
-        public void SetFramePeriod(UInt16 aFramePeriod)
+        public void SetPeriod(UInt16 aPeriod)
         {
-            framePeriod = aFramePeriod;
+            period = aPeriod;
         }
 
-        protected Byte GetFrameData(Byte aByteNr)
+        protected Byte GetData(Byte aByteNr)
         {
             if(aByteNr < FRAME_LENGTH_MAX)
             {
-                return frameData[aByteNr];
+                return data[aByteNr];
             }
             else
             {
@@ -130,81 +135,81 @@ namespace KoenigseggHWTest
             }
         }
 
-        protected void SetFrameData(Byte aByteNr, Byte aData)
+        protected void SetData(Byte aByteNr, Byte aData)
         {
             if(aByteNr < FRAME_LENGTH_MAX)
             {
-                frameData[(Byte)aByteNr] = aData;
+                data[(Byte)aByteNr] = aData;
             }
         }
 
-        public Byte GetFramePaddingValue()
+        public Byte GetPadding()
         {
-            return framePadding;
+            return padding;
         }
 
-        public void SetFramePaddingValue(Byte aPad)
+        public void SetPadding(Byte aPadding)
         {
-            framePadding =  aPad;
+            padding =  aPadding;
         }
 
-        public Byte GetFrameByteLength()
+        public Byte GetByteLength()
         {
-            return frameByteLength;
+            return byteLength;
         }
 
-        public void SetFrameByteLength(Byte aLength)
+        public void SetByteLength(Byte aLength)
         {
             if((aLength <= FRAME_LENGTH_MAX) && (aLength != 0))
             {
-                frameByteLength = aLength;
+                byteLength = aLength;
             }
         }
 
-        public String GetFrameName()
+        public String GetName()
         {
-            return frameName;
+            return name;
         }
 
-        public void SetFrameName(String aName)
+        public void SetName(String aName)
         {
-            frameName = aName;
+            name = aName;
         }
 
         public void AddSignal(Signal aSignal)
         {
-            frameSignals.Add(aSignal);
+            signals.Add(aSignal);
         }
 
         public void RemoveSignal(Signal aSignal)
         {
-            if(frameSignals.Contains(aSignal))
+            if(signals.Contains(aSignal))
             {
-                frameSignals.Remove(aSignal);
+                signals.Remove(aSignal);
             }
         }
 
-        public void SetFrameHandle(Kvadblib.MessageHnd aFrameHandle)
+        public void SetHandle(Kvadblib.MessageHnd aHandle)
         {
-            if (null != aFrameHandle)
+            if (null != aHandle)
             {
-                frameHandle = aFrameHandle;
+                handle = aHandle;
             }
         }
 
-        public Kvadblib.MessageHnd GetFrameHandle()
+        public Kvadblib.MessageHnd GetHandle()
         {
-            return frameHandle;
+            return handle;
         }
 
         public UInt32 GetNrOfSignals()
         {
-            return (UInt32)frameSignals.Count;
+            return (UInt32)signals.Count;
         }
 
         public Status.ErrorCode GetSignal(string aName, out Signal aSignal)
         {
-            foreach (Signal signal in frameSignals)
+            foreach (Signal signal in signals)
             {
                 if (signal.GetName() == aName)
                 {
@@ -225,7 +230,7 @@ namespace KoenigseggHWTest
             }
             else
             {
-                aSignal = frameSignals.ElementAt((int)aIdx);
+                aSignal = signals.ElementAt((int)aIdx);
                 return Status.ErrorCode.STATUS_OK;
             }
         }

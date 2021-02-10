@@ -22,7 +22,7 @@ namespace KoenigseggHWTest
         private string unit = "";
         private Decimal value = 0;
         private UInt64 rawValue = 0;
-        private Kvadblib.SignalHnd signalHandle;
+        private Kvadblib.SignalHnd handle;
 
         public Signal(string aName = "",
                       UInt16 aStartBit = 0,
@@ -32,7 +32,7 @@ namespace KoenigseggHWTest
                       double aMin = 0.0,
                       double aMax = 0.0,
                       string aUnit = "",
-                      Kvadblib.SignalHnd aSignalHandle = null)
+                      Kvadblib.SignalHnd aHandle = null)
         {
             SetName(aName);
             SetStartBit(aStartBit);
@@ -42,7 +42,7 @@ namespace KoenigseggHWTest
             SetMin(aMin);
             SetMax(aMax);
             SetUnit(aUnit);
-            SetSignalHandle(aSignalHandle);
+            SetHandle(aHandle);
         }
 
         public override string ToString()
@@ -57,7 +57,7 @@ namespace KoenigseggHWTest
                 $"Signal unit:{unit}\n" +
                 $"Signal value:{value}\n" +
                 $"Signal rawValue:{rawValue}\n" +
-                $"Signal signalHandle:{signalHandle}\n";
+                $"Signal handle:{handle}\n";
         }
 
         public static bool operator ==(Signal obj1, Signal obj2)
@@ -194,17 +194,17 @@ namespace KoenigseggHWTest
             return unit;
         }
 
-        public void SetSignalHandle(Kvadblib.SignalHnd aSignalHandle)
+        public void SetHandle(Kvadblib.SignalHnd aHandle)
         {
-            if (null != aSignalHandle)
+            if (null != aHandle)
             {
-                signalHandle = aSignalHandle;
+                handle = aHandle;
             }
         }
 
-        public Kvadblib.SignalHnd GetSignalHandle()
+        public Kvadblib.SignalHnd GetHandle()
         {
-            return signalHandle;
+            return handle;
         }
     }
 }

@@ -32,10 +32,10 @@ namespace KoenigseggHWTest
             FRAME_PIN_LVL_MAX       /* 3 */
         }
 
-        public TestFrame(UInt16 aFrameID = 0, UInt16 aFramePeriod = 0)
+        public TestFrame(UInt16 aID = 0, UInt16 aPeriod = 0)
         {
-            SetFrameID(aFrameID);
-            SetFramePeriod(aFramePeriod);
+            SetID(aID);
+            SetPeriod(aPeriod);
             /* Set data that wont change. */
             SetFramePayload(FRAME_PAYLOAD);
             SetFramePadding(FRAME_PADDING);
@@ -45,13 +45,13 @@ namespace KoenigseggHWTest
         {
             if (aPayload < (Byte)FrameStructure.FRAME_LENGTH)
             {
-                SetFrameData((Byte)FrameStructure.FRAME_PAYLOAD_BYTE, aPayload);
+                SetData((Byte)FrameStructure.FRAME_PAYLOAD_BYTE, aPayload);
             }
         }
 
         public void SetUDSRoutine(Byte aRoutine)
         {
-            SetFrameData((Byte)FrameStructure.FRAME_ROUTINE_BYTE, aRoutine);
+            SetData((Byte)FrameStructure.FRAME_ROUTINE_BYTE, aRoutine);
         }
 
         public void SetPinNumber(UInt16 aPinNr)
@@ -60,8 +60,8 @@ namespace KoenigseggHWTest
             {
                 Byte pinNrHigh = (Byte)((aPinNr >> BYTE_SHIFT) & BYTE_MASK);
                 Byte pinNrLow = (Byte)(aPinNr & BYTE_MASK);
-                SetFrameData((Byte)FrameStructure.FRAME_PIN_NR_BYTE_HIGH, pinNrHigh);
-                SetFrameData((Byte)FrameStructure.FRAME_PIN_NR_BYTE_LOW, pinNrLow);
+                SetData((Byte)FrameStructure.FRAME_PIN_NR_BYTE_HIGH, pinNrHigh);
+                SetData((Byte)FrameStructure.FRAME_PIN_NR_BYTE_LOW, pinNrLow);
             }
         }
 
@@ -69,14 +69,14 @@ namespace KoenigseggHWTest
         {
             Byte pinCfgHigh = (Byte)((aPinCfg >> BYTE_SHIFT) & BYTE_MASK);
             Byte pinCfgLow = (Byte)(aPinCfg & BYTE_MASK);
-            SetFrameData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_HIGH, pinCfgHigh);
-            SetFrameData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_LOW, pinCfgLow);
+            SetData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_HIGH, pinCfgHigh);
+            SetData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_LOW, pinCfgLow);
         }
 
         public UInt16 GetPinConfig()
         {
-            Byte byteHigh = GetFrameData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_HIGH);
-            Byte byteLow = GetFrameData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_LOW);
+            Byte byteHigh = GetData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_HIGH);
+            Byte byteLow = GetData((Byte)FrameStructure.FRAME_PIN_CFG_BYTE_LOW);
             return (UInt16)((UInt16)byteHigh << BYTE_SHIFT | byteLow);
         }
 
@@ -84,13 +84,13 @@ namespace KoenigseggHWTest
         {
             if (aPinLvl < PinLevel.FRAME_PIN_LVL_MAX)
             {
-                SetFrameData((Byte)FrameStructure.FRAME_PIN_LVL_BYTE, (Byte)aPinLvl);
+                SetData((Byte)FrameStructure.FRAME_PIN_LVL_BYTE, (Byte)aPinLvl);
             }
         }
 
         public void SetFramePadding(Byte aPad)
         {
-            SetFrameData((Byte)FrameStructure.FRAME_PADDING_BYTE, aPad);
+            SetData((Byte)FrameStructure.FRAME_PADDING_BYTE, aPad);
         }
     }
 }
