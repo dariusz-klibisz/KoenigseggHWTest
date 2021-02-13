@@ -126,7 +126,7 @@ namespace KoenigseggHWTest
 
         private void frameIdCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (true == frameIdCheckBox.Checked)
+            if (true == frameIdHexCheckBox.Checked)
             {
                 frameIDNumericUpDown.Hexadecimal = true;
                 frameIdTextBox.Visible = true;
@@ -364,6 +364,7 @@ namespace KoenigseggHWTest
             //TODO: Add processing txt file as input to automated sending of frames
             //TODO: Add displaying log file with sent frames and time
             //TODO: Fix VS Messages
+            //TODO: Replace dis/enabling data bytes basd on DLC in some function
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);
@@ -459,6 +460,144 @@ namespace KoenigseggHWTest
             if (nrOfSignals > 0)
             {
                 RestbusSignalsListBox.SelectedIndex = 0;
+            }
+        }
+
+        private void dataHexCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            if (true == dataHexCheckBox.Checked)
+            {
+                dataB7NumericUpDown.Hexadecimal = true;
+                dataB6NumericUpDown.Hexadecimal = true;
+                dataB5NumericUpDown.Hexadecimal = true;
+                dataB4NumericUpDown.Hexadecimal = true;
+                dataB3NumericUpDown.Hexadecimal = true;
+                dataB2NumericUpDown.Hexadecimal = true;
+                dataB1NumericUpDown.Hexadecimal = true;
+                dataB0NumericUpDown.Hexadecimal = true;
+                frameDataTextBox.Visible = true;
+            }
+            else
+            {
+                dataB7NumericUpDown.Hexadecimal = false;
+                dataB6NumericUpDown.Hexadecimal = false;
+                dataB5NumericUpDown.Hexadecimal = false;
+                dataB4NumericUpDown.Hexadecimal = false;
+                dataB3NumericUpDown.Hexadecimal = false;
+                dataB2NumericUpDown.Hexadecimal = false;
+                dataB1NumericUpDown.Hexadecimal = false;
+                dataB0NumericUpDown.Hexadecimal = false;
+                frameDataTextBox.Visible = false;
+            }
+        }
+
+        private void frameDLCComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                Byte frameDLC = Byte.Parse(frameDLCComboBox.Text);
+                if(frameDLC < 8)
+                {
+                    dataB7NumericUpDown.Visible = false;
+                    dataB7NumericUpDown.Enabled = false;
+                    dataB7Label.Visible = false;
+                    dataB7Label.Enabled = false;
+                }
+                else
+                {
+                    dataB7NumericUpDown.Visible = true;
+                    dataB7NumericUpDown.Enabled = true;
+                    dataB7Label.Visible = true;
+                    dataB7Label.Enabled = true;
+                }
+                if (frameDLC < 7)
+                {
+                    dataB6NumericUpDown.Visible = false;
+                    dataB6NumericUpDown.Enabled = false;
+                    dataB6Label.Visible = false;
+                    dataB6Label.Enabled = false;
+                }
+                else
+                {
+                    dataB6NumericUpDown.Visible = true;
+                    dataB6NumericUpDown.Enabled = true;
+                    dataB6Label.Visible = true;
+                    dataB6Label.Enabled = true;
+                }
+                if (frameDLC < 6)
+                {
+                    dataB5NumericUpDown.Visible = false;
+                    dataB5NumericUpDown.Enabled = false;
+                    dataB5Label.Visible = false;
+                    dataB5Label.Enabled = false;
+                }
+                else
+                {
+                    dataB5NumericUpDown.Visible = true;
+                    dataB5NumericUpDown.Enabled = true;
+                    dataB5Label.Visible = true;
+                    dataB5Label.Enabled = true;
+                }
+                if (frameDLC < 5)
+                {
+                    dataB4NumericUpDown.Visible = false;
+                    dataB4NumericUpDown.Enabled = false;
+                    dataB4Label.Visible = false;
+                    dataB4Label.Enabled = false;
+                }
+                else
+                {
+                    dataB4NumericUpDown.Visible = true;
+                    dataB4NumericUpDown.Enabled = true;
+                    dataB4Label.Visible = true;
+                    dataB4Label.Enabled = true;
+                }
+                if (frameDLC < 4)
+                {
+                    dataB3NumericUpDown.Visible = false;
+                    dataB3NumericUpDown.Enabled = false;
+                    dataB3Label.Visible = false;
+                    dataB3Label.Enabled = false;
+                }
+                else
+                {
+                    dataB3NumericUpDown.Visible = true;
+                    dataB3NumericUpDown.Enabled = true;
+                    dataB3Label.Visible = true;
+                    dataB3Label.Enabled = true;
+                }
+                if (frameDLC < 3)
+                {
+                    dataB2NumericUpDown.Visible = false;
+                    dataB2NumericUpDown.Enabled = false;
+                    dataB2Label.Visible = false;
+                    dataB2Label.Enabled = false;
+                }
+                else
+                {
+                    dataB2NumericUpDown.Visible = true;
+                    dataB2NumericUpDown.Enabled = true;
+                    dataB2Label.Visible = true;
+                    dataB2Label.Enabled = true;
+                }
+                if (frameDLC < 2)
+                {
+                    dataB1NumericUpDown.Visible = false;
+                    dataB1NumericUpDown.Enabled = false;
+                    dataB1Label.Visible = false;
+                    dataB1Label.Enabled = false;
+                }
+                else
+                {
+                    dataB1NumericUpDown.Visible = true;
+                    dataB1NumericUpDown.Enabled = true;
+                    dataB1Label.Visible = true;
+                    dataB1Label.Enabled = true;
+                }
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse DLC'{frameDLCComboBox.Text}'");
             }
         }
     }

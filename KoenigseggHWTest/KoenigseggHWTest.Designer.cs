@@ -29,8 +29,29 @@
         private void InitializeComponent()
         {
             this.framePropertiesGroupBox = new System.Windows.Forms.GroupBox();
+            this.dataB0Label = new System.Windows.Forms.Label();
+            this.dataB1Label = new System.Windows.Forms.Label();
+            this.dataB2Label = new System.Windows.Forms.Label();
+            this.dataB3Label = new System.Windows.Forms.Label();
+            this.dataB4Label = new System.Windows.Forms.Label();
+            this.dataB5Label = new System.Windows.Forms.Label();
+            this.dataB6Label = new System.Windows.Forms.Label();
+            this.dataB7Label = new System.Windows.Forms.Label();
+            this.frameDataTextBox = new System.Windows.Forms.TextBox();
+            this.dataB0NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dataB1NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dataB2NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dataB3NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dataB4NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dataB5NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dataB6NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dataB7NumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.dataHexCheckBox = new System.Windows.Forms.CheckBox();
+            this.frameDataLabel = new System.Windows.Forms.Label();
+            this.frameDLClabel = new System.Windows.Forms.Label();
+            this.frameDLCComboBox = new System.Windows.Forms.ComboBox();
             this.frameIdTextBox = new System.Windows.Forms.TextBox();
-            this.frameIdCheckBox = new System.Windows.Forms.CheckBox();
+            this.frameIdHexCheckBox = new System.Windows.Forms.CheckBox();
             this.frameIDNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.framePeriodLabel = new System.Windows.Forms.Label();
             this.framePeriodNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -82,6 +103,14 @@
             this.RestbusFramesListBox = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.framePropertiesGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB1NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB2NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB3NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB4NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB5NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB6NumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB7NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.frameIDNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.framePeriodNumericUpDown)).BeginInit();
             this.frameDataGroupBox.SuspendLayout();
@@ -101,18 +130,265 @@
             // 
             // framePropertiesGroupBox
             // 
+            this.framePropertiesGroupBox.Controls.Add(this.dataB0Label);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB1Label);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB2Label);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB3Label);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB4Label);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB5Label);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB6Label);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB7Label);
+            this.framePropertiesGroupBox.Controls.Add(this.frameDataTextBox);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB0NumericUpDown);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB1NumericUpDown);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB2NumericUpDown);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB3NumericUpDown);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB4NumericUpDown);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB5NumericUpDown);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB6NumericUpDown);
+            this.framePropertiesGroupBox.Controls.Add(this.dataB7NumericUpDown);
+            this.framePropertiesGroupBox.Controls.Add(this.dataHexCheckBox);
+            this.framePropertiesGroupBox.Controls.Add(this.frameDataLabel);
+            this.framePropertiesGroupBox.Controls.Add(this.frameDLClabel);
+            this.framePropertiesGroupBox.Controls.Add(this.frameDLCComboBox);
             this.framePropertiesGroupBox.Controls.Add(this.frameIdTextBox);
-            this.framePropertiesGroupBox.Controls.Add(this.frameIdCheckBox);
+            this.framePropertiesGroupBox.Controls.Add(this.frameIdHexCheckBox);
             this.framePropertiesGroupBox.Controls.Add(this.frameIDNumericUpDown);
             this.framePropertiesGroupBox.Controls.Add(this.framePeriodLabel);
             this.framePropertiesGroupBox.Controls.Add(this.framePeriodNumericUpDown);
             this.framePropertiesGroupBox.Controls.Add(this.frameIDLabel);
             this.framePropertiesGroupBox.Location = new System.Drawing.Point(44, 536);
             this.framePropertiesGroupBox.Name = "framePropertiesGroupBox";
-            this.framePropertiesGroupBox.Size = new System.Drawing.Size(522, 308);
+            this.framePropertiesGroupBox.Size = new System.Drawing.Size(1351, 308);
             this.framePropertiesGroupBox.TabIndex = 0;
             this.framePropertiesGroupBox.TabStop = false;
             this.framePropertiesGroupBox.Text = "Frame Properties";
+            // 
+            // dataB0Label
+            // 
+            this.dataB0Label.AutoSize = true;
+            this.dataB0Label.Location = new System.Drawing.Point(193, 191);
+            this.dataB0Label.Name = "dataB0Label";
+            this.dataB0Label.Size = new System.Drawing.Size(95, 32);
+            this.dataB0Label.TabIndex = 31;
+            this.dataB0Label.Text = "Byte 0";
+            // 
+            // dataB1Label
+            // 
+            this.dataB1Label.AutoSize = true;
+            this.dataB1Label.Location = new System.Drawing.Point(299, 191);
+            this.dataB1Label.Name = "dataB1Label";
+            this.dataB1Label.Size = new System.Drawing.Size(95, 32);
+            this.dataB1Label.TabIndex = 30;
+            this.dataB1Label.Text = "Byte 1";
+            // 
+            // dataB2Label
+            // 
+            this.dataB2Label.AutoSize = true;
+            this.dataB2Label.Location = new System.Drawing.Point(405, 191);
+            this.dataB2Label.Name = "dataB2Label";
+            this.dataB2Label.Size = new System.Drawing.Size(95, 32);
+            this.dataB2Label.TabIndex = 29;
+            this.dataB2Label.Text = "Byte 2";
+            // 
+            // dataB3Label
+            // 
+            this.dataB3Label.AutoSize = true;
+            this.dataB3Label.Location = new System.Drawing.Point(511, 191);
+            this.dataB3Label.Name = "dataB3Label";
+            this.dataB3Label.Size = new System.Drawing.Size(95, 32);
+            this.dataB3Label.TabIndex = 28;
+            this.dataB3Label.Text = "Byte 3";
+            // 
+            // dataB4Label
+            // 
+            this.dataB4Label.AutoSize = true;
+            this.dataB4Label.Location = new System.Drawing.Point(617, 191);
+            this.dataB4Label.Name = "dataB4Label";
+            this.dataB4Label.Size = new System.Drawing.Size(95, 32);
+            this.dataB4Label.TabIndex = 27;
+            this.dataB4Label.Text = "Byte 4";
+            // 
+            // dataB5Label
+            // 
+            this.dataB5Label.AutoSize = true;
+            this.dataB5Label.Location = new System.Drawing.Point(723, 191);
+            this.dataB5Label.Name = "dataB5Label";
+            this.dataB5Label.Size = new System.Drawing.Size(95, 32);
+            this.dataB5Label.TabIndex = 26;
+            this.dataB5Label.Text = "Byte 5";
+            // 
+            // dataB6Label
+            // 
+            this.dataB6Label.AutoSize = true;
+            this.dataB6Label.Location = new System.Drawing.Point(829, 191);
+            this.dataB6Label.Name = "dataB6Label";
+            this.dataB6Label.Size = new System.Drawing.Size(95, 32);
+            this.dataB6Label.TabIndex = 25;
+            this.dataB6Label.Text = "Byte 6";
+            // 
+            // dataB7Label
+            // 
+            this.dataB7Label.AutoSize = true;
+            this.dataB7Label.Location = new System.Drawing.Point(935, 191);
+            this.dataB7Label.Name = "dataB7Label";
+            this.dataB7Label.Size = new System.Drawing.Size(95, 32);
+            this.dataB7Label.TabIndex = 24;
+            this.dataB7Label.Text = "Byte 7";
+            // 
+            // frameDataTextBox
+            // 
+            this.frameDataTextBox.Location = new System.Drawing.Point(156, 237);
+            this.frameDataTextBox.Name = "frameDataTextBox";
+            this.frameDataTextBox.ReadOnly = true;
+            this.frameDataTextBox.Size = new System.Drawing.Size(37, 38);
+            this.frameDataTextBox.TabIndex = 23;
+            this.frameDataTextBox.Text = "0x";
+            this.frameDataTextBox.Visible = false;
+            // 
+            // dataB0NumericUpDown
+            // 
+            this.dataB0NumericUpDown.Location = new System.Drawing.Point(199, 238);
+            this.dataB0NumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.dataB0NumericUpDown.Name = "dataB0NumericUpDown";
+            this.dataB0NumericUpDown.Size = new System.Drawing.Size(100, 38);
+            this.dataB0NumericUpDown.TabIndex = 22;
+            // 
+            // dataB1NumericUpDown
+            // 
+            this.dataB1NumericUpDown.Location = new System.Drawing.Point(305, 238);
+            this.dataB1NumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.dataB1NumericUpDown.Name = "dataB1NumericUpDown";
+            this.dataB1NumericUpDown.Size = new System.Drawing.Size(100, 38);
+            this.dataB1NumericUpDown.TabIndex = 21;
+            // 
+            // dataB2NumericUpDown
+            // 
+            this.dataB2NumericUpDown.Location = new System.Drawing.Point(411, 238);
+            this.dataB2NumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.dataB2NumericUpDown.Name = "dataB2NumericUpDown";
+            this.dataB2NumericUpDown.Size = new System.Drawing.Size(100, 38);
+            this.dataB2NumericUpDown.TabIndex = 20;
+            // 
+            // dataB3NumericUpDown
+            // 
+            this.dataB3NumericUpDown.Location = new System.Drawing.Point(517, 238);
+            this.dataB3NumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.dataB3NumericUpDown.Name = "dataB3NumericUpDown";
+            this.dataB3NumericUpDown.Size = new System.Drawing.Size(100, 38);
+            this.dataB3NumericUpDown.TabIndex = 19;
+            // 
+            // dataB4NumericUpDown
+            // 
+            this.dataB4NumericUpDown.Location = new System.Drawing.Point(623, 238);
+            this.dataB4NumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.dataB4NumericUpDown.Name = "dataB4NumericUpDown";
+            this.dataB4NumericUpDown.Size = new System.Drawing.Size(100, 38);
+            this.dataB4NumericUpDown.TabIndex = 18;
+            // 
+            // dataB5NumericUpDown
+            // 
+            this.dataB5NumericUpDown.Location = new System.Drawing.Point(729, 238);
+            this.dataB5NumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.dataB5NumericUpDown.Name = "dataB5NumericUpDown";
+            this.dataB5NumericUpDown.Size = new System.Drawing.Size(100, 38);
+            this.dataB5NumericUpDown.TabIndex = 17;
+            // 
+            // dataB6NumericUpDown
+            // 
+            this.dataB6NumericUpDown.Location = new System.Drawing.Point(835, 238);
+            this.dataB6NumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.dataB6NumericUpDown.Name = "dataB6NumericUpDown";
+            this.dataB6NumericUpDown.Size = new System.Drawing.Size(100, 38);
+            this.dataB6NumericUpDown.TabIndex = 16;
+            // 
+            // dataB7NumericUpDown
+            // 
+            this.dataB7NumericUpDown.Location = new System.Drawing.Point(941, 238);
+            this.dataB7NumericUpDown.Maximum = new decimal(new int[] {
+            255,
+            0,
+            0,
+            0});
+            this.dataB7NumericUpDown.Name = "dataB7NumericUpDown";
+            this.dataB7NumericUpDown.Size = new System.Drawing.Size(100, 38);
+            this.dataB7NumericUpDown.TabIndex = 15;
+            // 
+            // dataHexCheckBox
+            // 
+            this.dataHexCheckBox.AutoSize = true;
+            this.dataHexCheckBox.Location = new System.Drawing.Point(48, 238);
+            this.dataHexCheckBox.Name = "dataHexCheckBox";
+            this.dataHexCheckBox.Size = new System.Drawing.Size(103, 36);
+            this.dataHexCheckBox.TabIndex = 14;
+            this.dataHexCheckBox.Text = "Hex";
+            this.dataHexCheckBox.UseVisualStyleBackColor = true;
+            this.dataHexCheckBox.CheckedChanged += new System.EventHandler(this.dataHexCheckBox_CheckedChanged);
+            // 
+            // frameDataLabel
+            // 
+            this.frameDataLabel.AutoSize = true;
+            this.frameDataLabel.Location = new System.Drawing.Point(42, 191);
+            this.frameDataLabel.Name = "frameDataLabel";
+            this.frameDataLabel.Size = new System.Drawing.Size(75, 32);
+            this.frameDataLabel.TabIndex = 13;
+            this.frameDataLabel.Text = "Data";
+            // 
+            // frameDLClabel
+            // 
+            this.frameDLClabel.AutoSize = true;
+            this.frameDLClabel.Location = new System.Drawing.Point(685, 55);
+            this.frameDLClabel.Name = "frameDLClabel";
+            this.frameDLClabel.Size = new System.Drawing.Size(71, 32);
+            this.frameDLClabel.TabIndex = 12;
+            this.frameDLClabel.Text = "DLC";
+            // 
+            // frameDLCComboBox
+            // 
+            this.frameDLCComboBox.FormattingEnabled = true;
+            this.frameDLCComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8"});
+            this.frameDLCComboBox.Location = new System.Drawing.Point(681, 103);
+            this.frameDLCComboBox.Name = "frameDLCComboBox";
+            this.frameDLCComboBox.Size = new System.Drawing.Size(121, 39);
+            this.frameDLCComboBox.TabIndex = 11;
+            this.frameDLCComboBox.Text = "8";
+            this.frameDLCComboBox.SelectedIndexChanged += new System.EventHandler(this.frameDLCComboBox_SelectedIndexChanged);
             // 
             // frameIdTextBox
             // 
@@ -124,16 +400,16 @@
             this.frameIdTextBox.Text = "0x";
             this.frameIdTextBox.Visible = false;
             // 
-            // frameIdCheckBox
+            // frameIdHexCheckBox
             // 
-            this.frameIdCheckBox.AutoSize = true;
-            this.frameIdCheckBox.Location = new System.Drawing.Point(259, 106);
-            this.frameIdCheckBox.Name = "frameIdCheckBox";
-            this.frameIdCheckBox.Size = new System.Drawing.Size(103, 36);
-            this.frameIdCheckBox.TabIndex = 8;
-            this.frameIdCheckBox.Text = "Hex";
-            this.frameIdCheckBox.UseVisualStyleBackColor = true;
-            this.frameIdCheckBox.CheckedChanged += new System.EventHandler(this.frameIdCheckBox_CheckedChanged);
+            this.frameIdHexCheckBox.AutoSize = true;
+            this.frameIdHexCheckBox.Location = new System.Drawing.Point(259, 106);
+            this.frameIdHexCheckBox.Name = "frameIdHexCheckBox";
+            this.frameIdHexCheckBox.Size = new System.Drawing.Size(103, 36);
+            this.frameIdHexCheckBox.TabIndex = 8;
+            this.frameIdHexCheckBox.Text = "Hex";
+            this.frameIdHexCheckBox.UseVisualStyleBackColor = true;
+            this.frameIdHexCheckBox.CheckedChanged += new System.EventHandler(this.frameIdCheckBox_CheckedChanged);
             // 
             // frameIDNumericUpDown
             // 
@@ -151,15 +427,15 @@
             // framePeriodLabel
             // 
             this.framePeriodLabel.AutoSize = true;
-            this.framePeriodLabel.Location = new System.Drawing.Point(36, 171);
+            this.framePeriodLabel.Location = new System.Drawing.Point(383, 55);
             this.framePeriodLabel.Name = "framePeriodLabel";
-            this.framePeriodLabel.Size = new System.Drawing.Size(243, 32);
+            this.framePeriodLabel.Size = new System.Drawing.Size(158, 32);
             this.framePeriodLabel.TabIndex = 6;
-            this.framePeriodLabel.Text = "Frame period [ms]";
+            this.framePeriodLabel.Text = "Period [ms]";
             // 
             // framePeriodNumericUpDown
             // 
-            this.framePeriodNumericUpDown.Location = new System.Drawing.Point(42, 222);
+            this.framePeriodNumericUpDown.Location = new System.Drawing.Point(389, 105);
             this.framePeriodNumericUpDown.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -1168,7 +1444,7 @@
             // 
             // startTransmisionButton
             // 
-            this.startTransmisionButton.Location = new System.Drawing.Point(48, 95);
+            this.startTransmisionButton.Location = new System.Drawing.Point(48, 99);
             this.startTransmisionButton.Name = "startTransmisionButton";
             this.startTransmisionButton.Size = new System.Drawing.Size(201, 45);
             this.startTransmisionButton.TabIndex = 0;
@@ -1220,9 +1496,9 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(637, 536);
+            this.groupBox2.Location = new System.Drawing.Point(1528, 536);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(1219, 308);
+            this.groupBox2.Size = new System.Drawing.Size(328, 308);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Signal Properties";
@@ -1242,6 +1518,14 @@
             this.Text = "KoenigseggHWTest";
             this.framePropertiesGroupBox.ResumeLayout(false);
             this.framePropertiesGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB1NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB2NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB3NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB4NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB5NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB6NumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataB7NumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.frameIDNumericUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.framePeriodNumericUpDown)).EndInit();
             this.frameDataGroupBox.ResumeLayout(false);
@@ -1282,7 +1566,7 @@
         private System.Windows.Forms.NumericUpDown frameIDNumericUpDown;
         private System.Windows.Forms.Label pinNumberLabel;
         private System.Windows.Forms.ComboBox pinNumberComboBox;
-        private System.Windows.Forms.CheckBox frameIdCheckBox;
+        private System.Windows.Forms.CheckBox frameIdHexCheckBox;
         private System.Windows.Forms.TextBox frameIdTextBox;
         private System.Windows.Forms.Label udsRoutineLabel;
         private System.Windows.Forms.NumericUpDown udsRoutineNumericUpDown;
@@ -1326,6 +1610,27 @@
         private System.Windows.Forms.ListBox RestbusNodesListBox;
         private System.Windows.Forms.ListBox RestbusSignalsListBox;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label frameDLClabel;
+        private System.Windows.Forms.ComboBox frameDLCComboBox;
+        private System.Windows.Forms.CheckBox dataHexCheckBox;
+        private System.Windows.Forms.Label frameDataLabel;
+        private System.Windows.Forms.Label dataB0Label;
+        private System.Windows.Forms.Label dataB1Label;
+        private System.Windows.Forms.Label dataB2Label;
+        private System.Windows.Forms.Label dataB3Label;
+        private System.Windows.Forms.Label dataB4Label;
+        private System.Windows.Forms.Label dataB5Label;
+        private System.Windows.Forms.Label dataB6Label;
+        private System.Windows.Forms.Label dataB7Label;
+        private System.Windows.Forms.TextBox frameDataTextBox;
+        private System.Windows.Forms.NumericUpDown dataB0NumericUpDown;
+        private System.Windows.Forms.NumericUpDown dataB1NumericUpDown;
+        private System.Windows.Forms.NumericUpDown dataB2NumericUpDown;
+        private System.Windows.Forms.NumericUpDown dataB3NumericUpDown;
+        private System.Windows.Forms.NumericUpDown dataB4NumericUpDown;
+        private System.Windows.Forms.NumericUpDown dataB5NumericUpDown;
+        private System.Windows.Forms.NumericUpDown dataB6NumericUpDown;
+        private System.Windows.Forms.NumericUpDown dataB7NumericUpDown;
     }
 }
 
