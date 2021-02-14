@@ -364,7 +364,6 @@ namespace KoenigseggHWTest
             //TODO: Add processing txt file as input to automated sending of frames
             //TODO: Add displaying log file with sent frames and time
             //TODO: Fix VS Messages
-            //TODO: Replace dis/enabling data bytes basd on DLC in some function
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);
@@ -493,106 +492,49 @@ namespace KoenigseggHWTest
 
         private void frameDLCComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
+            NumericUpDown[] dataBytes =
+            {
+                dataB0NumericUpDown,
+                dataB1NumericUpDown,
+                dataB2NumericUpDown,
+                dataB3NumericUpDown,
+                dataB4NumericUpDown,
+                dataB5NumericUpDown,
+                dataB6NumericUpDown,
+                dataB7NumericUpDown
+            };
+
+            Label[] dataByteLabels =
+            {
+                dataB0Label,
+                dataB1Label,
+                dataB2Label,
+                dataB3Label,
+                dataB4Label,
+                dataB5Label,
+                dataB6Label,
+                dataB7Label
+            };
+
             try
             {
                 Byte frameDLC = Byte.Parse(frameDLCComboBox.Text);
-                if(frameDLC < 8)
+                for (Byte dlc = Frame.FRAME_LENGTH_MAX; dlc > 1; dlc--)
                 {
-                    dataB7NumericUpDown.Visible = false;
-                    dataB7NumericUpDown.Enabled = false;
-                    dataB7Label.Visible = false;
-                    dataB7Label.Enabled = false;
-                }
-                else
-                {
-                    dataB7NumericUpDown.Visible = true;
-                    dataB7NumericUpDown.Enabled = true;
-                    dataB7Label.Visible = true;
-                    dataB7Label.Enabled = true;
-                }
-                if (frameDLC < 7)
-                {
-                    dataB6NumericUpDown.Visible = false;
-                    dataB6NumericUpDown.Enabled = false;
-                    dataB6Label.Visible = false;
-                    dataB6Label.Enabled = false;
-                }
-                else
-                {
-                    dataB6NumericUpDown.Visible = true;
-                    dataB6NumericUpDown.Enabled = true;
-                    dataB6Label.Visible = true;
-                    dataB6Label.Enabled = true;
-                }
-                if (frameDLC < 6)
-                {
-                    dataB5NumericUpDown.Visible = false;
-                    dataB5NumericUpDown.Enabled = false;
-                    dataB5Label.Visible = false;
-                    dataB5Label.Enabled = false;
-                }
-                else
-                {
-                    dataB5NumericUpDown.Visible = true;
-                    dataB5NumericUpDown.Enabled = true;
-                    dataB5Label.Visible = true;
-                    dataB5Label.Enabled = true;
-                }
-                if (frameDLC < 5)
-                {
-                    dataB4NumericUpDown.Visible = false;
-                    dataB4NumericUpDown.Enabled = false;
-                    dataB4Label.Visible = false;
-                    dataB4Label.Enabled = false;
-                }
-                else
-                {
-                    dataB4NumericUpDown.Visible = true;
-                    dataB4NumericUpDown.Enabled = true;
-                    dataB4Label.Visible = true;
-                    dataB4Label.Enabled = true;
-                }
-                if (frameDLC < 4)
-                {
-                    dataB3NumericUpDown.Visible = false;
-                    dataB3NumericUpDown.Enabled = false;
-                    dataB3Label.Visible = false;
-                    dataB3Label.Enabled = false;
-                }
-                else
-                {
-                    dataB3NumericUpDown.Visible = true;
-                    dataB3NumericUpDown.Enabled = true;
-                    dataB3Label.Visible = true;
-                    dataB3Label.Enabled = true;
-                }
-                if (frameDLC < 3)
-                {
-                    dataB2NumericUpDown.Visible = false;
-                    dataB2NumericUpDown.Enabled = false;
-                    dataB2Label.Visible = false;
-                    dataB2Label.Enabled = false;
-                }
-                else
-                {
-                    dataB2NumericUpDown.Visible = true;
-                    dataB2NumericUpDown.Enabled = true;
-                    dataB2Label.Visible = true;
-                    dataB2Label.Enabled = true;
-                }
-                if (frameDLC < 2)
-                {
-                    dataB1NumericUpDown.Visible = false;
-                    dataB1NumericUpDown.Enabled = false;
-                    dataB1Label.Visible = false;
-                    dataB1Label.Enabled = false;
-                }
-                else
-                {
-                    dataB1NumericUpDown.Visible = true;
-                    dataB1NumericUpDown.Enabled = true;
-                    dataB1Label.Visible = true;
-                    dataB1Label.Enabled = true;
+                    if (frameDLC < dlc)
+                    {
+                        dataBytes[dlc - 1].Visible = false;
+                        dataBytes[dlc - 1].Enabled = false;
+                        dataByteLabels[dlc - 1].Visible = false;
+                        dataByteLabels[dlc - 1].Enabled = false;
+                    }
+                    else
+                    {
+                        dataBytes[dlc - 1].Visible = true;
+                        dataBytes[dlc - 1].Enabled = true;
+                        dataByteLabels[dlc - 1].Visible = true;
+                        dataByteLabels[dlc - 1].Enabled = true;
+                    }
                 }
             }
             catch (FormatException)
