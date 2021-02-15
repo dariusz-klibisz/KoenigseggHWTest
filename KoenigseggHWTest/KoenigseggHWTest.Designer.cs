@@ -48,7 +48,7 @@
             this.dataB7NumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.dataHexCheckBox = new System.Windows.Forms.CheckBox();
             this.frameDataLabel = new System.Windows.Forms.Label();
-            this.frameDLClabel = new System.Windows.Forms.Label();
+            this.frameDLCLabel = new System.Windows.Forms.Label();
             this.frameDLCComboBox = new System.Windows.Forms.ComboBox();
             this.frameIdTextBox = new System.Windows.Forms.TextBox();
             this.frameIdHexCheckBox = new System.Windows.Forms.CheckBox();
@@ -102,6 +102,24 @@
             this.RestbusNodesListBox = new System.Windows.Forms.ListBox();
             this.RestbusFramesListBox = new System.Windows.Forms.ListBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.signalStartBitLabel = new System.Windows.Forms.Label();
+            this.signalStartBitNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.signalBitLengthNumericUpDown = new System.Windows.Forms.NumericUpDown();
+            this.signalBitLengthLabel = new System.Windows.Forms.Label();
+            this.signalScaleLabel = new System.Windows.Forms.Label();
+            this.signalOffsetLabel = new System.Windows.Forms.Label();
+            this.signalScaleTextBox = new System.Windows.Forms.TextBox();
+            this.signalOffsetTextBox = new System.Windows.Forms.TextBox();
+            this.signalMinTextBox = new System.Windows.Forms.TextBox();
+            this.signalMaxTextBox = new System.Windows.Forms.TextBox();
+            this.signalMinLabel = new System.Windows.Forms.Label();
+            this.signalMaxLabel = new System.Windows.Forms.Label();
+            this.signalUnitLabel = new System.Windows.Forms.Label();
+            this.signalUnitTextBox = new System.Windows.Forms.TextBox();
+            this.signalValueLabel = new System.Windows.Forms.Label();
+            this.signalValueTextBox = new System.Windows.Forms.TextBox();
+            this.signalRawValueLabel = new System.Windows.Forms.Label();
+            this.signalRawValueTextBox = new System.Windows.Forms.TextBox();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataB1NumericUpDown)).BeginInit();
@@ -126,6 +144,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).BeginInit();
             this.transmissionControlGroupBox.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.signalStartBitNumericUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.signalBitLengthNumericUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // framePropertiesGroupBox
@@ -149,7 +170,7 @@
             this.framePropertiesGroupBox.Controls.Add(this.dataB7NumericUpDown);
             this.framePropertiesGroupBox.Controls.Add(this.dataHexCheckBox);
             this.framePropertiesGroupBox.Controls.Add(this.frameDataLabel);
-            this.framePropertiesGroupBox.Controls.Add(this.frameDLClabel);
+            this.framePropertiesGroupBox.Controls.Add(this.frameDLCLabel);
             this.framePropertiesGroupBox.Controls.Add(this.frameDLCComboBox);
             this.framePropertiesGroupBox.Controls.Add(this.frameIdTextBox);
             this.framePropertiesGroupBox.Controls.Add(this.frameIdHexCheckBox);
@@ -159,7 +180,7 @@
             this.framePropertiesGroupBox.Controls.Add(this.frameIDLabel);
             this.framePropertiesGroupBox.Location = new System.Drawing.Point(44, 536);
             this.framePropertiesGroupBox.Name = "framePropertiesGroupBox";
-            this.framePropertiesGroupBox.Size = new System.Drawing.Size(1351, 308);
+            this.framePropertiesGroupBox.Size = new System.Drawing.Size(1072, 308);
             this.framePropertiesGroupBox.TabIndex = 0;
             this.framePropertiesGroupBox.TabStop = false;
             this.framePropertiesGroupBox.Text = "Frame Properties";
@@ -362,14 +383,14 @@
             this.frameDataLabel.TabIndex = 13;
             this.frameDataLabel.Text = "Data";
             // 
-            // frameDLClabel
+            // frameDLCLabel
             // 
-            this.frameDLClabel.AutoSize = true;
-            this.frameDLClabel.Location = new System.Drawing.Point(685, 55);
-            this.frameDLClabel.Name = "frameDLClabel";
-            this.frameDLClabel.Size = new System.Drawing.Size(71, 32);
-            this.frameDLClabel.TabIndex = 12;
-            this.frameDLClabel.Text = "DLC";
+            this.frameDLCLabel.AutoSize = true;
+            this.frameDLCLabel.Location = new System.Drawing.Point(685, 55);
+            this.frameDLCLabel.Name = "frameDLCLabel";
+            this.frameDLCLabel.Size = new System.Drawing.Size(71, 32);
+            this.frameDLCLabel.TabIndex = 12;
+            this.frameDLCLabel.Text = "DLC";
             // 
             // frameDLCComboBox
             // 
@@ -1496,12 +1517,190 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Location = new System.Drawing.Point(1528, 536);
+            this.groupBox2.Controls.Add(this.signalRawValueTextBox);
+            this.groupBox2.Controls.Add(this.signalRawValueLabel);
+            this.groupBox2.Controls.Add(this.signalValueTextBox);
+            this.groupBox2.Controls.Add(this.signalValueLabel);
+            this.groupBox2.Controls.Add(this.signalUnitTextBox);
+            this.groupBox2.Controls.Add(this.signalUnitLabel);
+            this.groupBox2.Controls.Add(this.signalMaxLabel);
+            this.groupBox2.Controls.Add(this.signalMinLabel);
+            this.groupBox2.Controls.Add(this.signalMaxTextBox);
+            this.groupBox2.Controls.Add(this.signalMinTextBox);
+            this.groupBox2.Controls.Add(this.signalOffsetTextBox);
+            this.groupBox2.Controls.Add(this.signalScaleTextBox);
+            this.groupBox2.Controls.Add(this.signalOffsetLabel);
+            this.groupBox2.Controls.Add(this.signalScaleLabel);
+            this.groupBox2.Controls.Add(this.signalBitLengthLabel);
+            this.groupBox2.Controls.Add(this.signalBitLengthNumericUpDown);
+            this.groupBox2.Controls.Add(this.signalStartBitLabel);
+            this.groupBox2.Controls.Add(this.signalStartBitNumericUpDown);
+            this.groupBox2.Location = new System.Drawing.Point(1128, 536);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(328, 308);
+            this.groupBox2.Size = new System.Drawing.Size(1045, 308);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Signal Properties";
+            // 
+            // signalStartBitLabel
+            // 
+            this.signalStartBitLabel.AutoSize = true;
+            this.signalStartBitLabel.Location = new System.Drawing.Point(39, 54);
+            this.signalStartBitLabel.Name = "signalStartBitLabel";
+            this.signalStartBitLabel.Size = new System.Drawing.Size(113, 32);
+            this.signalStartBitLabel.TabIndex = 1;
+            this.signalStartBitLabel.Text = "Start bit";
+            // 
+            // signalStartBitNumericUpDown
+            // 
+            this.signalStartBitNumericUpDown.Location = new System.Drawing.Point(49, 99);
+            this.signalStartBitNumericUpDown.Maximum = new decimal(new int[] {
+            63,
+            0,
+            0,
+            0});
+            this.signalStartBitNumericUpDown.Name = "signalStartBitNumericUpDown";
+            this.signalStartBitNumericUpDown.Size = new System.Drawing.Size(120, 38);
+            this.signalStartBitNumericUpDown.TabIndex = 0;
+            // 
+            // signalBitLengthNumericUpDown
+            // 
+            this.signalBitLengthNumericUpDown.Location = new System.Drawing.Point(191, 103);
+            this.signalBitLengthNumericUpDown.Maximum = new decimal(new int[] {
+            64,
+            0,
+            0,
+            0});
+            this.signalBitLengthNumericUpDown.Name = "signalBitLengthNumericUpDown";
+            this.signalBitLengthNumericUpDown.Size = new System.Drawing.Size(120, 38);
+            this.signalBitLengthNumericUpDown.TabIndex = 2;
+            // 
+            // signalBitLengthLabel
+            // 
+            this.signalBitLengthLabel.AutoSize = true;
+            this.signalBitLengthLabel.Location = new System.Drawing.Point(178, 54);
+            this.signalBitLengthLabel.Name = "signalBitLengthLabel";
+            this.signalBitLengthLabel.Size = new System.Drawing.Size(135, 32);
+            this.signalBitLengthLabel.TabIndex = 3;
+            this.signalBitLengthLabel.Text = "Bit length";
+            // 
+            // signalScaleLabel
+            // 
+            this.signalScaleLabel.AutoSize = true;
+            this.signalScaleLabel.Location = new System.Drawing.Point(385, 53);
+            this.signalScaleLabel.Name = "signalScaleLabel";
+            this.signalScaleLabel.Size = new System.Drawing.Size(87, 32);
+            this.signalScaleLabel.TabIndex = 4;
+            this.signalScaleLabel.Text = "Scale";
+            // 
+            // signalOffsetLabel
+            // 
+            this.signalOffsetLabel.AutoSize = true;
+            this.signalOffsetLabel.Location = new System.Drawing.Point(548, 53);
+            this.signalOffsetLabel.Name = "signalOffsetLabel";
+            this.signalOffsetLabel.Size = new System.Drawing.Size(91, 32);
+            this.signalOffsetLabel.TabIndex = 5;
+            this.signalOffsetLabel.Text = "Offset";
+            // 
+            // signalScaleTextBox
+            // 
+            this.signalScaleTextBox.Location = new System.Drawing.Point(391, 106);
+            this.signalScaleTextBox.Name = "signalScaleTextBox";
+            this.signalScaleTextBox.Size = new System.Drawing.Size(100, 38);
+            this.signalScaleTextBox.TabIndex = 6;
+            this.signalScaleTextBox.Text = "0";
+            // 
+            // signalOffsetTextBox
+            // 
+            this.signalOffsetTextBox.Location = new System.Drawing.Point(554, 104);
+            this.signalOffsetTextBox.Name = "signalOffsetTextBox";
+            this.signalOffsetTextBox.Size = new System.Drawing.Size(100, 38);
+            this.signalOffsetTextBox.TabIndex = 7;
+            this.signalOffsetTextBox.Text = "0";
+            // 
+            // signalMinTextBox
+            // 
+            this.signalMinTextBox.Location = new System.Drawing.Point(701, 106);
+            this.signalMinTextBox.Name = "signalMinTextBox";
+            this.signalMinTextBox.Size = new System.Drawing.Size(100, 38);
+            this.signalMinTextBox.TabIndex = 8;
+            this.signalMinTextBox.Text = "0";
+            // 
+            // signalMaxTextBox
+            // 
+            this.signalMaxTextBox.Location = new System.Drawing.Point(859, 106);
+            this.signalMaxTextBox.Name = "signalMaxTextBox";
+            this.signalMaxTextBox.Size = new System.Drawing.Size(100, 38);
+            this.signalMaxTextBox.TabIndex = 9;
+            this.signalMaxTextBox.Text = "0";
+            // 
+            // signalMinLabel
+            // 
+            this.signalMinLabel.AutoSize = true;
+            this.signalMinLabel.Location = new System.Drawing.Point(701, 54);
+            this.signalMinLabel.Name = "signalMinLabel";
+            this.signalMinLabel.Size = new System.Drawing.Size(61, 32);
+            this.signalMinLabel.TabIndex = 10;
+            this.signalMinLabel.Text = "Min";
+            // 
+            // signalMaxLabel
+            // 
+            this.signalMaxLabel.AutoSize = true;
+            this.signalMaxLabel.Location = new System.Drawing.Point(859, 53);
+            this.signalMaxLabel.Name = "signalMaxLabel";
+            this.signalMaxLabel.Size = new System.Drawing.Size(68, 32);
+            this.signalMaxLabel.TabIndex = 11;
+            this.signalMaxLabel.Text = "Max";
+            // 
+            // signalUnitLabel
+            // 
+            this.signalUnitLabel.AutoSize = true;
+            this.signalUnitLabel.Location = new System.Drawing.Point(49, 160);
+            this.signalUnitLabel.Name = "signalUnitLabel";
+            this.signalUnitLabel.Size = new System.Drawing.Size(66, 32);
+            this.signalUnitLabel.TabIndex = 12;
+            this.signalUnitLabel.Text = "Unit";
+            // 
+            // signalUnitTextBox
+            // 
+            this.signalUnitTextBox.Location = new System.Drawing.Point(49, 210);
+            this.signalUnitTextBox.Name = "signalUnitTextBox";
+            this.signalUnitTextBox.Size = new System.Drawing.Size(100, 38);
+            this.signalUnitTextBox.TabIndex = 13;
+            // 
+            // signalValueLabel
+            // 
+            this.signalValueLabel.AutoSize = true;
+            this.signalValueLabel.Location = new System.Drawing.Point(191, 159);
+            this.signalValueLabel.Name = "signalValueLabel";
+            this.signalValueLabel.Size = new System.Drawing.Size(89, 32);
+            this.signalValueLabel.TabIndex = 14;
+            this.signalValueLabel.Text = "Value";
+            // 
+            // signalValueTextBox
+            // 
+            this.signalValueTextBox.Location = new System.Drawing.Point(197, 209);
+            this.signalValueTextBox.Name = "signalValueTextBox";
+            this.signalValueTextBox.Size = new System.Drawing.Size(100, 38);
+            this.signalValueTextBox.TabIndex = 15;
+            this.signalValueTextBox.Text = "0";
+            // 
+            // signalRawValueLabel
+            // 
+            this.signalRawValueLabel.AutoSize = true;
+            this.signalRawValueLabel.Location = new System.Drawing.Point(375, 160);
+            this.signalRawValueLabel.Name = "signalRawValueLabel";
+            this.signalRawValueLabel.Size = new System.Drawing.Size(147, 32);
+            this.signalRawValueLabel.TabIndex = 16;
+            this.signalRawValueLabel.Text = "Raw value";
+            // 
+            // signalRawValueTextBox
+            // 
+            this.signalRawValueTextBox.Location = new System.Drawing.Point(381, 210);
+            this.signalRawValueTextBox.Name = "signalRawValueTextBox";
+            this.signalRawValueTextBox.Size = new System.Drawing.Size(100, 38);
+            this.signalRawValueTextBox.TabIndex = 17;
+            this.signalRawValueTextBox.Text = "0";
             // 
             // KoenigseggHWTest
             // 
@@ -1551,6 +1750,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.udsRoutineNumericUpDown)).EndInit();
             this.transmissionControlGroupBox.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.signalStartBitNumericUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.signalBitLengthNumericUpDown)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1610,7 +1813,7 @@
         private System.Windows.Forms.ListBox RestbusNodesListBox;
         private System.Windows.Forms.ListBox RestbusSignalsListBox;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.Label frameDLClabel;
+        private System.Windows.Forms.Label frameDLCLabel;
         private System.Windows.Forms.ComboBox frameDLCComboBox;
         private System.Windows.Forms.CheckBox dataHexCheckBox;
         private System.Windows.Forms.Label frameDataLabel;
@@ -1631,6 +1834,24 @@
         private System.Windows.Forms.NumericUpDown dataB5NumericUpDown;
         private System.Windows.Forms.NumericUpDown dataB6NumericUpDown;
         private System.Windows.Forms.NumericUpDown dataB7NumericUpDown;
+        private System.Windows.Forms.Label signalStartBitLabel;
+        private System.Windows.Forms.NumericUpDown signalStartBitNumericUpDown;
+        private System.Windows.Forms.Label signalBitLengthLabel;
+        private System.Windows.Forms.NumericUpDown signalBitLengthNumericUpDown;
+        private System.Windows.Forms.Label signalOffsetLabel;
+        private System.Windows.Forms.Label signalScaleLabel;
+        private System.Windows.Forms.TextBox signalOffsetTextBox;
+        private System.Windows.Forms.TextBox signalScaleTextBox;
+        private System.Windows.Forms.Label signalMaxLabel;
+        private System.Windows.Forms.Label signalMinLabel;
+        private System.Windows.Forms.TextBox signalMaxTextBox;
+        private System.Windows.Forms.TextBox signalMinTextBox;
+        private System.Windows.Forms.TextBox signalUnitTextBox;
+        private System.Windows.Forms.Label signalUnitLabel;
+        private System.Windows.Forms.TextBox signalValueTextBox;
+        private System.Windows.Forms.Label signalValueLabel;
+        private System.Windows.Forms.TextBox signalRawValueTextBox;
+        private System.Windows.Forms.Label signalRawValueLabel;
     }
 }
 

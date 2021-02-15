@@ -194,6 +194,26 @@ namespace KoenigseggHWTest
             return unit;
         }
 
+        public void SetValue(decimal aValue)
+        {
+            value = aValue;
+        }
+
+        public decimal GetValue()
+        {
+            return value;
+        }
+
+        public void SetRawValue(UInt64 aValue)
+        {
+            rawValue = aValue;
+        }
+
+        public UInt64 GetRawValue()
+        {
+            return rawValue;
+        }
+
         public void SetHandle(Kvadblib.SignalHnd aHandle)
         {
             if (null != aHandle)

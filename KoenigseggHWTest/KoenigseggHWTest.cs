@@ -148,7 +148,7 @@ namespace KoenigseggHWTest
             }
             catch (FormatException)
             {
-                Console.WriteLine($"Unable to parse '{frameIDNumericUpDown.Value}'");
+                Console.WriteLine($"Unable to parse ID'{frameIDNumericUpDown.Value}'");
             }
         }
 
@@ -401,6 +401,8 @@ namespace KoenigseggHWTest
         private void RestbusFramesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateRestbusSignalsListBox(sender, e);
+            //Update frame properties displayed
+            UpdateRestbusFrameProperties(sender, e);
         }
 
         private void UpdateRestbusFramesListBox(object sender, EventArgs e)
@@ -432,9 +434,22 @@ namespace KoenigseggHWTest
             }
         }
 
+        private void UpdateRestbusFrameProperties(object sender, EventArgs e)
+        {
+            //Get selected Frame
+            Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
+            //Update properties
+            frameIDNumericUpDown.Value = selectedFrame.GetID();
+            framePeriodNumericUpDown.Value = selectedFrame.GetPeriod();
+            frameDLCComboBox.Text = selectedFrame.GetByteLength().ToString();
+
+        }
+
+
         private void RestbusSignalsListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Update signal properties displayed
+            UpdateRestbusSignalProperties(sender, e);
         }
 
         private void UpdateRestbusSignalsListBox(object sender, EventArgs e)
@@ -460,6 +475,22 @@ namespace KoenigseggHWTest
             {
                 RestbusSignalsListBox.SelectedIndex = 0;
             }
+        }
+
+        private void UpdateRestbusSignalProperties(object sender, EventArgs e)
+        {
+            //Get selected Frame
+            Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+            //Update properties
+            signalStartBitNumericUpDown.Value = selectedSignal.GetStartBit();
+            signalBitLengthNumericUpDown.Value = selectedSignal.GetBitLength();
+            signalScaleTextBox.Text = selectedSignal.GetScale().ToString();
+            signalOffsetTextBox.Text = selectedSignal.GetOffset().ToString();
+            signalMinTextBox.Text = selectedSignal.GetMin().ToString();
+            signalMaxTextBox.Text = selectedSignal.GetMax().ToString();
+            signalUnitTextBox.Text = selectedSignal.GetUnit().ToString();
+            signalValueTextBox.Text = selectedSignal.GetValue().ToString();
+            signalRawValueTextBox.Text = selectedSignal.GetRawValue().ToString();
         }
 
         private void dataHexCheckBox_CheckedChanged(object sender, EventArgs e)
