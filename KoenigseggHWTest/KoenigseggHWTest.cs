@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using canlibCLSNET;
 using Kvaser.Kvadblib;
+using System.IO;
+using System.Security;
+
 
 namespace KoenigseggHWTest
 {
@@ -571,6 +574,40 @@ namespace KoenigseggHWTest
             catch (FormatException)
             {
                 Console.WriteLine($"Unable to parse DLC'{frameDLCComboBox.Text}'");
+            }
+        }
+
+        private void openCanLogButton_Click(object sender, EventArgs e)
+        {
+            if (openCanLogFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var sr = new StreamReader(openCanLogFileDialog.FileName);
+                    canLogTextBox.Text = sr.ReadToEnd();
+                }
+                catch (SecurityException ex)
+                {
+                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
+                    $"Details:\n\n{ex.StackTrace}");
+                }
+            }
+        }
+
+        private void saveCanLogButton_Click(object sender, EventArgs e)
+        {
+            if (saveCanLogFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // If the file name is not an empty string open it for saving.
+                if (saveCanLogFileDialog.FileName != "")
+                {
+                    using (StreamWriter sw = new StreamWriter(saveCanLogFileDialog.FileName))
+                    {
+                        sw.Write(canLogTextBox.Text);
+                        sw.Flush();
+                        sw.Close();
+                    }
+                }
             }
         }
     }
