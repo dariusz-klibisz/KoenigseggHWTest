@@ -121,14 +121,17 @@
             this.signalStartBitLabel = new System.Windows.Forms.Label();
             this.signalStartBitNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.saveReplayGroupBox = new System.Windows.Forms.GroupBox();
+            this.stepButton = new System.Windows.Forms.Button();
+            this.stopButton = new System.Windows.Forms.Button();
+            this.runButton = new System.Windows.Forms.Button();
+            this.saveCanLogButton = new System.Windows.Forms.Button();
             this.openCanLogButton = new System.Windows.Forms.Button();
             this.canLogTextBox = new System.Windows.Forms.TextBox();
             this.openCanLogFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveCanLogFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.saveCanLogButton = new System.Windows.Forms.Button();
-            this.runButton = new System.Windows.Forms.Button();
-            this.stopButton = new System.Windows.Forms.Button();
-            this.stepButton = new System.Windows.Forms.Button();
+            this.nodePropertiesGroupBox = new System.Windows.Forms.GroupBox();
+            this.nodeEnableTxCheckBox = new System.Windows.Forms.CheckBox();
+            this.frameEnableTxCheckBox = new System.Windows.Forms.CheckBox();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataB1NumericUpDown)).BeginInit();
@@ -157,10 +160,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.signalBitLengthNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.signalStartBitNumericUpDown)).BeginInit();
             this.saveReplayGroupBox.SuspendLayout();
+            this.nodePropertiesGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // framePropertiesGroupBox
             // 
+            this.framePropertiesGroupBox.Controls.Add(this.frameEnableTxCheckBox);
             this.framePropertiesGroupBox.Controls.Add(this.dataB0Label);
             this.framePropertiesGroupBox.Controls.Add(this.dataB1Label);
             this.framePropertiesGroupBox.Controls.Add(this.dataB2Label);
@@ -188,9 +193,9 @@
             this.framePropertiesGroupBox.Controls.Add(this.framePeriodLabel);
             this.framePropertiesGroupBox.Controls.Add(this.framePeriodNumericUpDown);
             this.framePropertiesGroupBox.Controls.Add(this.frameIDLabel);
-            this.framePropertiesGroupBox.Location = new System.Drawing.Point(44, 536);
+            this.framePropertiesGroupBox.Location = new System.Drawing.Point(489, 536);
             this.framePropertiesGroupBox.Name = "framePropertiesGroupBox";
-            this.framePropertiesGroupBox.Size = new System.Drawing.Size(1072, 308);
+            this.framePropertiesGroupBox.Size = new System.Drawing.Size(1096, 308);
             this.framePropertiesGroupBox.TabIndex = 0;
             this.framePropertiesGroupBox.TabStop = false;
             this.framePropertiesGroupBox.Text = "Frame Properties";
@@ -396,7 +401,7 @@
             // frameDLCLabel
             // 
             this.frameDLCLabel.AutoSize = true;
-            this.frameDLCLabel.Location = new System.Drawing.Point(685, 55);
+            this.frameDLCLabel.Location = new System.Drawing.Point(627, 69);
             this.frameDLCLabel.Name = "frameDLCLabel";
             this.frameDLCLabel.Size = new System.Drawing.Size(71, 32);
             this.frameDLCLabel.TabIndex = 12;
@@ -414,7 +419,7 @@
             "6",
             "7",
             "8"});
-            this.frameDLCComboBox.Location = new System.Drawing.Point(681, 103);
+            this.frameDLCComboBox.Location = new System.Drawing.Point(623, 117);
             this.frameDLCComboBox.Name = "frameDLCComboBox";
             this.frameDLCComboBox.Size = new System.Drawing.Size(121, 39);
             this.frameDLCComboBox.TabIndex = 11;
@@ -423,7 +428,7 @@
             // 
             // frameIdTextBox
             // 
-            this.frameIdTextBox.Location = new System.Drawing.Point(58, 104);
+            this.frameIdTextBox.Location = new System.Drawing.Point(156, 118);
             this.frameIdTextBox.Name = "frameIdTextBox";
             this.frameIdTextBox.ReadOnly = true;
             this.frameIdTextBox.Size = new System.Drawing.Size(37, 38);
@@ -434,7 +439,7 @@
             // frameIdHexCheckBox
             // 
             this.frameIdHexCheckBox.AutoSize = true;
-            this.frameIdHexCheckBox.Location = new System.Drawing.Point(259, 106);
+            this.frameIdHexCheckBox.Location = new System.Drawing.Point(48, 118);
             this.frameIdHexCheckBox.Name = "frameIdHexCheckBox";
             this.frameIdHexCheckBox.Size = new System.Drawing.Size(103, 36);
             this.frameIdHexCheckBox.TabIndex = 8;
@@ -444,7 +449,7 @@
             // 
             // frameIDNumericUpDown
             // 
-            this.frameIDNumericUpDown.Location = new System.Drawing.Point(101, 104);
+            this.frameIDNumericUpDown.Location = new System.Drawing.Point(199, 118);
             this.frameIDNumericUpDown.Maximum = new decimal(new int[] {
             2047,
             0,
@@ -458,7 +463,7 @@
             // framePeriodLabel
             // 
             this.framePeriodLabel.AutoSize = true;
-            this.framePeriodLabel.Location = new System.Drawing.Point(383, 55);
+            this.framePeriodLabel.Location = new System.Drawing.Point(340, 69);
             this.framePeriodLabel.Name = "framePeriodLabel";
             this.framePeriodLabel.Size = new System.Drawing.Size(158, 32);
             this.framePeriodLabel.TabIndex = 6;
@@ -466,7 +471,7 @@
             // 
             // framePeriodNumericUpDown
             // 
-            this.framePeriodNumericUpDown.Location = new System.Drawing.Point(389, 105);
+            this.framePeriodNumericUpDown.Location = new System.Drawing.Point(346, 119);
             this.framePeriodNumericUpDown.Maximum = new decimal(new int[] {
             10000,
             0,
@@ -480,7 +485,7 @@
             // frameIDLabel
             // 
             this.frameIDLabel.AutoSize = true;
-            this.frameIDLabel.Location = new System.Drawing.Point(95, 55);
+            this.frameIDLabel.Location = new System.Drawing.Point(193, 69);
             this.frameIDLabel.Name = "frameIDLabel";
             this.frameIDLabel.Size = new System.Drawing.Size(130, 32);
             this.frameIDLabel.TabIndex = 2;
@@ -1466,7 +1471,7 @@
             // transmissionControlGroupBox
             // 
             this.transmissionControlGroupBox.Controls.Add(this.startTransmisionButton);
-            this.transmissionControlGroupBox.Location = new System.Drawing.Point(2208, 536);
+            this.transmissionControlGroupBox.Location = new System.Drawing.Point(2183, 1506);
             this.transmissionControlGroupBox.Name = "transmissionControlGroupBox";
             this.transmissionControlGroupBox.Size = new System.Drawing.Size(415, 285);
             this.transmissionControlGroupBox.TabIndex = 2;
@@ -1545,7 +1550,7 @@
             this.signalPropertiesGroupBox.Controls.Add(this.signalBitLengthNumericUpDown);
             this.signalPropertiesGroupBox.Controls.Add(this.signalStartBitLabel);
             this.signalPropertiesGroupBox.Controls.Add(this.signalStartBitNumericUpDown);
-            this.signalPropertiesGroupBox.Location = new System.Drawing.Point(1128, 536);
+            this.signalPropertiesGroupBox.Location = new System.Drawing.Point(1619, 536);
             this.signalPropertiesGroupBox.Name = "signalPropertiesGroupBox";
             this.signalPropertiesGroupBox.Size = new System.Drawing.Size(1045, 308);
             this.signalPropertiesGroupBox.TabIndex = 4;
@@ -1727,6 +1732,43 @@
             this.saveReplayGroupBox.TabStop = false;
             this.saveReplayGroupBox.Text = "Save / Replay";
             // 
+            // stepButton
+            // 
+            this.stepButton.Location = new System.Drawing.Point(1350, 64);
+            this.stepButton.Name = "stepButton";
+            this.stepButton.Size = new System.Drawing.Size(200, 50);
+            this.stepButton.TabIndex = 3;
+            this.stepButton.Text = "Step";
+            this.stepButton.UseVisualStyleBackColor = true;
+            // 
+            // stopButton
+            // 
+            this.stopButton.Location = new System.Drawing.Point(1144, 64);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(200, 50);
+            this.stopButton.TabIndex = 3;
+            this.stopButton.Text = "Stop";
+            this.stopButton.UseVisualStyleBackColor = true;
+            // 
+            // runButton
+            // 
+            this.runButton.Location = new System.Drawing.Point(938, 64);
+            this.runButton.Name = "runButton";
+            this.runButton.Size = new System.Drawing.Size(200, 50);
+            this.runButton.TabIndex = 3;
+            this.runButton.Text = "Run";
+            this.runButton.UseVisualStyleBackColor = true;
+            // 
+            // saveCanLogButton
+            // 
+            this.saveCanLogButton.Location = new System.Drawing.Point(254, 64);
+            this.saveCanLogButton.Name = "saveCanLogButton";
+            this.saveCanLogButton.Size = new System.Drawing.Size(200, 50);
+            this.saveCanLogButton.TabIndex = 3;
+            this.saveCanLogButton.Text = "Save";
+            this.saveCanLogButton.UseVisualStyleBackColor = true;
+            this.saveCanLogButton.Click += new System.EventHandler(this.saveCanLogButton_Click);
+            // 
             // openCanLogButton
             // 
             this.openCanLogButton.Location = new System.Drawing.Point(48, 64);
@@ -1755,42 +1797,37 @@
             // 
             this.saveCanLogFileDialog.Filter = "Text files|*.txt|Allf files|*.*";
             // 
-            // saveCanLogButton
+            // nodePropertiesGroupBox
             // 
-            this.saveCanLogButton.Location = new System.Drawing.Point(254, 64);
-            this.saveCanLogButton.Name = "saveCanLogButton";
-            this.saveCanLogButton.Size = new System.Drawing.Size(200, 50);
-            this.saveCanLogButton.TabIndex = 3;
-            this.saveCanLogButton.Text = "Save";
-            this.saveCanLogButton.UseVisualStyleBackColor = true;
-            this.saveCanLogButton.Click += new System.EventHandler(this.saveCanLogButton_Click);
+            this.nodePropertiesGroupBox.Controls.Add(this.nodeEnableTxCheckBox);
+            this.nodePropertiesGroupBox.Location = new System.Drawing.Point(50, 536);
+            this.nodePropertiesGroupBox.Name = "nodePropertiesGroupBox";
+            this.nodePropertiesGroupBox.Size = new System.Drawing.Size(390, 308);
+            this.nodePropertiesGroupBox.TabIndex = 6;
+            this.nodePropertiesGroupBox.TabStop = false;
+            this.nodePropertiesGroupBox.Text = "Node Properties";
             // 
-            // runButton
+            // nodeEnableTxCheckBox
             // 
-            this.runButton.Location = new System.Drawing.Point(938, 64);
-            this.runButton.Name = "runButton";
-            this.runButton.Size = new System.Drawing.Size(200, 50);
-            this.runButton.TabIndex = 3;
-            this.runButton.Text = "Run";
-            this.runButton.UseVisualStyleBackColor = true;
+            this.nodeEnableTxCheckBox.AutoSize = true;
+            this.nodeEnableTxCheckBox.Location = new System.Drawing.Point(35, 69);
+            this.nodeEnableTxCheckBox.Name = "nodeEnableTxCheckBox";
+            this.nodeEnableTxCheckBox.Size = new System.Drawing.Size(319, 36);
+            this.nodeEnableTxCheckBox.TabIndex = 0;
+            this.nodeEnableTxCheckBox.Text = "Enable Transmission";
+            this.nodeEnableTxCheckBox.UseVisualStyleBackColor = true;
+            this.nodeEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.nodeEnableTxCheckBox_CheckedChanged);
             // 
-            // stopButton
+            // frameEnableTxCheckBox
             // 
-            this.stopButton.Location = new System.Drawing.Point(1144, 64);
-            this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(200, 50);
-            this.stopButton.TabIndex = 3;
-            this.stopButton.Text = "Stop";
-            this.stopButton.UseVisualStyleBackColor = true;
-            // 
-            // stepButton
-            // 
-            this.stepButton.Location = new System.Drawing.Point(1350, 64);
-            this.stepButton.Name = "stepButton";
-            this.stepButton.Size = new System.Drawing.Size(200, 50);
-            this.stepButton.TabIndex = 3;
-            this.stepButton.Text = "Step";
-            this.stepButton.UseVisualStyleBackColor = true;
+            this.frameEnableTxCheckBox.AutoSize = true;
+            this.frameEnableTxCheckBox.Location = new System.Drawing.Point(771, 120);
+            this.frameEnableTxCheckBox.Name = "frameEnableTxCheckBox";
+            this.frameEnableTxCheckBox.Size = new System.Drawing.Size(319, 36);
+            this.frameEnableTxCheckBox.TabIndex = 32;
+            this.frameEnableTxCheckBox.Text = "Enable Transmission";
+            this.frameEnableTxCheckBox.UseVisualStyleBackColor = true;
+            this.frameEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.frameEnableTxCheckBox_CheckedChanged);
             // 
             // KoenigseggHWTest
             // 
@@ -1798,6 +1835,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(2687, 1803);
+            this.Controls.Add(this.nodePropertiesGroupBox);
             this.Controls.Add(this.saveReplayGroupBox);
             this.Controls.Add(this.signalPropertiesGroupBox);
             this.Controls.Add(this.objectSelectorGroupBox);
@@ -1847,6 +1885,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.signalStartBitNumericUpDown)).EndInit();
             this.saveReplayGroupBox.ResumeLayout(false);
             this.saveReplayGroupBox.PerformLayout();
+            this.nodePropertiesGroupBox.ResumeLayout(false);
+            this.nodePropertiesGroupBox.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1954,6 +1994,9 @@
         private System.Windows.Forms.Button stepButton;
         private System.Windows.Forms.Button stopButton;
         private System.Windows.Forms.Button runButton;
+        private System.Windows.Forms.CheckBox frameEnableTxCheckBox;
+        private System.Windows.Forms.GroupBox nodePropertiesGroupBox;
+        private System.Windows.Forms.CheckBox nodeEnableTxCheckBox;
     }
 }
 

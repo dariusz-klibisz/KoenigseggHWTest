@@ -12,14 +12,14 @@ namespace KoenigseggHWTest
         protected const Byte BITS_IN_BYTE = 8;
         protected const Byte BIT_LENGTH_MAX = 64;
 
-        private string name = "";
-        private UInt16 startBit = 0;
-        private UInt32 bitLength = 0;
-        private double scale = 1;
-        private double offset = 0;
-        private double min = 0;
-        private double max = 0;
-        private string unit = "";
+        private string name;
+        private UInt16 startBit;
+        private UInt32 bitLength;
+        private double scale;
+        private double offset;
+        private double min;
+        private double max;
+        private string unit;
         private Decimal value = 0;
         private UInt64 rawValue = 0;
         private Kvadblib.SignalHnd handle;

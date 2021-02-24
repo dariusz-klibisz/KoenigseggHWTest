@@ -13,13 +13,16 @@ namespace KoenigseggHWTest
         private string name { get; set; } = "";
         private List<Frame> frames;
         Kvadblib.NodeHnd handle;
+        private Boolean enableTransmission;
 
         public Node(String aName = "",
-                    Kvadblib.NodeHnd aHandle = null)
+                    Kvadblib.NodeHnd aHandle = null,
+                    Boolean aEnableTrans = true)
         {
             SetName(aName);
             SetHandle(aHandle);
             frames = new List<Frame>();
+            SetEnableTransmission(aEnableTrans, false);
         }
 
         public override string ToString()
@@ -168,6 +171,24 @@ namespace KoenigseggHWTest
                 aFrame = frames.ElementAt((int)aIdx);
                 return Status.ErrorCode.STATUS_OK;
             }
+        }
+
+        public void SetEnableTransmission(Boolean aEnableTrans, Boolean aUpdateFrames)
+        {
+            enableTransmission = aEnableTrans;
+
+            if(aUpdateFrames)
+            {
+                foreach (Frame frame in frames)
+                {
+                    frame.SetEnableTransmission(aEnableTrans);
+                }
+            }
+        }
+
+        public Boolean GetEnableTransmission()
+        {
+            return enableTransmission;
         }
     }
 }

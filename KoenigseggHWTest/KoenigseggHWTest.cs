@@ -367,6 +367,8 @@ namespace KoenigseggHWTest
             //TODO: Add processing txt file as input to automated sending of frames
             //TODO: Add displaying log file with sent frames and time
             //TODO: Fix VS Messages
+            //TODO: Add updating Frame properties when changed from window
+            //TODO: Add updating Signal properties when changed from window
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);
@@ -376,6 +378,8 @@ namespace KoenigseggHWTest
         private void RestbusNodesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateRestbusFramesListBox(sender, e);
+            //Update frame properties displayed
+            UpdateRestbusNodeProperties(sender, e);
         }
 
         private void UpdateRestbusNodesListBox()
@@ -399,6 +403,14 @@ namespace KoenigseggHWTest
                 RestbusFramesListBox.Items.Clear();
                 RestbusSignalsListBox.Items.Clear();
             }
+        }
+
+        private void UpdateRestbusNodeProperties(object sender, EventArgs e)
+        {
+            //Get selected Node
+            Node selectedNode = (Node)RestbusNodesListBox.SelectedItem;
+            //Update properties
+            nodeEnableTxCheckBox.Checked = selectedNode.GetEnableTransmission();
         }
 
         private void RestbusFramesListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -445,7 +457,7 @@ namespace KoenigseggHWTest
             frameIDNumericUpDown.Value = selectedFrame.GetID();
             framePeriodNumericUpDown.Value = selectedFrame.GetPeriod();
             frameDLCComboBox.Text = selectedFrame.GetByteLength().ToString();
-
+            frameEnableTxCheckBox.Checked = selectedFrame.GetEnableTransmission();
         }
 
 
@@ -609,6 +621,24 @@ namespace KoenigseggHWTest
                     }
                 }
             }
+        }
+
+        private void nodeEnableTxCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            //Get selected Node
+            Node selectedNode = (Node)RestbusNodesListBox.SelectedItem;
+            //Update Node properties
+            selectedNode.SetEnableTransmission(nodeEnableTxCheckBox.Checked, true);
+            //Update Frame properties
+            UpdateRestbusFrameProperties(sender, e);
+        }
+
+        private void frameEnableTxCheckBox_CheckedChanged(object sender, EventArgs e)
+        {
+            //Get selected Frame
+            Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
+            //Update Frame properties
+            selectedFrame.SetEnableTransmission(frameEnableTxCheckBox.Checked);
         }
     }
 }

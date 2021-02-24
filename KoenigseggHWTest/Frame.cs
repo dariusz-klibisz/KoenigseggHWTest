@@ -14,20 +14,22 @@ namespace KoenigseggHWTest
         protected const Byte BYTE_MASK = 0xFF;
         protected const Byte BYTE_SHIFT = 8;
         
-        private UInt16 id = 0;
-        private String name = "";
-        private UInt16 period = 0;
+        private UInt16 id;
+        private String name;
+        private UInt16 period;
         private Byte padding = 0x00;
-        private Byte byteLength = 0;
+        private Byte byteLength;
         private Byte[] data = new Byte[FRAME_LENGTH_MAX];
         private Kvadblib.MessageHnd handle;
         private List<Signal> signals;
+        private Boolean enableTransmission;
 
         public Frame(UInt16 aID = 0,
                      string aName = "",
                      UInt16 aPeriod = 0,
                      Byte aByteLength = FRAME_LENGTH_MAX,
-                     Kvadblib.MessageHnd aHandle = null)
+                     Kvadblib.MessageHnd aHandle = null,
+                     Boolean aEnableTrans = true)
         {
             SetID(aID);
             SetPeriod(aPeriod);
@@ -35,6 +37,7 @@ namespace KoenigseggHWTest
             SetByteLength(aByteLength);
             SetHandle(aHandle);
             signals = new List<Signal>();
+            SetEnableTransmission(aEnableTrans);
         }
 
         public override string ToString()
@@ -233,6 +236,16 @@ namespace KoenigseggHWTest
                 aSignal = signals.ElementAt((int)aIdx);
                 return Status.ErrorCode.STATUS_OK;
             }
+        }
+
+        public void SetEnableTransmission(Boolean aEnableTrans)
+        {
+            enableTransmission = aEnableTrans;
+        }
+
+        public Boolean GetEnableTransmission()
+        {
+            return enableTransmission;
         }
     }
 }
