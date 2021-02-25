@@ -87,27 +87,6 @@ namespace KoenigseggHWTest
 
             Canlib.canWriteWait(chanhandle, msgId, data, 8, msgFlags, 50);
 
-            //Load database
-            Kvadblib.Status dbstatus;
-            Kvadblib.Hnd dbhandle = new Kvadblib.Hnd();
-
-            string filename = "C:\\Repos\\KoenigseggHWTest\\Regera_HSCAN1.dbc";
-            dbstatus = Kvadblib.Open(out dbhandle);
-            DisplayDBError(dbstatus, "Opening database handle ");
-            dbstatus = Kvadblib.ReadFile(dbhandle, filename);
-            DisplayDBError(dbstatus, "Reading database from file ");
-
-            ReadDbNodes(dbhandle);
-
-            ReadDbFrames(dbhandle);
-
-            UpdateRestbusNodesListBox();
-
-            Debug.Print("\n========================\n");
-            foreach (Node node in nodes)
-            {
-                Debug.Print(node.ToString());
-            }
             Debug.Print("\n========================\n");
 
             //Go off bus and close channel
@@ -369,6 +348,8 @@ namespace KoenigseggHWTest
             //TODO: Fix VS Messages
             //TODO: Add updating Frame properties when changed from window
             //TODO: Add updating Signal properties when changed from window
+            //TODO: Add creating new nodes, frames, signals
+            //TODO: Add saving configuration from menu item
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);
@@ -639,6 +620,49 @@ namespace KoenigseggHWTest
             Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
             //Update Frame properties
             selectedFrame.SetEnableTransmission(frameEnableTxCheckBox.Checked);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (System.Windows.Forms.Application.MessageLoop)
+            {
+                // WinForms app
+                System.Windows.Forms.Application.Exit();
+            }
+            else
+            {
+                // Console app
+                System.Environment.Exit(1);
+            }
+        }
+
+        private void loadDBCFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openDBCFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    //Load database
+                    Kvadblib.Status dbstatus;
+                    Kvadblib.Hnd dbhandle = new Kvadblib.Hnd();
+
+                    dbstatus = Kvadblib.Open(out dbhandle);
+                    DisplayDBError(dbstatus, "Opening database handle ");
+                    dbstatus = Kvadblib.ReadFile(dbhandle, openDBCFileDialog.FileName);
+                    DisplayDBError(dbstatus, "Reading database from file ");
+
+                    ReadDbNodes(dbhandle);
+
+                    ReadDbFrames(dbhandle);
+
+                    UpdateRestbusNodesListBox();
+                }
+                catch (SecurityException ex)
+                {
+                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
+                    $"Details:\n\n{ex.StackTrace}");
+                }
+            }
         }
     }
 }

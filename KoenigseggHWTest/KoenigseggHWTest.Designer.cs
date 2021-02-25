@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.framePropertiesGroupBox = new System.Windows.Forms.GroupBox();
+            this.frameEnableTxCheckBox = new System.Windows.Forms.CheckBox();
             this.dataB0Label = new System.Windows.Forms.Label();
             this.dataB1Label = new System.Windows.Forms.Label();
             this.dataB2Label = new System.Windows.Forms.Label();
@@ -131,7 +132,12 @@
             this.saveCanLogFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.nodePropertiesGroupBox = new System.Windows.Forms.GroupBox();
             this.nodeEnableTxCheckBox = new System.Windows.Forms.CheckBox();
-            this.frameEnableTxCheckBox = new System.Windows.Forms.CheckBox();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loadDBCFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openDBCFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataB1NumericUpDown)).BeginInit();
@@ -161,6 +167,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.signalStartBitNumericUpDown)).BeginInit();
             this.saveReplayGroupBox.SuspendLayout();
             this.nodePropertiesGroupBox.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // framePropertiesGroupBox
@@ -199,6 +206,17 @@
             this.framePropertiesGroupBox.TabIndex = 0;
             this.framePropertiesGroupBox.TabStop = false;
             this.framePropertiesGroupBox.Text = "Frame Properties";
+            // 
+            // frameEnableTxCheckBox
+            // 
+            this.frameEnableTxCheckBox.AutoSize = true;
+            this.frameEnableTxCheckBox.Location = new System.Drawing.Point(771, 120);
+            this.frameEnableTxCheckBox.Name = "frameEnableTxCheckBox";
+            this.frameEnableTxCheckBox.Size = new System.Drawing.Size(319, 36);
+            this.frameEnableTxCheckBox.TabIndex = 32;
+            this.frameEnableTxCheckBox.Text = "Enable Transmission";
+            this.frameEnableTxCheckBox.UseVisualStyleBackColor = true;
+            this.frameEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.frameEnableTxCheckBox_CheckedChanged);
             // 
             // dataB0Label
             // 
@@ -506,7 +524,7 @@
             this.frameDataGroupBox.Controls.Add(this.udsRoutineNumericUpDown);
             this.frameDataGroupBox.Controls.Add(this.pinNumberLabel);
             this.frameDataGroupBox.Controls.Add(this.pinNumberComboBox);
-            this.frameDataGroupBox.Location = new System.Drawing.Point(50, 51);
+            this.frameDataGroupBox.Location = new System.Drawing.Point(50, 76);
             this.frameDataGroupBox.Name = "frameDataGroupBox";
             this.frameDataGroupBox.Size = new System.Drawing.Size(2573, 454);
             this.frameDataGroupBox.TabIndex = 1;
@@ -1818,16 +1836,52 @@
             this.nodeEnableTxCheckBox.UseVisualStyleBackColor = true;
             this.nodeEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.nodeEnableTxCheckBox_CheckedChanged);
             // 
-            // frameEnableTxCheckBox
+            // menuStrip1
             // 
-            this.frameEnableTxCheckBox.AutoSize = true;
-            this.frameEnableTxCheckBox.Location = new System.Drawing.Point(771, 120);
-            this.frameEnableTxCheckBox.Name = "frameEnableTxCheckBox";
-            this.frameEnableTxCheckBox.Size = new System.Drawing.Size(319, 36);
-            this.frameEnableTxCheckBox.TabIndex = 32;
-            this.frameEnableTxCheckBox.Text = "Enable Transmission";
-            this.frameEnableTxCheckBox.UseVisualStyleBackColor = true;
-            this.frameEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.frameEnableTxCheckBox_CheckedChanged);
+            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(40, 40);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(2687, 52);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // fileToolStripMenuItem
+            // 
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loadDBCFileToolStripMenuItem,
+            this.saveConfigurationToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(87, 48);
+            this.fileToolStripMenuItem.Text = "File";
+            // 
+            // loadDBCFileToolStripMenuItem
+            // 
+            this.loadDBCFileToolStripMenuItem.Name = "loadDBCFileToolStripMenuItem";
+            this.loadDBCFileToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.loadDBCFileToolStripMenuItem.Text = "Load DBC File";
+            this.loadDBCFileToolStripMenuItem.Click += new System.EventHandler(this.loadDBCFileToolStripMenuItem_Click);
+            // 
+            // saveConfigurationToolStripMenuItem
+            // 
+            this.saveConfigurationToolStripMenuItem.Name = "saveConfigurationToolStripMenuItem";
+            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.saveConfigurationToolStripMenuItem.Text = "Save Configuration";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // openDBCFileDialog
+            // 
+            this.openDBCFileDialog.FileName = "Select file...";
+            this.openDBCFileDialog.Filter = "Database files|*.dbc|Allf files|*.*";
             // 
             // KoenigseggHWTest
             // 
@@ -1842,6 +1896,8 @@
             this.Controls.Add(this.transmissionControlGroupBox);
             this.Controls.Add(this.frameDataGroupBox);
             this.Controls.Add(this.framePropertiesGroupBox);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "KoenigseggHWTest";
             this.Text = "KoenigseggHWTest";
             this.framePropertiesGroupBox.ResumeLayout(false);
@@ -1887,7 +1943,10 @@
             this.saveReplayGroupBox.PerformLayout();
             this.nodePropertiesGroupBox.ResumeLayout(false);
             this.nodePropertiesGroupBox.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1997,6 +2056,12 @@
         private System.Windows.Forms.CheckBox frameEnableTxCheckBox;
         private System.Windows.Forms.GroupBox nodePropertiesGroupBox;
         private System.Windows.Forms.CheckBox nodeEnableTxCheckBox;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loadDBCFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openDBCFileDialog;
     }
 }
 
