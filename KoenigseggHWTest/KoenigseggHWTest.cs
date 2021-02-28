@@ -305,6 +305,7 @@ namespace KoenigseggHWTest
             Kvadblib.NodeHnd nh;
             Kvadblib.SignalType pt;
             Kvadblib.SignalType rt;
+            Kvadblib.SignalEncoding encoding;
 
             Kvadblib.GetSignalName(aSgnHnd, out name);
             Kvadblib.GetSignalValueSize(aSgnHnd, out startBit, out size);
@@ -313,6 +314,7 @@ namespace KoenigseggHWTest
             Kvadblib.GetSignalUnit(aSgnHnd, out unit);
             Kvadblib.GetSignalPresentationType(aSgnHnd, out pt);
             Kvadblib.GetSignalRepresentationType(aSgnHnd, out rt);
+            Kvadblib.GetSignalEncoding(aSgnHnd, out encoding);
 
             /* Fill receiverNode list. Each signal can have multiple receive nodes. */
             foreach (Node node in nodes)
@@ -335,12 +337,11 @@ namespace KoenigseggHWTest
             /* Get frame hanle from node based on frame name. */
             aNode.GetFrame(frameName, out Frame fh);
             /* Add signal to frame. */
-            fh.AddSignal(new Signal(name, (UInt16)startBit, (UInt16)size, factor, offset, min, max, unit, aSgnHnd));
+            fh.AddSignal(new Signal(name, (UInt16)startBit, (UInt16)size, factor, offset, min, max, unit, encoding, aSgnHnd));
 
 
 
             //TODO: Update functions with Status
-            //TODO: Add Signal byte order
             //TODO: Add handling setting Signal values
             //TODO: Add setting Frame data when signal value is set (call Frame function from Signal?)
             //TODO: Add processing txt file as input to automated sending of frames
@@ -487,6 +488,7 @@ namespace KoenigseggHWTest
             signalUnitTextBox.Text = selectedSignal.GetUnit().ToString();
             signalValueTextBox.Text = selectedSignal.GetValue().ToString();
             signalRawValueTextBox.Text = selectedSignal.GetRawValue().ToString();
+            signalEncodingComboBox.Text = selectedSignal.GetEncoding().ToString();
         }
 
         private void dataHexCheckBox_CheckedChanged(object sender, EventArgs e)

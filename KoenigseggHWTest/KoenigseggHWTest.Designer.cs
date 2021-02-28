@@ -138,6 +138,8 @@
             this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDBCFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.signalEncodingComboBox = new System.Windows.Forms.ComboBox();
+            this.signalEncodingLabel = new System.Windows.Forms.Label();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataB1NumericUpDown)).BeginInit();
@@ -1550,6 +1552,8 @@
             // 
             // signalPropertiesGroupBox
             // 
+            this.signalPropertiesGroupBox.Controls.Add(this.signalEncodingLabel);
+            this.signalPropertiesGroupBox.Controls.Add(this.signalEncodingComboBox);
             this.signalPropertiesGroupBox.Controls.Add(this.signalRawValueTextBox);
             this.signalPropertiesGroupBox.Controls.Add(this.signalRawValueLabel);
             this.signalPropertiesGroupBox.Controls.Add(this.signalValueTextBox);
@@ -1844,7 +1848,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(2687, 52);
+            this.menuStrip1.Size = new System.Drawing.Size(2687, 49);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1855,26 +1859,26 @@
             this.saveConfigurationToolStripMenuItem,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(87, 48);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(87, 45);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // loadDBCFileToolStripMenuItem
             // 
             this.loadDBCFileToolStripMenuItem.Name = "loadDBCFileToolStripMenuItem";
-            this.loadDBCFileToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.loadDBCFileToolStripMenuItem.Size = new System.Drawing.Size(435, 54);
             this.loadDBCFileToolStripMenuItem.Text = "Load DBC File";
             this.loadDBCFileToolStripMenuItem.Click += new System.EventHandler(this.loadDBCFileToolStripMenuItem_Click);
             // 
             // saveConfigurationToolStripMenuItem
             // 
             this.saveConfigurationToolStripMenuItem.Name = "saveConfigurationToolStripMenuItem";
-            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.saveConfigurationToolStripMenuItem.Size = new System.Drawing.Size(435, 54);
             this.saveConfigurationToolStripMenuItem.Text = "Save Configuration";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(448, 54);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(435, 54);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -1882,6 +1886,26 @@
             // 
             this.openDBCFileDialog.FileName = "Select file...";
             this.openDBCFileDialog.Filter = "Database files|*.dbc|Allf files|*.*";
+            // 
+            // signalEncodingComboBox
+            // 
+            this.signalEncodingComboBox.FormattingEnabled = true;
+            this.signalEncodingComboBox.Items.AddRange(new object[] {
+            "Intel",
+            "Motorola"});
+            this.signalEncodingComboBox.Location = new System.Drawing.Point(554, 210);
+            this.signalEncodingComboBox.Name = "signalEncodingComboBox";
+            this.signalEncodingComboBox.Size = new System.Drawing.Size(208, 39);
+            this.signalEncodingComboBox.TabIndex = 18;
+            // 
+            // signalEncodingLabel
+            // 
+            this.signalEncodingLabel.AutoSize = true;
+            this.signalEncodingLabel.Location = new System.Drawing.Point(554, 160);
+            this.signalEncodingLabel.Name = "signalEncodingLabel";
+            this.signalEncodingLabel.Size = new System.Drawing.Size(135, 32);
+            this.signalEncodingLabel.TabIndex = 19;
+            this.signalEncodingLabel.Text = "Encoding";
             // 
             // KoenigseggHWTest
             // 
@@ -2062,6 +2086,8 @@
         private System.Windows.Forms.ToolStripMenuItem saveConfigurationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
         private System.Windows.Forms.OpenFileDialog openDBCFileDialog;
+        private System.Windows.Forms.Label signalEncodingLabel;
+        private System.Windows.Forms.ComboBox signalEncodingComboBox;
     }
 }
 

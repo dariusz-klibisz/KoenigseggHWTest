@@ -20,6 +20,7 @@ namespace KoenigseggHWTest
         private double min;
         private double max;
         private string unit;
+        private Kvadblib.SignalEncoding encoding;
         private Decimal value = 0;
         private UInt64 rawValue = 0;
         private Kvadblib.SignalHnd handle;
@@ -32,6 +33,7 @@ namespace KoenigseggHWTest
                       double aMin = 0.0,
                       double aMax = 0.0,
                       string aUnit = "",
+                      Kvadblib.SignalEncoding aEncoding = Kvadblib.SignalEncoding.Intel,
                       Kvadblib.SignalHnd aHandle = null)
         {
             SetName(aName);
@@ -42,6 +44,7 @@ namespace KoenigseggHWTest
             SetMin(aMin);
             SetMax(aMax);
             SetUnit(aUnit);
+            SetEncoding(aEncoding);
             SetHandle(aHandle);
         }
 
@@ -55,6 +58,7 @@ namespace KoenigseggHWTest
                 $"Signal min:{min}\n" +
                 $"Signal max:{max}\n" +
                 $"Signal unit:{unit}\n" +
+                $"Signal encoding:{encoding}\n" +
                 $"Signal value:{value}\n" +
                 $"Signal rawValue:{rawValue}\n" +
                 $"Signal handle:{handle}\n";
@@ -192,6 +196,16 @@ namespace KoenigseggHWTest
         public string GetUnit()
         {
             return unit;
+        }
+
+        public void SetEncoding(Kvadblib.SignalEncoding aEncoding)
+        {
+            encoding = aEncoding;
+        }
+
+        public Kvadblib.SignalEncoding GetEncoding()
+        {
+            return encoding;
         }
 
         public void SetValue(decimal aValue)
