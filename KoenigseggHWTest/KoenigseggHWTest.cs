@@ -23,6 +23,8 @@ using System.Security;
 //TODO: Add saving configuration from menu item
 //TODO: Better handling of signal encoding
 //TODO: Combine functions for handling changing signal and frame values from window
+//TODO: Handle receiver node list for signal
+//TODO: Handle signal presentation type and representation type
 
 namespace KoenigseggHWTest
 {
@@ -46,7 +48,7 @@ namespace KoenigseggHWTest
             PIN_CFG_MAX
         }
 
-        private UInt16[] PinCfgShift =
+        private readonly UInt16[] PinCfgShift =
         {
             10,     /* PIN_CFG_FUNCTION */
             9,      /* PIN_CFG_OUTPUT */
@@ -59,7 +61,7 @@ namespace KoenigseggHWTest
             0       /* PIN_CFG_PULL_SELECT */
         };
 
-        private UInt16[] PinCfgMask =
+        private readonly UInt16[] PinCfgMask =
         {
             0x1C00, /* PIN_CFG_FUNCTION */
             0x0200, /* PIN_CFG_OUTPUT */
@@ -107,7 +109,7 @@ namespace KoenigseggHWTest
             DisplayError(status, "canClose");
         }
 
-        private void setPinCfgBits(UInt16 value, PinCfgFunction function)
+        private void SetPinCfgBits(UInt16 value, PinCfgFunction function)
         {
             /* Get all bits except pin function bits. */
             UInt16 data = (UInt16)(CANFrame.GetPinConfig() & (~PinCfgMask[(UInt16)function]));
@@ -116,7 +118,7 @@ namespace KoenigseggHWTest
             CANFrame.SetPinConfig(data);
         }
 
-        private void frameIdCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void FrameIdCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (true == frameIdHexCheckBox.Checked)
             {
@@ -130,7 +132,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void frameIDNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void FrameIDNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             try
             {
@@ -146,7 +148,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void pinNumberComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void PinNumberComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
@@ -160,7 +162,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void framePeriodNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void FramePeriodNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             try
             {
@@ -176,7 +178,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void udsRoutineNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void UdsRoutineNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             try
             {
@@ -190,17 +192,17 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void pinCfgRadioButton_CheckedChanged(object sender, EventArgs e)
+        private void PinCfgRadioButton_CheckedChanged(object sender, EventArgs e)
         {
             if (sender is RadioButton)
             {
                 RadioButton radioButton = (RadioButton)sender;
-                setPinCfgBits((UInt16)radioButton.TabIndex, (PinCfgFunction)radioButton.Parent.TabIndex);
+                SetPinCfgBits((UInt16)radioButton.TabIndex, (PinCfgFunction)radioButton.Parent.TabIndex);
                 Debug.Print(CANFrame.ToString());
             }
         }
 
-        private void startTransmisionButton_Click(object sender, EventArgs e)
+        private void StartTransmisionButton_Click(object sender, EventArgs e)
         {
             
         }
@@ -241,9 +243,7 @@ namespace KoenigseggHWTest
 
         private static void ReadNode(Kvadblib.NodeHnd aNodeHnd)
         {
-            string name = "";
-
-            Kvadblib.GetNodeName(aNodeHnd, out name);
+            Kvadblib.GetNodeName(aNodeHnd, out string name);
             nodes.Add(new Node(name, aNodeHnd));
             Debug.Print(name);
         }
@@ -267,17 +267,12 @@ namespace KoenigseggHWTest
         private static void ReadFrame(Kvadblib.MessageHnd aMsgHnd)
         {
             Kvadblib.NodeHnd nh = new Kvadblib.NodeHnd();
-            string name = "";
-            string senderNode = "";
-            int frameID = 0;
-            int frameByteLength = 0;
-            Kvadblib.MESSAGE frameFlags;
 
-            Kvadblib.GetMsgName(aMsgHnd, out name);
-            Kvadblib.GetMsgId(aMsgHnd, out frameID, out frameFlags);
+            Kvadblib.GetMsgName(aMsgHnd, out string name);
+            Kvadblib.GetMsgId(aMsgHnd, out int frameID, out Kvadblib.MESSAGE frameFlags);
             Kvadblib.GetMsgSendNode(aMsgHnd, out nh);
-            Kvadblib.GetNodeName(nh, out senderNode);
-            Kvadblib.GetMsgDlc(aMsgHnd, out frameByteLength);
+            Kvadblib.GetNodeName(nh, out string senderNode);
+            Kvadblib.GetMsgDlc(aMsgHnd, out int frameByteLength);
             Debug.Print(name);
             foreach (Node node in nodes)
             {
@@ -291,9 +286,7 @@ namespace KoenigseggHWTest
 
         private static void ReadDbSignals(Kvadblib.MessageHnd aMsgHnd, Node aNode)
         {
-            Kvadblib.SignalHnd sh = new Kvadblib.SignalHnd();
-
-            if (Kvadblib.Status.OK == Kvadblib.GetFirstSignal(aMsgHnd, out sh))
+            if (Kvadblib.Status.OK == Kvadblib.GetFirstSignal(aMsgHnd, out Kvadblib.SignalHnd sh))
             {
                 ReadSignal(sh, aMsgHnd, aNode);
             }
@@ -306,34 +299,21 @@ namespace KoenigseggHWTest
 
         private static void ReadSignal(Kvadblib.SignalHnd aSgnHnd, Kvadblib.MessageHnd aMsgHnd, Node aNode)
         {
-            string name = "";
             List<string> receiverNode = new List<string>();
-            int size = 0;
-            int startBit = 0;
-            double factor = 0.0;
-            double offset = 0.0;
-            double min = 0.0;
-            double max = 0.0;
-            string unit = "";
-            Kvadblib.AttributeHnd ah = new Kvadblib.AttributeHnd();
-            Kvadblib.NodeHnd nh;
-            Kvadblib.SignalType pt;
-            Kvadblib.SignalType rt;
-            Kvadblib.SignalEncoding encoding;
 
-            Kvadblib.GetSignalName(aSgnHnd, out name);
-            Kvadblib.GetSignalValueSize(aSgnHnd, out startBit, out size);
-            Kvadblib.GetSignalValueScaling(aSgnHnd, out factor, out offset);
-            Kvadblib.GetSignalValueLimits(aSgnHnd, out min, out max);
-            Kvadblib.GetSignalUnit(aSgnHnd, out unit);
-            Kvadblib.GetSignalPresentationType(aSgnHnd, out pt);
-            Kvadblib.GetSignalRepresentationType(aSgnHnd, out rt);
-            Kvadblib.GetSignalEncoding(aSgnHnd, out encoding);
+            Kvadblib.GetSignalName(aSgnHnd, out string name);
+            Kvadblib.GetSignalValueSize(aSgnHnd, out int startBit, out int size);
+            Kvadblib.GetSignalValueScaling(aSgnHnd, out double factor, out double offset);
+            Kvadblib.GetSignalValueLimits(aSgnHnd, out double min, out double max);
+            Kvadblib.GetSignalUnit(aSgnHnd, out string unit);
+            Kvadblib.GetSignalPresentationType(aSgnHnd, out Kvadblib.SignalType pt);
+            Kvadblib.GetSignalRepresentationType(aSgnHnd, out Kvadblib.SignalType rt);
+            Kvadblib.GetSignalEncoding(aSgnHnd, out Kvadblib.SignalEncoding encoding);
 
             /* Fill receiverNode list. Each signal can have multiple receive nodes. */
             foreach (Node node in nodes)
             {
-                nh = node.GetNodeHandle();
+                Kvadblib.NodeHnd nh = node.GetNodeHandle();
                 Kvadblib.Status status = Kvadblib.SignalContainsReceiveNode(aSgnHnd, nh);
                 if (Kvadblib.Status.OK == status)
                 {
@@ -413,8 +393,7 @@ namespace KoenigseggHWTest
             RestbusFramesListBox.Items.Clear();
             for(UInt32 idx = 0; idx < nrOfFrames; idx++)
             {
-                Frame frame = new Frame();
-                Status.ErrorCode status = selectedNode.GetFrame(idx, out frame);
+                Status.ErrorCode status = selectedNode.GetFrame(idx, out Frame frame);
                 if((Status.ErrorCode.STATUS_OK == status) && (null != frame))
                 {
                     RestbusFramesListBox.Items.Add(frame);
@@ -476,8 +455,7 @@ namespace KoenigseggHWTest
             RestbusSignalsListBox.Items.Clear();
             for (UInt32 idx = 0; idx < nrOfSignals; idx++)
             {
-                Signal signal = new Signal();
-                Status.ErrorCode status = selectedFrame.GetSignal(idx, out signal);
+                Status.ErrorCode status = selectedFrame.GetSignal(idx, out Signal signal);
                 if ((Status.ErrorCode.STATUS_OK == status) && (null != signal))
                 {
                     RestbusSignalsListBox.Items.Add(signal);
@@ -508,7 +486,7 @@ namespace KoenigseggHWTest
             signalEncodingComboBox.Text = selectedSignal.GetEncoding().ToString();
         }
 
-        private void dataHexCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void DataHexCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             if (true == dataHexCheckBox.Checked)
             {
@@ -536,7 +514,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void frameDLCComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FrameDLCComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             NumericUpDown[] dataBytes =
             {
@@ -593,7 +571,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void openCanLogButton_Click(object sender, EventArgs e)
+        private void OpenCanLogButton_Click(object sender, EventArgs e)
         {
             if (openCanLogFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -610,7 +588,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void saveCanLogButton_Click(object sender, EventArgs e)
+        private void SaveCanLogButton_Click(object sender, EventArgs e)
         {
             if (saveCanLogFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -627,7 +605,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void nodeEnableTxCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void NodeEnableTxCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             //Get selected Node
             Node selectedNode = (Node)RestbusNodesListBox.SelectedItem;
@@ -637,7 +615,7 @@ namespace KoenigseggHWTest
             UpdateRestbusFrameProperties(sender, e);
         }
 
-        private void frameEnableTxCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void FrameEnableTxCheckBox_CheckedChanged(object sender, EventArgs e)
         {
             //Get selected Frame
             Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
@@ -645,7 +623,7 @@ namespace KoenigseggHWTest
             selectedFrame.SetEnableTransmission(frameEnableTxCheckBox.Checked);
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (System.Windows.Forms.Application.MessageLoop)
             {
@@ -659,7 +637,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void loadDBCFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void LoadDBCFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (openDBCFileDialog.ShowDialog() == DialogResult.OK)
             {
@@ -688,7 +666,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void dataBXNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void DataBXNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown[] dataBytes =
             {
@@ -715,7 +693,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void signalStartBitNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void SignalStartBitNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Get new value
             Byte startBit = (Byte)signalStartBitNumericUpDown.Value;
@@ -725,7 +703,7 @@ namespace KoenigseggHWTest
             selectedSignal.SetStartBit(startBit);
         }
 
-        private void signalBitLengthNumericUpDown_ValueChanged(object sender, EventArgs e)
+        private void SignalBitLengthNumericUpDown_ValueChanged(object sender, EventArgs e)
         {
             // Get new value
             Byte bitLength = (Byte)signalBitLengthNumericUpDown.Value;
@@ -735,7 +713,7 @@ namespace KoenigseggHWTest
             selectedSignal.SetBitLength(bitLength);
         }
 
-        private void signalScaleTextBox_TextChanged(object sender, EventArgs e)
+        private void SignalScaleTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -752,7 +730,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void signalOffsetTextBox_TextChanged(object sender, EventArgs e)
+        private void SignalOffsetTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -769,7 +747,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void signalMinTextBox_TextChanged(object sender, EventArgs e)
+        private void SignalMinTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -786,7 +764,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void signalMaxTextBox_TextChanged(object sender, EventArgs e)
+        private void SignalMaxTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -803,7 +781,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void signalValueTextBox_TextChanged(object sender, EventArgs e)
+        private void SignalValueTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -820,7 +798,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void signalRawValueTextBox_TextChanged(object sender, EventArgs e)
+        private void SignalRawValueTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
@@ -837,7 +815,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        private void signalUnitTextBox_TextChanged(object sender, EventArgs e)
+        private void SignalUnitTextBox_TextChanged(object sender, EventArgs e)
         {
             // Get new value
             string unit = signalUnitTextBox.Text;
@@ -847,7 +825,7 @@ namespace KoenigseggHWTest
             selectedSignal.SetUnit(unit);
         }
 
-        private void signalEncodingComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void SignalEncodingComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             // Get selected encoding
             string encodingStr = signalEncodingComboBox.SelectedItem.ToString();

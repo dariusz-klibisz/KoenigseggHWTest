@@ -218,7 +218,7 @@
             this.frameEnableTxCheckBox.TabIndex = 32;
             this.frameEnableTxCheckBox.Text = "Enable Transmission";
             this.frameEnableTxCheckBox.UseVisualStyleBackColor = true;
-            this.frameEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.frameEnableTxCheckBox_CheckedChanged);
+            this.frameEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.FrameEnableTxCheckBox_CheckedChanged);
             // 
             // dataB0Label
             // 
@@ -313,7 +313,7 @@
             this.dataB0NumericUpDown.Name = "dataB0NumericUpDown";
             this.dataB0NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB0NumericUpDown.TabIndex = 22;
-            this.dataB0NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
+            this.dataB0NumericUpDown.ValueChanged += new System.EventHandler(this.DataBXNumericUpDown_ValueChanged);
             // 
             // dataB1NumericUpDown
             // 
@@ -326,7 +326,7 @@
             this.dataB1NumericUpDown.Name = "dataB1NumericUpDown";
             this.dataB1NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB1NumericUpDown.TabIndex = 21;
-            this.dataB1NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
+            this.dataB1NumericUpDown.ValueChanged += new System.EventHandler(this.DataBXNumericUpDown_ValueChanged);
             // 
             // dataB2NumericUpDown
             // 
@@ -339,7 +339,7 @@
             this.dataB2NumericUpDown.Name = "dataB2NumericUpDown";
             this.dataB2NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB2NumericUpDown.TabIndex = 20;
-            this.dataB2NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
+            this.dataB2NumericUpDown.ValueChanged += new System.EventHandler(this.DataBXNumericUpDown_ValueChanged);
             // 
             // dataB3NumericUpDown
             // 
@@ -352,7 +352,7 @@
             this.dataB3NumericUpDown.Name = "dataB3NumericUpDown";
             this.dataB3NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB3NumericUpDown.TabIndex = 19;
-            this.dataB3NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
+            this.dataB3NumericUpDown.ValueChanged += new System.EventHandler(this.DataBXNumericUpDown_ValueChanged);
             // 
             // dataB4NumericUpDown
             // 
@@ -365,7 +365,7 @@
             this.dataB4NumericUpDown.Name = "dataB4NumericUpDown";
             this.dataB4NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB4NumericUpDown.TabIndex = 18;
-            this.dataB4NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
+            this.dataB4NumericUpDown.ValueChanged += new System.EventHandler(this.DataBXNumericUpDown_ValueChanged);
             // 
             // dataB5NumericUpDown
             // 
@@ -378,7 +378,7 @@
             this.dataB5NumericUpDown.Name = "dataB5NumericUpDown";
             this.dataB5NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB5NumericUpDown.TabIndex = 17;
-            this.dataB5NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
+            this.dataB5NumericUpDown.ValueChanged += new System.EventHandler(this.DataBXNumericUpDown_ValueChanged);
             // 
             // dataB6NumericUpDown
             // 
@@ -403,7 +403,7 @@
             this.dataB7NumericUpDown.Name = "dataB7NumericUpDown";
             this.dataB7NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB7NumericUpDown.TabIndex = 15;
-            this.dataB7NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
+            this.dataB7NumericUpDown.ValueChanged += new System.EventHandler(this.DataBXNumericUpDown_ValueChanged);
             // 
             // dataHexCheckBox
             // 
@@ -414,7 +414,7 @@
             this.dataHexCheckBox.TabIndex = 14;
             this.dataHexCheckBox.Text = "Hex";
             this.dataHexCheckBox.UseVisualStyleBackColor = true;
-            this.dataHexCheckBox.CheckedChanged += new System.EventHandler(this.dataHexCheckBox_CheckedChanged);
+            this.dataHexCheckBox.CheckedChanged += new System.EventHandler(this.DataHexCheckBox_CheckedChanged);
             // 
             // frameDataLabel
             // 
@@ -451,7 +451,7 @@
             this.frameDLCComboBox.Size = new System.Drawing.Size(121, 39);
             this.frameDLCComboBox.TabIndex = 11;
             this.frameDLCComboBox.Text = "8";
-            this.frameDLCComboBox.SelectedIndexChanged += new System.EventHandler(this.frameDLCComboBox_SelectedIndexChanged);
+            this.frameDLCComboBox.SelectedIndexChanged += new System.EventHandler(this.FrameDLCComboBox_SelectedIndexChanged);
             // 
             // frameIdTextBox
             // 
@@ -472,7 +472,7 @@
             this.frameIdHexCheckBox.TabIndex = 8;
             this.frameIdHexCheckBox.Text = "Hex";
             this.frameIdHexCheckBox.UseVisualStyleBackColor = true;
-            this.frameIdHexCheckBox.CheckedChanged += new System.EventHandler(this.frameIdCheckBox_CheckedChanged);
+            this.frameIdHexCheckBox.CheckedChanged += new System.EventHandler(this.FrameIdCheckBox_CheckedChanged);
             // 
             // frameIDNumericUpDown
             // 
@@ -485,7 +485,7 @@
             this.frameIDNumericUpDown.Name = "frameIDNumericUpDown";
             this.frameIDNumericUpDown.Size = new System.Drawing.Size(120, 38);
             this.frameIDNumericUpDown.TabIndex = 7;
-            this.frameIDNumericUpDown.ValueChanged += new System.EventHandler(this.frameIDNumericUpDown_ValueChanged);
+            this.frameIDNumericUpDown.ValueChanged += new System.EventHandler(this.FrameIDNumericUpDown_ValueChanged);
             // 
             // framePeriodLabel
             // 
@@ -507,7 +507,7 @@
             this.framePeriodNumericUpDown.Name = "framePeriodNumericUpDown";
             this.framePeriodNumericUpDown.Size = new System.Drawing.Size(243, 38);
             this.framePeriodNumericUpDown.TabIndex = 5;
-            this.framePeriodNumericUpDown.ValueChanged += new System.EventHandler(this.framePeriodNumericUpDown_ValueChanged);
+            this.framePeriodNumericUpDown.ValueChanged += new System.EventHandler(this.FramePeriodNumericUpDown_ValueChanged);
             // 
             // frameIDLabel
             // 
@@ -560,7 +560,7 @@
             this.pullUpRadioButton.TabIndex = 1;
             this.pullUpRadioButton.Text = "Pull-up";
             this.pullUpRadioButton.UseVisualStyleBackColor = true;
-            this.pullUpRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.pullUpRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // pulldownRadioButton
             // 
@@ -573,7 +573,7 @@
             this.pulldownRadioButton.TabStop = true;
             this.pulldownRadioButton.Text = "Pull-down";
             this.pulldownRadioButton.UseVisualStyleBackColor = true;
-            this.pulldownRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.pulldownRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // pullControlGroupBox
             // 
@@ -595,7 +595,7 @@
             this.pullEnableRadioButton.TabIndex = 1;
             this.pullEnableRadioButton.Text = "Enable";
             this.pullEnableRadioButton.UseVisualStyleBackColor = true;
-            this.pullEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.pullEnableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // pullDisableRadioButton
             // 
@@ -608,7 +608,7 @@
             this.pullDisableRadioButton.TabStop = true;
             this.pullDisableRadioButton.Text = "Disable";
             this.pullDisableRadioButton.UseVisualStyleBackColor = true;
-            this.pullDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.pullDisableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // slewRateControlGroupBox
             // 
@@ -633,7 +633,7 @@
             this.fullWoSlewCtrlRadioButton.Text = "Full Drive Strength Without Slew Control";
             this.fullWoSlewCtrlRadioButton.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.fullWoSlewCtrlRadioButton.UseVisualStyleBackColor = true;
-            this.fullWoSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.fullWoSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // halfWoSlewCtrlRadioButton
             // 
@@ -644,7 +644,7 @@
             this.halfWoSlewCtrlRadioButton.TabIndex = 2;
             this.halfWoSlewCtrlRadioButton.Text = "Half Drive Strength Without Slew Control";
             this.halfWoSlewCtrlRadioButton.UseVisualStyleBackColor = true;
-            this.halfWoSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.halfWoSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // fullWSlewCtrlRadioButton
             // 
@@ -655,7 +655,7 @@
             this.fullWSlewCtrlRadioButton.TabIndex = 1;
             this.fullWSlewCtrlRadioButton.Text = "Full Drive Strength With Slew Control";
             this.fullWSlewCtrlRadioButton.UseVisualStyleBackColor = true;
-            this.fullWSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.fullWSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // halfWSlewCtrlRadioButton
             // 
@@ -668,7 +668,7 @@
             this.halfWSlewCtrlRadioButton.TabStop = true;
             this.halfWSlewCtrlRadioButton.Text = "Half Drive Strength With Slew Control ";
             this.halfWSlewCtrlRadioButton.UseVisualStyleBackColor = true;
-            this.halfWSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.halfWSlewCtrlRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // inputHysteresisGroupBox
             // 
@@ -690,7 +690,7 @@
             this.inputHysteresisEnableRadioButton.TabIndex = 1;
             this.inputHysteresisEnableRadioButton.Text = "Enable";
             this.inputHysteresisEnableRadioButton.UseVisualStyleBackColor = true;
-            this.inputHysteresisEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.inputHysteresisEnableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // inputHysteresisDisableRadioButton
             // 
@@ -703,7 +703,7 @@
             this.inputHysteresisDisableRadioButton.TabStop = true;
             this.inputHysteresisDisableRadioButton.Text = "Disable";
             this.inputHysteresisDisableRadioButton.UseVisualStyleBackColor = true;
-            this.inputHysteresisDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.inputHysteresisDisableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // openDrainGroupBox
             // 
@@ -725,7 +725,7 @@
             this.openDrainEnableRadioButton.TabIndex = 1;
             this.openDrainEnableRadioButton.Text = "Enable";
             this.openDrainEnableRadioButton.UseVisualStyleBackColor = true;
-            this.openDrainEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.openDrainEnableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // openDrainDisableRadioButton
             // 
@@ -738,7 +738,7 @@
             this.openDrainDisableRadioButton.TabStop = true;
             this.openDrainDisableRadioButton.Text = "Disable";
             this.openDrainDisableRadioButton.UseVisualStyleBackColor = true;
-            this.openDrainDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.openDrainDisableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // driveStrGroupBox
             // 
@@ -762,7 +762,7 @@
             this.maximumRadioButton.TabIndex = 3;
             this.maximumRadioButton.Text = "Maximum";
             this.maximumRadioButton.UseVisualStyleBackColor = true;
-            this.maximumRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.maximumRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // mediumHighRadioButton
             // 
@@ -773,7 +773,7 @@
             this.mediumHighRadioButton.TabIndex = 2;
             this.mediumHighRadioButton.Text = "Medium-high";
             this.mediumHighRadioButton.UseVisualStyleBackColor = true;
-            this.mediumHighRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.mediumHighRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // mediumRadioButton
             // 
@@ -784,7 +784,7 @@
             this.mediumRadioButton.TabIndex = 1;
             this.mediumRadioButton.Text = "Medium";
             this.mediumRadioButton.UseVisualStyleBackColor = true;
-            this.mediumRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.mediumRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // minimumRadioButton
             // 
@@ -797,7 +797,7 @@
             this.minimumRadioButton.TabStop = true;
             this.minimumRadioButton.Text = "Minimum";
             this.minimumRadioButton.UseVisualStyleBackColor = true;
-            this.minimumRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.minimumRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // inputGroupBox
             // 
@@ -819,7 +819,7 @@
             this.inputEnableRadioButton.TabIndex = 1;
             this.inputEnableRadioButton.Text = "Enable";
             this.inputEnableRadioButton.UseVisualStyleBackColor = true;
-            this.inputEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.inputEnableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // inputDisableRadioButton
             // 
@@ -832,7 +832,7 @@
             this.inputDisableRadioButton.TabStop = true;
             this.inputDisableRadioButton.Text = "Disable";
             this.inputDisableRadioButton.UseVisualStyleBackColor = true;
-            this.inputDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.inputDisableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // outputGroupBox
             // 
@@ -854,7 +854,7 @@
             this.outputEnableRadioButton.TabIndex = 1;
             this.outputEnableRadioButton.Text = "Enable";
             this.outputEnableRadioButton.UseVisualStyleBackColor = true;
-            this.outputEnableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.outputEnableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // outputDisableRadioButton
             // 
@@ -867,7 +867,7 @@
             this.outputDisableRadioButton.TabStop = true;
             this.outputDisableRadioButton.Text = "Disable";
             this.outputDisableRadioButton.UseVisualStyleBackColor = true;
-            this.outputDisableRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.outputDisableRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // functionGroupBox
             // 
@@ -892,7 +892,7 @@
             this.alternate3RadioButton.TabIndex = 4;
             this.alternate3RadioButton.Text = "Alternate 3";
             this.alternate3RadioButton.UseVisualStyleBackColor = true;
-            this.alternate3RadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.alternate3RadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // alternate2RadioButton
             // 
@@ -903,7 +903,7 @@
             this.alternate2RadioButton.TabIndex = 3;
             this.alternate2RadioButton.Text = "Alternate 2";
             this.alternate2RadioButton.UseVisualStyleBackColor = true;
-            this.alternate2RadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.alternate2RadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // alternate1RadioButton
             // 
@@ -914,7 +914,7 @@
             this.alternate1RadioButton.TabIndex = 2;
             this.alternate1RadioButton.Text = "Alternate 1";
             this.alternate1RadioButton.UseVisualStyleBackColor = true;
-            this.alternate1RadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.alternate1RadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // primaryRadioButton
             // 
@@ -925,7 +925,7 @@
             this.primaryRadioButton.TabIndex = 1;
             this.primaryRadioButton.Text = "Primary";
             this.primaryRadioButton.UseVisualStyleBackColor = true;
-            this.primaryRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.primaryRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // gpioRadioButton
             // 
@@ -938,7 +938,7 @@
             this.gpioRadioButton.TabStop = true;
             this.gpioRadioButton.Text = "GPIO";
             this.gpioRadioButton.UseVisualStyleBackColor = true;
-            this.gpioRadioButton.CheckedChanged += new System.EventHandler(this.pinCfgRadioButton_CheckedChanged);
+            this.gpioRadioButton.CheckedChanged += new System.EventHandler(this.PinCfgRadioButton_CheckedChanged);
             // 
             // udsRoutineLabel
             // 
@@ -961,7 +961,7 @@
             this.udsRoutineNumericUpDown.Name = "udsRoutineNumericUpDown";
             this.udsRoutineNumericUpDown.Size = new System.Drawing.Size(120, 38);
             this.udsRoutineNumericUpDown.TabIndex = 12;
-            this.udsRoutineNumericUpDown.ValueChanged += new System.EventHandler(this.udsRoutineNumericUpDown_ValueChanged);
+            this.udsRoutineNumericUpDown.ValueChanged += new System.EventHandler(this.UdsRoutineNumericUpDown_ValueChanged);
             // 
             // pinNumberLabel
             // 
@@ -1493,7 +1493,7 @@
             this.pinNumberComboBox.Size = new System.Drawing.Size(121, 39);
             this.pinNumberComboBox.TabIndex = 10;
             this.pinNumberComboBox.Text = "0";
-            this.pinNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.pinNumberComboBox_SelectedIndexChanged);
+            this.pinNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.PinNumberComboBox_SelectedIndexChanged);
             // 
             // transmissionControlGroupBox
             // 
@@ -1513,7 +1513,7 @@
             this.startTransmisionButton.TabIndex = 0;
             this.startTransmisionButton.Text = "Start";
             this.startTransmisionButton.UseVisualStyleBackColor = true;
-            this.startTransmisionButton.Click += new System.EventHandler(this.startTransmisionButton_Click);
+            this.startTransmisionButton.Click += new System.EventHandler(this.StartTransmisionButton_Click);
             // 
             // objectSelectorGroupBox
             // 
@@ -1605,7 +1605,7 @@
             this.signalEncodingComboBox.Name = "signalEncodingComboBox";
             this.signalEncodingComboBox.Size = new System.Drawing.Size(208, 39);
             this.signalEncodingComboBox.TabIndex = 18;
-            this.signalEncodingComboBox.SelectedIndexChanged += new System.EventHandler(this.signalEncodingComboBox_SelectedIndexChanged);
+            this.signalEncodingComboBox.SelectedIndexChanged += new System.EventHandler(this.SignalEncodingComboBox_SelectedIndexChanged);
             // 
             // signalRawValueTextBox
             // 
@@ -1614,7 +1614,7 @@
             this.signalRawValueTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalRawValueTextBox.TabIndex = 17;
             this.signalRawValueTextBox.Text = "0";
-            this.signalRawValueTextBox.TextChanged += new System.EventHandler(this.signalRawValueTextBox_TextChanged);
+            this.signalRawValueTextBox.TextChanged += new System.EventHandler(this.SignalRawValueTextBox_TextChanged);
             // 
             // signalRawValueLabel
             // 
@@ -1632,7 +1632,7 @@
             this.signalValueTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalValueTextBox.TabIndex = 15;
             this.signalValueTextBox.Text = "0";
-            this.signalValueTextBox.TextChanged += new System.EventHandler(this.signalValueTextBox_TextChanged);
+            this.signalValueTextBox.TextChanged += new System.EventHandler(this.SignalValueTextBox_TextChanged);
             // 
             // signalValueLabel
             // 
@@ -1649,7 +1649,7 @@
             this.signalUnitTextBox.Name = "signalUnitTextBox";
             this.signalUnitTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalUnitTextBox.TabIndex = 13;
-            this.signalUnitTextBox.TextChanged += new System.EventHandler(this.signalUnitTextBox_TextChanged);
+            this.signalUnitTextBox.TextChanged += new System.EventHandler(this.SignalUnitTextBox_TextChanged);
             // 
             // signalUnitLabel
             // 
@@ -1685,7 +1685,7 @@
             this.signalMaxTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalMaxTextBox.TabIndex = 9;
             this.signalMaxTextBox.Text = "0";
-            this.signalMaxTextBox.TextChanged += new System.EventHandler(this.signalMaxTextBox_TextChanged);
+            this.signalMaxTextBox.TextChanged += new System.EventHandler(this.SignalMaxTextBox_TextChanged);
             // 
             // signalMinTextBox
             // 
@@ -1694,7 +1694,7 @@
             this.signalMinTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalMinTextBox.TabIndex = 8;
             this.signalMinTextBox.Text = "0";
-            this.signalMinTextBox.TextChanged += new System.EventHandler(this.signalMinTextBox_TextChanged);
+            this.signalMinTextBox.TextChanged += new System.EventHandler(this.SignalMinTextBox_TextChanged);
             // 
             // signalOffsetTextBox
             // 
@@ -1703,7 +1703,7 @@
             this.signalOffsetTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalOffsetTextBox.TabIndex = 7;
             this.signalOffsetTextBox.Text = "0";
-            this.signalOffsetTextBox.TextChanged += new System.EventHandler(this.signalOffsetTextBox_TextChanged);
+            this.signalOffsetTextBox.TextChanged += new System.EventHandler(this.SignalOffsetTextBox_TextChanged);
             // 
             // signalScaleTextBox
             // 
@@ -1712,7 +1712,7 @@
             this.signalScaleTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalScaleTextBox.TabIndex = 6;
             this.signalScaleTextBox.Text = "0";
-            this.signalScaleTextBox.TextChanged += new System.EventHandler(this.signalScaleTextBox_TextChanged);
+            this.signalScaleTextBox.TextChanged += new System.EventHandler(this.SignalScaleTextBox_TextChanged);
             // 
             // signalOffsetLabel
             // 
@@ -1752,7 +1752,7 @@
             this.signalBitLengthNumericUpDown.Name = "signalBitLengthNumericUpDown";
             this.signalBitLengthNumericUpDown.Size = new System.Drawing.Size(120, 38);
             this.signalBitLengthNumericUpDown.TabIndex = 2;
-            this.signalBitLengthNumericUpDown.ValueChanged += new System.EventHandler(this.signalBitLengthNumericUpDown_ValueChanged);
+            this.signalBitLengthNumericUpDown.ValueChanged += new System.EventHandler(this.SignalBitLengthNumericUpDown_ValueChanged);
             // 
             // signalStartBitLabel
             // 
@@ -1774,7 +1774,7 @@
             this.signalStartBitNumericUpDown.Name = "signalStartBitNumericUpDown";
             this.signalStartBitNumericUpDown.Size = new System.Drawing.Size(120, 38);
             this.signalStartBitNumericUpDown.TabIndex = 0;
-            this.signalStartBitNumericUpDown.ValueChanged += new System.EventHandler(this.signalStartBitNumericUpDown_ValueChanged);
+            this.signalStartBitNumericUpDown.ValueChanged += new System.EventHandler(this.SignalStartBitNumericUpDown_ValueChanged);
             // 
             // saveReplayGroupBox
             // 
@@ -1826,7 +1826,7 @@
             this.saveCanLogButton.TabIndex = 3;
             this.saveCanLogButton.Text = "Save";
             this.saveCanLogButton.UseVisualStyleBackColor = true;
-            this.saveCanLogButton.Click += new System.EventHandler(this.saveCanLogButton_Click);
+            this.saveCanLogButton.Click += new System.EventHandler(this.SaveCanLogButton_Click);
             // 
             // openCanLogButton
             // 
@@ -1836,7 +1836,7 @@
             this.openCanLogButton.TabIndex = 3;
             this.openCanLogButton.Text = "Open";
             this.openCanLogButton.UseVisualStyleBackColor = true;
-            this.openCanLogButton.Click += new System.EventHandler(this.openCanLogButton_Click);
+            this.openCanLogButton.Click += new System.EventHandler(this.OpenCanLogButton_Click);
             // 
             // canLogTextBox
             // 
@@ -1875,7 +1875,7 @@
             this.nodeEnableTxCheckBox.TabIndex = 0;
             this.nodeEnableTxCheckBox.Text = "Enable Transmission";
             this.nodeEnableTxCheckBox.UseVisualStyleBackColor = true;
-            this.nodeEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.nodeEnableTxCheckBox_CheckedChanged);
+            this.nodeEnableTxCheckBox.CheckedChanged += new System.EventHandler(this.NodeEnableTxCheckBox_CheckedChanged);
             // 
             // menuStrip1
             // 
@@ -1904,7 +1904,7 @@
             this.loadDBCFileToolStripMenuItem.Name = "loadDBCFileToolStripMenuItem";
             this.loadDBCFileToolStripMenuItem.Size = new System.Drawing.Size(435, 54);
             this.loadDBCFileToolStripMenuItem.Text = "Load DBC File";
-            this.loadDBCFileToolStripMenuItem.Click += new System.EventHandler(this.loadDBCFileToolStripMenuItem_Click);
+            this.loadDBCFileToolStripMenuItem.Click += new System.EventHandler(this.LoadDBCFileToolStripMenuItem_Click);
             // 
             // saveConfigurationToolStripMenuItem
             // 
@@ -1917,7 +1917,7 @@
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(435, 54);
             this.exitToolStripMenuItem.Text = "Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // openDBCFileDialog
             // 
