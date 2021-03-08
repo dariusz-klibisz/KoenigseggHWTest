@@ -13,6 +13,16 @@ using Kvaser.Kvadblib;
 using System.IO;
 using System.Security;
 
+//TODO: Update functions with Status
+//TODO: Add handling setting Signal values
+//TODO: Add setting Frame data when signal value is set (call Frame function from Signal?)
+//TODO: Add processing txt file as input to automated sending of frames
+//TODO: Add displaying log file with sent frames and time
+//TODO: Fix VS Messages
+//TODO: Add creating new nodes, frames, signals
+//TODO: Add saving configuration from menu item
+//TODO: Better handling of signal encoding
+//TODO: Combine functions for handling changing signal and frame values from window
 
 namespace KoenigseggHWTest
 {
@@ -125,12 +135,14 @@ namespace KoenigseggHWTest
             try
             {
                 UInt16 idInt = (UInt16)frameIDNumericUpDown.Value;
-                CANFrame.SetID(idInt);
-                Debug.Print(CANFrame.ToString());
+                // Get selected Frame
+                Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
+                // Set selected frame ID
+                selectedFrame.SetID(idInt);
             }
             catch (FormatException)
             {
-                Console.WriteLine($"Unable to parse ID'{frameIDNumericUpDown.Value}'");
+                Console.WriteLine($"Unable to parse frame ID'{frameIDNumericUpDown.Value}'");
             }
         }
 
@@ -153,12 +165,14 @@ namespace KoenigseggHWTest
             try
             {
                 UInt16 framePeriodInt = (UInt16)framePeriodNumericUpDown.Value;
-                CANFrame.SetPeriod(framePeriodInt);
-                Debug.Print(CANFrame.ToString());
+                // Get selected Frame
+                Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
+                // Set selected frame period
+                selectedFrame.SetPeriod(framePeriodInt);
             }
             catch (FormatException)
             {
-                Console.WriteLine($"Unable to parse '{framePeriodNumericUpDown.Value}'");
+                Console.WriteLine($"Unable to parse frame period'{framePeriodNumericUpDown.Value}'");
             }
         }
 
@@ -337,20 +351,7 @@ namespace KoenigseggHWTest
             /* Get frame hanle from node based on frame name. */
             aNode.GetFrame(frameName, out Frame fh);
             /* Add signal to frame. */
-            fh.AddSignal(new Signal(name, (UInt16)startBit, (UInt16)size, factor, offset, min, max, unit, encoding, aSgnHnd));
-
-
-
-            //TODO: Update functions with Status
-            //TODO: Add handling setting Signal values
-            //TODO: Add setting Frame data when signal value is set (call Frame function from Signal?)
-            //TODO: Add processing txt file as input to automated sending of frames
-            //TODO: Add displaying log file with sent frames and time
-            //TODO: Fix VS Messages
-            //TODO: Add updating Frame properties when changed from window
-            //TODO: Add updating Signal properties when changed from window
-            //TODO: Add creating new nodes, frames, signals
-            //TODO: Add saving configuration from menu item
+            fh.AddSignal(new Signal(name, (Byte)startBit, (Byte)size, factor, offset, min, max, unit, encoding, aSgnHnd));
 
             //Kvadblib.GetFirstSignalAttribute(sh, ref ah);
             //Kvadblib.GetAttributeName(ah, out name);
@@ -396,7 +397,7 @@ namespace KoenigseggHWTest
         }
 
         private void RestbusFramesListBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        {      
             UpdateRestbusSignalsListBox(sender, e);
             //Update frame properties displayed
             UpdateRestbusFrameProperties(sender, e);
@@ -433,6 +434,18 @@ namespace KoenigseggHWTest
 
         private void UpdateRestbusFrameProperties(object sender, EventArgs e)
         {
+            NumericUpDown[] dataBytes =
+            {
+                dataB0NumericUpDown,
+                dataB1NumericUpDown,
+                dataB2NumericUpDown,
+                dataB3NumericUpDown,
+                dataB4NumericUpDown,
+                dataB5NumericUpDown,
+                dataB6NumericUpDown,
+                dataB7NumericUpDown
+            };
+
             //Get selected Frame
             Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
             //Update properties
@@ -440,6 +453,10 @@ namespace KoenigseggHWTest
             framePeriodNumericUpDown.Value = selectedFrame.GetPeriod();
             frameDLCComboBox.Text = selectedFrame.GetByteLength().ToString();
             frameEnableTxCheckBox.Checked = selectedFrame.GetEnableTransmission();
+            for (Byte idx = 0; idx < Frame.FRAME_LENGTH_MAX; idx++)
+            {
+                dataBytes[idx].Value = selectedFrame.GetData(idx);
+            }
         }
 
 
@@ -476,7 +493,7 @@ namespace KoenigseggHWTest
 
         private void UpdateRestbusSignalProperties(object sender, EventArgs e)
         {
-            //Get selected Frame
+            //Get selected Signal
             Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
             //Update properties
             signalStartBitNumericUpDown.Value = selectedSignal.GetStartBit();
@@ -565,10 +582,14 @@ namespace KoenigseggHWTest
                         dataByteLabels[dlc - 1].Enabled = true;
                     }
                 }
+                // Get selected Frame
+                Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
+                // Set selected frame DLC
+                selectedFrame.SetByteLength(frameDLC);
             }
             catch (FormatException)
             {
-                Console.WriteLine($"Unable to parse DLC'{frameDLCComboBox.Text}'");
+                Console.WriteLine($"Unable to parse frame DLC '{frameDLCComboBox.Text}'");
             }
         }
 
@@ -665,6 +686,184 @@ namespace KoenigseggHWTest
                     $"Details:\n\n{ex.StackTrace}");
                 }
             }
+        }
+
+        private void dataBXNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown[] dataBytes =
+            {
+                dataB0NumericUpDown,
+                dataB1NumericUpDown,
+                dataB2NumericUpDown,
+                dataB3NumericUpDown,
+                dataB4NumericUpDown,
+                dataB5NumericUpDown,
+                dataB6NumericUpDown,
+                dataB7NumericUpDown
+            };
+
+            for (Byte idx = 0; idx < Frame.FRAME_LENGTH_MAX; idx++)
+            {
+                if ((NumericUpDown)sender == dataBytes[idx])
+                {
+                    Byte value = (Byte)dataBytes[idx].Value;
+                    // Get selected Frame
+                    Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
+                    // Set selected frame data bytes
+                    selectedFrame.SetData(idx, value);
+                }
+            }
+        }
+
+        private void signalStartBitNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            // Get new value
+            Byte startBit = (Byte)signalStartBitNumericUpDown.Value;
+            // Get selected Signal
+            Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+            // Set selected Signal start bit
+            selectedSignal.SetStartBit(startBit);
+        }
+
+        private void signalBitLengthNumericUpDown_ValueChanged(object sender, EventArgs e)
+        {
+            // Get new value
+            Byte bitLength = (Byte)signalBitLengthNumericUpDown.Value;
+            // Get selected Signal
+            Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+            // Set selected Signal start bit
+            selectedSignal.SetBitLength(bitLength);
+        }
+
+        private void signalScaleTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get new value
+                double scale = double.Parse(signalScaleTextBox.Text);
+                // Get selected Signal
+                Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+                // Set selected Signal scale
+                selectedSignal.SetScale(scale);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse signal scale '{signalScaleTextBox.Text}'");
+            }
+        }
+
+        private void signalOffsetTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get new value
+                double offset = double.Parse(signalOffsetTextBox.Text);
+                // Get selected Signal
+                Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+                // Set selected Signal offset
+                selectedSignal.SetOffset(offset);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse signal offset '{signalOffsetTextBox.Text}'");
+            }
+        }
+
+        private void signalMinTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get new value
+                double min = double.Parse(signalMinTextBox.Text);
+                // Get selected Signal
+                Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+                // Set selected Signal min
+                selectedSignal.SetMin(min);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse signal min '{signalMinTextBox.Text}'");
+            }
+        }
+
+        private void signalMaxTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get new value
+                double max = double.Parse(signalMaxTextBox.Text);
+                // Get selected Signal
+                Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+                // Set selected Signal max
+                selectedSignal.SetMax(max);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse signal max '{signalMaxTextBox.Text}'");
+            }
+        }
+
+        private void signalValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get new value
+                decimal value = decimal.Parse(signalValueTextBox.Text);
+                // Get selected Signal
+                Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+                // Set selected Signal value
+                selectedSignal.SetValue(value);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse signal value '{signalValueTextBox.Text}'");
+            }
+        }
+
+        private void signalRawValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get new value
+                UInt64 rawValue = UInt64.Parse(signalRawValueTextBox.Text);
+                // Get selected Signal
+                Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+                // Set selected Signal raw value
+                selectedSignal.SetRawValue(rawValue);
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine($"Unable to parse signal raw value '{signalRawValueTextBox.Text}'");
+            }
+        }
+
+        private void signalUnitTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Get new value
+            string unit = signalUnitTextBox.Text;
+            // Get selected Signal
+            Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+            // Set selected Signal unit
+            selectedSignal.SetUnit(unit);
+        }
+
+        private void signalEncodingComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get selected encoding
+            string encodingStr = signalEncodingComboBox.SelectedItem.ToString();
+            Kvadblib.SignalEncoding encoding;
+            if ("Intel" == encodingStr)
+            {
+                encoding = Kvadblib.SignalEncoding.Intel;
+            }
+            else
+            {
+                encoding = Kvadblib.SignalEncoding.Motorola;
+            }
+            // Get selected Signal
+            Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+            // Set selected Signal unit
+            selectedSignal.SetEncoding(encoding);
         }
     }
 }

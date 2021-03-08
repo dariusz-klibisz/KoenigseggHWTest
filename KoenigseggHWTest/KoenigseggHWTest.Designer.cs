@@ -103,6 +103,8 @@
             this.RestbusNodesListBox = new System.Windows.Forms.ListBox();
             this.RestbusFramesListBox = new System.Windows.Forms.ListBox();
             this.signalPropertiesGroupBox = new System.Windows.Forms.GroupBox();
+            this.signalEncodingLabel = new System.Windows.Forms.Label();
+            this.signalEncodingComboBox = new System.Windows.Forms.ComboBox();
             this.signalRawValueTextBox = new System.Windows.Forms.TextBox();
             this.signalRawValueLabel = new System.Windows.Forms.Label();
             this.signalValueTextBox = new System.Windows.Forms.TextBox();
@@ -138,8 +140,6 @@
             this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDBCFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.signalEncodingComboBox = new System.Windows.Forms.ComboBox();
-            this.signalEncodingLabel = new System.Windows.Forms.Label();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataB1NumericUpDown)).BeginInit();
@@ -313,6 +313,7 @@
             this.dataB0NumericUpDown.Name = "dataB0NumericUpDown";
             this.dataB0NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB0NumericUpDown.TabIndex = 22;
+            this.dataB0NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
             // 
             // dataB1NumericUpDown
             // 
@@ -325,6 +326,7 @@
             this.dataB1NumericUpDown.Name = "dataB1NumericUpDown";
             this.dataB1NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB1NumericUpDown.TabIndex = 21;
+            this.dataB1NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
             // 
             // dataB2NumericUpDown
             // 
@@ -337,6 +339,7 @@
             this.dataB2NumericUpDown.Name = "dataB2NumericUpDown";
             this.dataB2NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB2NumericUpDown.TabIndex = 20;
+            this.dataB2NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
             // 
             // dataB3NumericUpDown
             // 
@@ -349,6 +352,7 @@
             this.dataB3NumericUpDown.Name = "dataB3NumericUpDown";
             this.dataB3NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB3NumericUpDown.TabIndex = 19;
+            this.dataB3NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
             // 
             // dataB4NumericUpDown
             // 
@@ -361,6 +365,7 @@
             this.dataB4NumericUpDown.Name = "dataB4NumericUpDown";
             this.dataB4NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB4NumericUpDown.TabIndex = 18;
+            this.dataB4NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
             // 
             // dataB5NumericUpDown
             // 
@@ -373,6 +378,7 @@
             this.dataB5NumericUpDown.Name = "dataB5NumericUpDown";
             this.dataB5NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB5NumericUpDown.TabIndex = 17;
+            this.dataB5NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
             // 
             // dataB6NumericUpDown
             // 
@@ -397,6 +403,7 @@
             this.dataB7NumericUpDown.Name = "dataB7NumericUpDown";
             this.dataB7NumericUpDown.Size = new System.Drawing.Size(100, 38);
             this.dataB7NumericUpDown.TabIndex = 15;
+            this.dataB7NumericUpDown.ValueChanged += new System.EventHandler(this.dataBXNumericUpDown_ValueChanged);
             // 
             // dataHexCheckBox
             // 
@@ -1579,6 +1586,27 @@
             this.signalPropertiesGroupBox.TabStop = false;
             this.signalPropertiesGroupBox.Text = "Signal Properties";
             // 
+            // signalEncodingLabel
+            // 
+            this.signalEncodingLabel.AutoSize = true;
+            this.signalEncodingLabel.Location = new System.Drawing.Point(554, 160);
+            this.signalEncodingLabel.Name = "signalEncodingLabel";
+            this.signalEncodingLabel.Size = new System.Drawing.Size(135, 32);
+            this.signalEncodingLabel.TabIndex = 19;
+            this.signalEncodingLabel.Text = "Encoding";
+            // 
+            // signalEncodingComboBox
+            // 
+            this.signalEncodingComboBox.FormattingEnabled = true;
+            this.signalEncodingComboBox.Items.AddRange(new object[] {
+            "Intel",
+            "Motorola"});
+            this.signalEncodingComboBox.Location = new System.Drawing.Point(554, 210);
+            this.signalEncodingComboBox.Name = "signalEncodingComboBox";
+            this.signalEncodingComboBox.Size = new System.Drawing.Size(208, 39);
+            this.signalEncodingComboBox.TabIndex = 18;
+            this.signalEncodingComboBox.SelectedIndexChanged += new System.EventHandler(this.signalEncodingComboBox_SelectedIndexChanged);
+            // 
             // signalRawValueTextBox
             // 
             this.signalRawValueTextBox.Location = new System.Drawing.Point(381, 210);
@@ -1586,6 +1614,7 @@
             this.signalRawValueTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalRawValueTextBox.TabIndex = 17;
             this.signalRawValueTextBox.Text = "0";
+            this.signalRawValueTextBox.TextChanged += new System.EventHandler(this.signalRawValueTextBox_TextChanged);
             // 
             // signalRawValueLabel
             // 
@@ -1603,6 +1632,7 @@
             this.signalValueTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalValueTextBox.TabIndex = 15;
             this.signalValueTextBox.Text = "0";
+            this.signalValueTextBox.TextChanged += new System.EventHandler(this.signalValueTextBox_TextChanged);
             // 
             // signalValueLabel
             // 
@@ -1619,6 +1649,7 @@
             this.signalUnitTextBox.Name = "signalUnitTextBox";
             this.signalUnitTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalUnitTextBox.TabIndex = 13;
+            this.signalUnitTextBox.TextChanged += new System.EventHandler(this.signalUnitTextBox_TextChanged);
             // 
             // signalUnitLabel
             // 
@@ -1654,6 +1685,7 @@
             this.signalMaxTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalMaxTextBox.TabIndex = 9;
             this.signalMaxTextBox.Text = "0";
+            this.signalMaxTextBox.TextChanged += new System.EventHandler(this.signalMaxTextBox_TextChanged);
             // 
             // signalMinTextBox
             // 
@@ -1662,6 +1694,7 @@
             this.signalMinTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalMinTextBox.TabIndex = 8;
             this.signalMinTextBox.Text = "0";
+            this.signalMinTextBox.TextChanged += new System.EventHandler(this.signalMinTextBox_TextChanged);
             // 
             // signalOffsetTextBox
             // 
@@ -1670,6 +1703,7 @@
             this.signalOffsetTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalOffsetTextBox.TabIndex = 7;
             this.signalOffsetTextBox.Text = "0";
+            this.signalOffsetTextBox.TextChanged += new System.EventHandler(this.signalOffsetTextBox_TextChanged);
             // 
             // signalScaleTextBox
             // 
@@ -1678,6 +1712,7 @@
             this.signalScaleTextBox.Size = new System.Drawing.Size(100, 38);
             this.signalScaleTextBox.TabIndex = 6;
             this.signalScaleTextBox.Text = "0";
+            this.signalScaleTextBox.TextChanged += new System.EventHandler(this.signalScaleTextBox_TextChanged);
             // 
             // signalOffsetLabel
             // 
@@ -1717,6 +1752,7 @@
             this.signalBitLengthNumericUpDown.Name = "signalBitLengthNumericUpDown";
             this.signalBitLengthNumericUpDown.Size = new System.Drawing.Size(120, 38);
             this.signalBitLengthNumericUpDown.TabIndex = 2;
+            this.signalBitLengthNumericUpDown.ValueChanged += new System.EventHandler(this.signalBitLengthNumericUpDown_ValueChanged);
             // 
             // signalStartBitLabel
             // 
@@ -1738,6 +1774,7 @@
             this.signalStartBitNumericUpDown.Name = "signalStartBitNumericUpDown";
             this.signalStartBitNumericUpDown.Size = new System.Drawing.Size(120, 38);
             this.signalStartBitNumericUpDown.TabIndex = 0;
+            this.signalStartBitNumericUpDown.ValueChanged += new System.EventHandler(this.signalStartBitNumericUpDown_ValueChanged);
             // 
             // saveReplayGroupBox
             // 
@@ -1848,7 +1885,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(2687, 49);
+            this.menuStrip1.Size = new System.Drawing.Size(2687, 60);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1886,26 +1923,6 @@
             // 
             this.openDBCFileDialog.FileName = "Select file...";
             this.openDBCFileDialog.Filter = "Database files|*.dbc|Allf files|*.*";
-            // 
-            // signalEncodingComboBox
-            // 
-            this.signalEncodingComboBox.FormattingEnabled = true;
-            this.signalEncodingComboBox.Items.AddRange(new object[] {
-            "Intel",
-            "Motorola"});
-            this.signalEncodingComboBox.Location = new System.Drawing.Point(554, 210);
-            this.signalEncodingComboBox.Name = "signalEncodingComboBox";
-            this.signalEncodingComboBox.Size = new System.Drawing.Size(208, 39);
-            this.signalEncodingComboBox.TabIndex = 18;
-            // 
-            // signalEncodingLabel
-            // 
-            this.signalEncodingLabel.AutoSize = true;
-            this.signalEncodingLabel.Location = new System.Drawing.Point(554, 160);
-            this.signalEncodingLabel.Name = "signalEncodingLabel";
-            this.signalEncodingLabel.Size = new System.Drawing.Size(135, 32);
-            this.signalEncodingLabel.TabIndex = 19;
-            this.signalEncodingLabel.Text = "Encoding";
             // 
             // KoenigseggHWTest
             // 

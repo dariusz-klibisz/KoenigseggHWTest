@@ -13,8 +13,8 @@ namespace KoenigseggHWTest
         protected const Byte BIT_LENGTH_MAX = 64;
 
         private string name;
-        private UInt16 startBit;
-        private UInt32 bitLength;
+        private Byte startBit;
+        private Byte bitLength;
         private double scale;
         private double offset;
         private double min;
@@ -26,8 +26,8 @@ namespace KoenigseggHWTest
         private Kvadblib.SignalHnd handle;
 
         public Signal(string aName = "",
-                      UInt16 aStartBit = 0,
-                      UInt16 aBitLength = 0,
+                      Byte aStartBit = 0,
+                      Byte aBitLength = 0,
                       double aScale = 1.0,
                       double aOffset = 0.0,
                       double aMin = 0.0,
@@ -122,20 +122,20 @@ namespace KoenigseggHWTest
             return name;
         }
 
-        public void SetStartBit(UInt16 aBit)
+        public void SetStartBit(Byte aBit)
         {
-            if(aBit < ((UInt16)Frame.FRAME_LENGTH_MAX * BITS_IN_BYTE))
+            if(aBit < ((Byte)Frame.FRAME_LENGTH_MAX * BITS_IN_BYTE))
             {
                 startBit = aBit;
             }
         }
 
-        public UInt16 GetStartBit()
+        public Byte GetStartBit()
         {
             return startBit;
         }
 
-        public void SetBitLength(UInt32 aLength)
+        public void SetBitLength(Byte aLength)
         {
             if(aLength <= BIT_LENGTH_MAX)
             {
@@ -143,7 +143,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        public UInt32 GetBitLength()
+        public Byte GetBitLength()
         {
             return bitLength;
         }

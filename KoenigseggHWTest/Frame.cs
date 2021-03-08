@@ -126,7 +126,7 @@ namespace KoenigseggHWTest
             period = aPeriod;
         }
 
-        protected Byte GetData(Byte aByteNr)
+        public Byte GetData(Byte aByteNr)
         {
             if(aByteNr < FRAME_LENGTH_MAX)
             {
@@ -138,7 +138,7 @@ namespace KoenigseggHWTest
             }
         }
 
-        protected void SetData(Byte aByteNr, Byte aData)
+        public void SetData(Byte aByteNr, Byte aData)
         {
             if(aByteNr < FRAME_LENGTH_MAX)
             {
