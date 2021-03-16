@@ -28,14 +28,18 @@ using System.Security;
 //TODO: Add handling of log window, open file, step, run, stop, add frame to log
 //TODO: Add verifying log when opened file
 //TODO: Send the frame on step button press
+//TODO: Fix the sending of frames on step to two channels
+//TODO: Add exception handling when parsing line on step
 
 namespace KoenigseggHWTest
 {
     public partial class KoenigseggHWTest : Form
     {
         private const UInt16 DEFAULT_FRAME_ID = 2016;
+        private const Byte CAN_CHANNEL_NR = 2;
         private TestFrame CANFrame = new TestFrame(aID: DEFAULT_FRAME_ID);
         private static List<Node> nodes = new List<Node>();
+        private int[] canChanHdl = new int[CAN_CHANNEL_NR];
 
         private enum PinCfgFunction
         {
@@ -82,8 +86,6 @@ namespace KoenigseggHWTest
             InitializeComponent();
 
             Canlib.canStatus status;
-            int channel = 0;
-            int chanhandle;
             byte[] data = new byte[8];
             int msgId = 200;
             int msgFlags = 0;
@@ -91,25 +93,21 @@ namespace KoenigseggHWTest
             //Initialize, open channel and go on bus
             Canlib.canInitializeLibrary();
 
-            chanhandle = Canlib.canOpenChannel(channel, Canlib.canOPEN_ACCEPT_VIRTUAL);
-            DisplayError((Canlib.canStatus)chanhandle, "canSetBusParams");
+            for (int ch = 0; ch < CAN_CHANNEL_NR; ch++)
+            {
+                canChanHdl[ch] = Canlib.canOpenChannel(ch, Canlib.canOPEN_ACCEPT_VIRTUAL);
+                DisplayError((Canlib.canStatus)canChanHdl[ch], "canSetBusParams");
 
-            status = Canlib.canSetBusParams(chanhandle, Canlib.canBITRATE_250K, 0, 0, 0, 0, 0);
-            DisplayError(status, "canSetBusParams");
+                status = Canlib.canSetBusParams(canChanHdl[ch], Canlib.canBITRATE_500K, 0, 0, 0, 0, 0);
+                DisplayError(status, "canSetBusParams");
 
-            status = Canlib.canBusOn(chanhandle);
-            DisplayError(status, "canBusOn");
+                status = Canlib.canBusOn(canChanHdl[ch]);
+                DisplayError(status, "canBusOn");
+            }
 
-            Canlib.canWriteWait(chanhandle, msgId, data, 8, msgFlags, 50);
+            Canlib.canWriteWait(canChanHdl[0], msgId, data, 8, msgFlags, 50);
 
             Debug.Print("\n========================\n");
-
-            //Go off bus and close channel
-            status = Canlib.canBusOff(chanhandle);
-            DisplayError(status, "canBusOff");
-
-            status = Canlib.canClose(chanhandle);
-            DisplayError(status, "canClose");
         }
 
         private void SetPinCfgBits(UInt16 value, PinCfgFunction function)
@@ -889,21 +887,50 @@ namespace KoenigseggHWTest
 
         private void StepButton_Click(object sender, EventArgs e)
         {
-            // Send the frame
-
             // Get current selection
             int selectionStart = canLogTextBox.SelectionStart;
             int selectedLineIdx = canLogTextBox.GetLineFromCharIndex(selectionStart);
             int linesCount = canLogTextBox.Lines.Count();
+            // Decode the line into Frame parameters
+            string line = canLogTextBox.Lines[selectedLineIdx];
+            char[] separators = { ' ' };
+            string[] splitLine = line.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+            int nrOfElements = splitLine.Count();
+            int canCh = int.Parse(splitLine[0]);
+            int msgId = int.Parse(splitLine[1]);
+            int msgDlc = int.Parse(splitLine[2]);
+            byte[] data = new byte[msgDlc];
+            int msgFlags = 0;
+            for (int i = 0; i < msgDlc; i++)
+            {
+                data[i] = Byte.Parse(splitLine[i + 3]);
+            }
+            // Send the frame
+            Canlib.canWriteWait(canChanHdl[canCh], msgId, data, msgDlc, msgFlags, 50);
             // Check if the next line exists
             if ((selectedLineIdx + 1) < linesCount)
             {
                 // Create new selection
                 selectedLineIdx += 1;
                 selectionStart = canLogTextBox.GetFirstCharIndexFromLine(selectedLineIdx);
-                string line = canLogTextBox.Lines[selectedLineIdx];
+                line = canLogTextBox.Lines[selectedLineIdx];
                 int length = line.Length;
                 canLogTextBox.Select(selectionStart, length);
+            }
+        }
+
+        private void KoenigseggHWTest_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Canlib.canStatus status;
+
+            for (int ch = 0; ch < CAN_CHANNEL_NR; ch++)
+            {
+                //Go off bus and close channel
+                status = Canlib.canBusOff(canChanHdl[ch]);
+                DisplayError(status, "canBusOff");
+
+                status = Canlib.canClose(canChanHdl[ch]);
+                DisplayError(status, "canClose");
             }
         }
     }

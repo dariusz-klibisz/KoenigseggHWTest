@@ -2007,6 +2007,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "KoenigseggHWTest";
             this.Text = "KoenigseggHWTest";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.KoenigseggHWTest_FormClosing);
             this.framePropertiesGroupBox.ResumeLayout(false);
             this.framePropertiesGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).EndInit();
