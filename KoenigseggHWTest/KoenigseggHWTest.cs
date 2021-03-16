@@ -25,6 +25,8 @@ using System.Security;
 //TODO: Combine functions for handling changing signal and frame values from window
 //TODO: Handle receiver node list for signal
 //TODO: Handle signal presentation type and representation type
+//TODO: Add handling of log window, open file, step, run, stop, add frame to log
+//TODO: Add verifying log when opened file
 
 namespace KoenigseggHWTest
 {
@@ -373,6 +375,7 @@ namespace KoenigseggHWTest
             //Get selected Node
             Node selectedNode = (Node)RestbusNodesListBox.SelectedItem;
             //Update properties
+            nodeNameTextBox.Text = selectedNode.GetName();
             nodeEnableTxCheckBox.Checked = selectedNode.GetEnableTransmission();
         }
 
@@ -428,6 +431,7 @@ namespace KoenigseggHWTest
             //Get selected Frame
             Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
             //Update properties
+            frameNameTextBox.Text = selectedFrame.GetName();
             frameIDNumericUpDown.Value = selectedFrame.GetID();
             framePeriodNumericUpDown.Value = selectedFrame.GetPeriod();
             frameDLCComboBox.Text = selectedFrame.GetByteLength().ToString();
@@ -474,6 +478,7 @@ namespace KoenigseggHWTest
             //Get selected Signal
             Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
             //Update properties
+            signalNameTextBox.Text = selectedSignal.GetName();
             signalStartBitNumericUpDown.Value = selectedSignal.GetStartBit();
             signalBitLengthNumericUpDown.Value = selectedSignal.GetBitLength();
             signalScaleTextBox.Text = selectedSignal.GetScale().ToString();
@@ -607,12 +612,22 @@ namespace KoenigseggHWTest
 
         private void NodeEnableTxCheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            //Get selected Node
+            // Get selected Node
             Node selectedNode = (Node)RestbusNodesListBox.SelectedItem;
-            //Update Node properties
+            // Update Node properties
             selectedNode.SetEnableTransmission(nodeEnableTxCheckBox.Checked, true);
-            //Update Frame properties
+            // Update Frame properties
             UpdateRestbusFrameProperties(sender, e);
+        }
+
+        private void NodeNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Get new value
+            string name = nodeNameTextBox.Text;
+            // Get selected Node
+            Node selectedNode = (Node)RestbusNodesListBox.SelectedItem;
+            // Update Node properties
+            selectedNode.SetName(name);
         }
 
         private void FrameEnableTxCheckBox_CheckedChanged(object sender, EventArgs e)
@@ -621,6 +636,16 @@ namespace KoenigseggHWTest
             Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
             //Update Frame properties
             selectedFrame.SetEnableTransmission(frameEnableTxCheckBox.Checked);
+        }
+
+        private void FrameNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Get new value
+            string name = frameNameTextBox.Text;
+            // Get selected Frame
+            Frame selectedFrame = (Frame)RestbusFramesListBox.SelectedItem;
+            // Update Node properties
+            selectedFrame.SetName(name);
         }
 
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
@@ -842,6 +867,16 @@ namespace KoenigseggHWTest
             Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
             // Set selected Signal unit
             selectedSignal.SetEncoding(encoding);
+        }
+
+        private void SignalNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            // Get new value
+            string name = signalNameTextBox.Text;
+            // Get selected Signal
+            Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
+            // Update Node properties
+            selectedSignal.SetName(name);
         }
     }
 }
