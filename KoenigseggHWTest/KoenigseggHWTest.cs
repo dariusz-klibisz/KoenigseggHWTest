@@ -27,6 +27,7 @@ using System.Security;
 //TODO: Handle signal presentation type and representation type
 //TODO: Add handling of log window, open file, step, run, stop, add frame to log
 //TODO: Add verifying log when opened file
+//TODO: Send the frame on step button press
 
 namespace KoenigseggHWTest
 {
@@ -582,8 +583,15 @@ namespace KoenigseggHWTest
             {
                 try
                 {
+                    // Load the data to text box
                     var sr = new StreamReader(openCanLogFileDialog.FileName);
                     canLogTextBox.Text = sr.ReadToEnd();
+                    // Select the first line
+                    int idx = canLogTextBox.GetFirstCharIndexFromLine(0);
+                    string line = canLogTextBox.Lines[0];
+                    int length = line.Length;
+                    canLogTextBox.Select(idx, length);
+
                 }
                 catch (SecurityException ex)
                 {
@@ -877,6 +885,26 @@ namespace KoenigseggHWTest
             Signal selectedSignal = (Signal)RestbusSignalsListBox.SelectedItem;
             // Update Node properties
             selectedSignal.SetName(name);
+        }
+
+        private void StepButton_Click(object sender, EventArgs e)
+        {
+            // Send the frame
+
+            // Get current selection
+            int selectionStart = canLogTextBox.SelectionStart;
+            int selectedLineIdx = canLogTextBox.GetLineFromCharIndex(selectionStart);
+            int linesCount = canLogTextBox.Lines.Count();
+            // Check if the next line exists
+            if ((selectedLineIdx + 1) < linesCount)
+            {
+                // Create new selection
+                selectedLineIdx += 1;
+                selectionStart = canLogTextBox.GetFirstCharIndexFromLine(selectedLineIdx);
+                string line = canLogTextBox.Lines[selectedLineIdx];
+                int length = line.Length;
+                canLogTextBox.Select(selectionStart, length);
+            }
         }
     }
 }

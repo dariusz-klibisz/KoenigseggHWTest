@@ -1843,6 +1843,7 @@
             this.stepButton.TabIndex = 3;
             this.stepButton.Text = "Step";
             this.stepButton.UseVisualStyleBackColor = true;
+            this.stepButton.Click += new System.EventHandler(this.StepButton_Click);
             // 
             // stopButton
             // 
@@ -1884,6 +1885,8 @@
             // 
             // canLogTextBox
             // 
+            this.canLogTextBox.Font = new System.Drawing.Font("Lucida Console", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.canLogTextBox.HideSelection = false;
             this.canLogTextBox.Location = new System.Drawing.Point(45, 152);
             this.canLogTextBox.Multiline = true;
             this.canLogTextBox.Name = "canLogTextBox";
