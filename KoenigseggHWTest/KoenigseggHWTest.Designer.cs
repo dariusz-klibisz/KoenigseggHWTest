@@ -128,6 +128,9 @@
             this.signalStartBitLabel = new System.Windows.Forms.Label();
             this.signalStartBitNumericUpDown = new System.Windows.Forms.NumericUpDown();
             this.saveReplayGroupBox = new System.Windows.Forms.GroupBox();
+            this.logProgressLabel = new System.Windows.Forms.Label();
+            this.verifyCanLogButton = new System.Windows.Forms.Button();
+            this.logProgressBar = new System.Windows.Forms.ProgressBar();
             this.stepButton = new System.Windows.Forms.Button();
             this.stopButton = new System.Windows.Forms.Button();
             this.runButton = new System.Windows.Forms.Button();
@@ -146,6 +149,8 @@
             this.saveConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openDBCFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.logRunBackgroundWorker = new System.ComponentModel.BackgroundWorker();
+            this.logVerifyBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.framePropertiesGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataB0NumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataB1NumericUpDown)).BeginInit();
@@ -1822,6 +1827,9 @@
             // 
             // saveReplayGroupBox
             // 
+            this.saveReplayGroupBox.Controls.Add(this.logProgressLabel);
+            this.saveReplayGroupBox.Controls.Add(this.verifyCanLogButton);
+            this.saveReplayGroupBox.Controls.Add(this.logProgressBar);
             this.saveReplayGroupBox.Controls.Add(this.stepButton);
             this.saveReplayGroupBox.Controls.Add(this.stopButton);
             this.saveReplayGroupBox.Controls.Add(this.runButton);
@@ -1834,6 +1842,34 @@
             this.saveReplayGroupBox.TabIndex = 5;
             this.saveReplayGroupBox.TabStop = false;
             this.saveReplayGroupBox.Text = "Save / Replay";
+            // 
+            // logProgressLabel
+            // 
+            this.logProgressLabel.AutoSize = true;
+            this.logProgressLabel.Location = new System.Drawing.Point(1610, 34);
+            this.logProgressLabel.Name = "logProgressLabel";
+            this.logProgressLabel.Size = new System.Drawing.Size(128, 32);
+            this.logProgressLabel.TabIndex = 6;
+            this.logProgressLabel.Text = "Progress";
+            // 
+            // verifyCanLogButton
+            // 
+            this.verifyCanLogButton.Location = new System.Drawing.Point(460, 64);
+            this.verifyCanLogButton.Name = "verifyCanLogButton";
+            this.verifyCanLogButton.Size = new System.Drawing.Size(200, 50);
+            this.verifyCanLogButton.TabIndex = 5;
+            this.verifyCanLogButton.Text = "Verify";
+            this.verifyCanLogButton.UseVisualStyleBackColor = true;
+            this.verifyCanLogButton.Click += new System.EventHandler(this.verifyCanLogButton_Click);
+            // 
+            // logProgressBar
+            // 
+            this.logProgressBar.Location = new System.Drawing.Point(1612, 77);
+            this.logProgressBar.Name = "logProgressBar";
+            this.logProgressBar.Size = new System.Drawing.Size(400, 30);
+            this.logProgressBar.Step = 1;
+            this.logProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
+            this.logProgressBar.TabIndex = 4;
             // 
             // stepButton
             // 
@@ -1853,6 +1889,7 @@
             this.stopButton.TabIndex = 3;
             this.stopButton.Text = "Stop";
             this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.StopButton_Click);
             // 
             // runButton
             // 
@@ -1862,6 +1899,7 @@
             this.runButton.TabIndex = 3;
             this.runButton.Text = "Run";
             this.runButton.UseVisualStyleBackColor = true;
+            this.runButton.Click += new System.EventHandler(this.RunButton_Click);
             // 
             // saveCanLogButton
             // 
@@ -1888,6 +1926,7 @@
             this.canLogTextBox.Font = new System.Drawing.Font("Lucida Console", 8.1F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.canLogTextBox.HideSelection = false;
             this.canLogTextBox.Location = new System.Drawing.Point(45, 152);
+            this.canLogTextBox.MaxLength = 200000;
             this.canLogTextBox.Multiline = true;
             this.canLogTextBox.Name = "canLogTextBox";
             this.canLogTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
@@ -1951,7 +1990,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(2687, 49);
+            this.menuStrip1.Size = new System.Drawing.Size(2687, 60);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -1989,6 +2028,22 @@
             // 
             this.openDBCFileDialog.FileName = "Select file...";
             this.openDBCFileDialog.Filter = "Database files|*.dbc|Allf files|*.*";
+            // 
+            // logRunBackgroundWorker
+            // 
+            this.logRunBackgroundWorker.WorkerReportsProgress = true;
+            this.logRunBackgroundWorker.WorkerSupportsCancellation = true;
+            this.logRunBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.LogRunBackgroundWorker_DoWork);
+            this.logRunBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.LogRunBackgroundWorker_ProgressChanged);
+            this.logRunBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.LogRunBackgroundWorker_RunWorkerCompleted);
+            // 
+            // logVerifyBackgroundWorker
+            // 
+            this.logVerifyBackgroundWorker.WorkerReportsProgress = true;
+            this.logVerifyBackgroundWorker.WorkerSupportsCancellation = true;
+            this.logVerifyBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.LogVerifyBackgroundWorker_DoWork);
+            this.logVerifyBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.LogVerifyBackgroundWorker_ProgressChanged);
+            this.logVerifyBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.LogVerifyBackgroundWorker_RunWorkerCompleted);
             // 
             // KoenigseggHWTest
             // 
@@ -2178,6 +2233,11 @@
         private System.Windows.Forms.Label signalNameLabel;
         private System.Windows.Forms.Label nodeNamelabel;
         private System.Windows.Forms.TextBox nodeNameTextBox;
+        private System.ComponentModel.BackgroundWorker logRunBackgroundWorker;
+        private System.Windows.Forms.ProgressBar logProgressBar;
+        private System.Windows.Forms.Button verifyCanLogButton;
+        private System.ComponentModel.BackgroundWorker logVerifyBackgroundWorker;
+        private System.Windows.Forms.Label logProgressLabel;
     }
 }
 

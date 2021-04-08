@@ -30,15 +30,19 @@ using System.Security;
 //TODO: Send the frame on step button press
 //TODO: Fix the sending of frames on step to two channels
 //TODO: Add exception handling when parsing line on step
+//TODO: Improve performance of analyzing lines and sending frames from textbox
+//TODO: Add protections from running if file was not analyzed
+//TODO: Add protections when textbox is empty
 
 namespace KoenigseggHWTest
 {
     public partial class KoenigseggHWTest : Form
     {
         private const UInt16 DEFAULT_FRAME_ID = 2016;
-        private const Byte CAN_CHANNEL_NR = 2;
+        private const Byte CAN_CHANNEL_NR = 1;
         private TestFrame CANFrame = new TestFrame(aID: DEFAULT_FRAME_ID);
         private static List<Node> nodes = new List<Node>();
+        private static List<LogFrame> logFrames = new List<LogFrame>();
         private int[] canChanHdl = new int[CAN_CHANNEL_NR];
 
         private enum PinCfgFunction
@@ -589,7 +593,6 @@ namespace KoenigseggHWTest
                     string line = canLogTextBox.Lines[0];
                     int length = line.Length;
                     canLogTextBox.Select(idx, length);
-
                 }
                 catch (SecurityException ex)
                 {
@@ -887,12 +890,16 @@ namespace KoenigseggHWTest
 
         private void StepButton_Click(object sender, EventArgs e)
         {
+            //ProcessLogLine(sender, e, false, false);
+        }
+
+        private void SendLogFrame(object sender, EventArgs e, Boolean aCheckTime = false, Boolean aSaveStartTime = true)
+        {
             // Get current selection
-            int selectionStart = canLogTextBox.SelectionStart;
-            int selectedLineIdx = canLogTextBox.GetLineFromCharIndex(selectionStart);
-            int linesCount = canLogTextBox.Lines.Count();
+            int selectionStart = ThreadHelper.GetSelectionStart(this, canLogTextBox);
+            int selectedLineIdx = ThreadHelper.GetLineFromCharIndex(this, canLogTextBox, selectionStart);
             // Decode the line into Frame parameters
-            string line = canLogTextBox.Lines[selectedLineIdx];
+            string line = ThreadHelper.GetLine(this, canLogTextBox, selectedLineIdx);
             char[] separators = { ' ' };
             string[] splitLine = line.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
             int nrOfElements = splitLine.Count();
@@ -905,17 +912,82 @@ namespace KoenigseggHWTest
             {
                 data[i] = Byte.Parse(splitLine[i + 3]);
             }
+            float time = float.Parse(splitLine[nrOfElements - 2]);
+            if (aCheckTime)
+            {
+                // Get current time from system time
+
+                if (aSaveStartTime)
+                {
+                    // Save current system time as start of run action
+                    // Save time from log line as start of log run action
+                }
+                else
+                {
+                    // Check if current system time - start system time > log line time - log run time
+
+                    // else return
+                }
+
+
+            }
             // Send the frame
-            Canlib.canWriteWait(canChanHdl[canCh], msgId, data, msgDlc, msgFlags, 50);
+            //Canlib.canWriteWait(canChanHdl[canCh], msgId, data, msgDlc, msgFlags, 50);
+            //Canlib.canWrite(canChanHdl[canCh], msgId, data, msgDlc, msgFlags); canChanHdl
+            logFrames[selectedLineIdx].SendFrame(canChanHdl);
+            SelectNextLogLine();
+        }
+
+        private void ProcessLogLine(object sender, EventArgs e)
+        {
+            // Get current selection
+            int selectionStart = ThreadHelper.GetSelectionStart(this, canLogTextBox);
+            int selectedLineIdx = ThreadHelper.GetLineFromCharIndex(this, canLogTextBox, selectionStart);
+            // Decode the line into Frame parameters
+            //string line = ThreadHelper.GetLine(this, canLogTextBox, selectedLineIdx);
+            string line = canLogTextBox.Lines[selectedLineIdx];
+            if (line != "")
+            {
+                char[] separators = { ' ' };
+                string[] splitLine = line.Split(separators, System.StringSplitOptions.RemoveEmptyEntries);
+                int nrOfElements = splitLine.Count();
+                int canCh = int.Parse(splitLine[0]);
+                UInt16 msgId = UInt16.Parse(splitLine[1]);
+                Byte msgDlc = Byte.Parse(splitLine[2]);
+                byte[] data = new byte[msgDlc];
+                int msgFlags = 0;
+                double time = double.Parse(splitLine[nrOfElements - 2]);
+                LogFrame lFrame = new LogFrame(msgId, "", 0, msgDlc, null, true, canCh, time);
+                for (Byte i = 0; i < msgDlc; i++)
+                {
+                    lFrame.SetData(i, Byte.Parse(splitLine[i + 3]));
+                }
+
+                // Save the frame in processed LogFrames
+                // TODO: Save also the line index, and selection index and length for faster processing
+                logFrames.Add(lFrame);
+            }
+            
+            SelectNextLogLine();
+        }
+
+        private void SelectNextLogLine()
+        {
+            // Get current selection
+            int selectionStart = ThreadHelper.GetSelectionStart(this, canLogTextBox);
+            int selectedLineIdx = ThreadHelper.GetLineFromCharIndex(this, canLogTextBox, selectionStart);
+            int linesCount = ThreadHelper.GetLinesCount(this, canLogTextBox);
+
             // Check if the next line exists
             if ((selectedLineIdx + 1) < linesCount)
             {
                 // Create new selection
                 selectedLineIdx += 1;
-                selectionStart = canLogTextBox.GetFirstCharIndexFromLine(selectedLineIdx);
-                line = canLogTextBox.Lines[selectedLineIdx];
+                selectionStart = ThreadHelper.GetFirstCharIndexFromLine(this, canLogTextBox, selectedLineIdx);
+                //string line = ThreadHelper.GetLine(this, canLogTextBox, selectedLineIdx);
+                string line = canLogTextBox.Lines[selectedLineIdx];
                 int length = line.Length;
-                canLogTextBox.Select(selectionStart, length);
+                ThreadHelper.Select(this, canLogTextBox, selectionStart, length);
             }
         }
 
@@ -931,6 +1003,157 @@ namespace KoenigseggHWTest
 
                 status = Canlib.canClose(canChanHdl[ch]);
                 DisplayError(status, "canClose");
+            }
+        }
+
+        private void RunButton_Click(object sender, EventArgs e)
+        {
+            if (logRunBackgroundWorker.IsBusy != true)
+            {
+                // Start the asynchronous operation.
+                logRunBackgroundWorker.RunWorkerAsync();
+            }
+        }
+
+        private void StopButton_Click(object sender, EventArgs e)
+        {
+            if (true == logRunBackgroundWorker.WorkerSupportsCancellation)
+            {
+                // Cancel the asynchronous operation.
+                logRunBackgroundWorker.CancelAsync();
+                logVerifyBackgroundWorker.CancelAsync();
+            }
+        }
+
+        private void LogRunBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            Boolean firstCall = true;
+            int linesCount = 0;
+
+            while (true)
+            {
+                if (true == worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                else
+                {
+                    if (firstCall)
+                    {
+                        // Get total number of lines
+                        linesCount = ThreadHelper.GetLinesCount(this, canLogTextBox);
+                    }
+                    SendLogFrame(sender, e, true, firstCall);
+                    // Get selected line number
+                    int selectionStart = ThreadHelper.GetSelectionStart(this, canLogTextBox);
+                    int selectedLineIdx = ThreadHelper.GetLineFromCharIndex(this, canLogTextBox, selectionStart);
+                    // Calculate progress in percent
+                    int progressPercent = (int)((float)selectedLineIdx / (linesCount - 1)* 100);
+                    worker.ReportProgress(progressPercent);
+                    if (selectedLineIdx == (linesCount - 1))
+                    {
+                        break;
+                    }
+                }
+                firstCall = false;
+            }
+        }
+
+        private void LogRunBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            // Display progress
+            logProgressBar.Value = e.ProgressPercentage;
+            logProgressLabel.Text = $"Running... {e.ProgressPercentage.ToString()}%";
+        }
+
+        private void LogRunBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (true == e.Cancelled)
+            {
+                // Do nothing
+            }
+            else if (e.Error != null)
+            {
+                // Report some error?
+                //resultLabel.Text = "Error: " + e.Error.Message;
+            }
+            else
+            {
+                // Select first line?
+            }
+        }
+
+        private void LogVerifyBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundWorker worker = sender as BackgroundWorker;
+            Boolean firstCall = true;
+            int linesCount = 0;
+
+            while (true)
+            {
+                if (true == worker.CancellationPending)
+                {
+                    e.Cancel = true;
+                    break;
+                }
+                else
+                {
+                    if (firstCall)
+                    {
+                        // Get total number of lines
+                        linesCount = ThreadHelper.GetLinesCount(this, canLogTextBox);
+                    }
+                    ProcessLogLine(sender, e);
+                    // Get selected line number
+                    int selectionStart = ThreadHelper.GetSelectionStart(this, canLogTextBox);
+                    int selectedLineIdx = ThreadHelper.GetLineFromCharIndex(this, canLogTextBox, selectionStart);
+                    // Calculate progress in percent
+                    int progressPercent = (int)((float)selectedLineIdx / (linesCount - 1) * 100);
+                    worker.ReportProgress(progressPercent);
+                    if (selectedLineIdx == (linesCount - 1))
+                    {
+                        break;
+                    }
+                }
+            }
+        }
+
+        private void LogVerifyBackgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            // Display progress
+            logProgressBar.Value = e.ProgressPercentage;
+            logProgressLabel.Text = $"Verifying... {e.ProgressPercentage.ToString()}%";
+        }
+
+        private void LogVerifyBackgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            if (true == e.Cancelled)
+            {
+                // Do nothing
+            }
+            else if (e.Error != null)
+            {
+                // Report some error?
+                //resultLabel.Text = "Error: " + e.Error.Message;
+            }
+            else
+            {
+                // Select first line
+                int idx = canLogTextBox.GetFirstCharIndexFromLine(0);
+                string line = canLogTextBox.Lines[0];
+                int length = line.Length;
+                canLogTextBox.Select(idx, length);
+            }
+        }
+
+        private void verifyCanLogButton_Click(object sender, EventArgs e)
+        {
+            if (logVerifyBackgroundWorker.IsBusy != true)
+            {
+                // Start the asynchronous operation.
+                logVerifyBackgroundWorker.RunWorkerAsync();
             }
         }
     }

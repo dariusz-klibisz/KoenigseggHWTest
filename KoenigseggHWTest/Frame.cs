@@ -14,12 +14,12 @@ namespace KoenigseggHWTest
         protected const Byte BYTE_MASK = 0xFF;
         protected const Byte BYTE_SHIFT = 8;
         
-        private UInt16 id;
+        protected UInt16 id;
         private String name;
         private UInt16 period;
         private Byte padding = 0x00;
-        private Byte byteLength;
-        private Byte[] data = new Byte[FRAME_LENGTH_MAX];
+        protected Byte byteLength;
+        protected Byte[] data;
         private Kvadblib.MessageHnd handle;
         private List<Signal> signals;
         private Boolean enableTransmission;
@@ -36,6 +36,7 @@ namespace KoenigseggHWTest
             SetName(aName);
             SetByteLength(aByteLength);
             SetHandle(aHandle);
+            data = new Byte[aByteLength];
             signals = new List<Signal>();
             SetEnableTransmission(aEnableTrans);
         }
@@ -128,7 +129,8 @@ namespace KoenigseggHWTest
 
         public Byte GetData(Byte aByteNr)
         {
-            if(aByteNr < FRAME_LENGTH_MAX)
+            Byte byteLength = GetByteLength();
+            if (aByteNr < byteLength)
             {
                 return data[aByteNr];
             }
@@ -140,7 +142,8 @@ namespace KoenigseggHWTest
 
         public void SetData(Byte aByteNr, Byte aData)
         {
-            if(aByteNr < FRAME_LENGTH_MAX)
+            Byte byteLength = GetByteLength();
+            if (aByteNr < byteLength)
             {
                 data[(Byte)aByteNr] = aData;
             }
